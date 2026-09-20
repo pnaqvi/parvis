@@ -16,7 +16,7 @@ description: >
 
 # Who the user is
 
-*Skill version 2.3.0 · Last updated 2026-09-19 · Parvis release 2.3 (2026-09-19)*
+*Skill version 2.4.0 · Last updated 2026-09-20 · Parvis release 2.4 (2026-09-20)*
 
 **Profile version: 2026-08-08 · Last confirmed: 2026-08-08.** This profile is load-bearing for all of Parvis, because every skill defers to it for identity, scale, org and preferences. At each quarterly system maintenance, re-confirm the Profile, Org and Signature accomplishments sections with him and refresh both dates. If more than about six months have passed since Last confirmed, mention it once when the profile is used for something consequential.
 

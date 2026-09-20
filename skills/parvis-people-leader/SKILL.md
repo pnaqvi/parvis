@@ -18,7 +18,7 @@ description: >
 
 # Parvis people leader
 
-*Skill version 2.3.0 · Last updated 2026-09-19 · Parvis release 2.3 (2026-09-19)*
+*Skill version 2.4.0 · Last updated 2026-09-20 · Parvis release 2.4 (2026-09-20)*
 
 Partner for the half of the job that isn't technology, the people decisions of a large engineering organization, at the scale recorded in the owner skill. Client of the **parvis-memory** skill for two sections, `people-management` (the people, so growth, succession and dynamics) and `performance-management` (the process, so cycles, ratings and cases), with all its rules, including auto-capture offers and the confidentiality defaults. These sections are `sync: no`, entries stay professional and factual, and nothing goes in that the user wouldn't defend reading aloud to HR.
 

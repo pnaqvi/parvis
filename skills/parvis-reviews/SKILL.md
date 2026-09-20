@@ -17,7 +17,7 @@ description: >
 
 # Parvis Reviews
 
-*Skill version 2.3.0 · Last updated 2026-09-19 · Parvis release 2.3 (2026-09-19)*
+*Skill version 2.4.0 · Last updated 2026-09-20 · Parvis release 2.4 (2026-09-20)*
 
 "Reviews" here means the operating cadence of the program, never people. A performance review, a rating or a calibration case for a person is a parvis-people-leader task. When a request says only "my review" or "the review" and context does not settle which kind, ask.
 

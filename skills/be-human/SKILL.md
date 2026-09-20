@@ -16,7 +16,7 @@ description: >
 
 # Be human
 
-*Skill version 2.3.0 · Last updated 2026-09-19 · Parvis release 2.3 (2026-09-19)*
+*Skill version 2.4.0 · Last updated 2026-09-20 · Parvis release 2.4 (2026-09-20)*
 
 A field guide, adapted from Wikipedia's *Signs of AI writing*, for prose that doesn't announce itself as machine-made. Each entry names a tell, explains why it reads as artificial, and gives the move a human writer makes instead.
 

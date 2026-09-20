@@ -18,7 +18,7 @@ description: >
 
 # Parvis meeting prep
 
-*Skill version 2.3.0 · Last updated 2026-09-19 · Parvis release 2.3 (2026-09-19)*
+*Skill version 2.4.0 · Last updated 2026-09-20 · Parvis release 2.4 (2026-09-20)*
 
 A composition skill. It builds one-page meeting preparation from systems that already exist, rather than owning new craft. Fast to *deliver* is the point, so a prep should reach the user in minutes and fit one page, while the thinking behind it follows the `parvis-core` depth mandate, full anticipation work, no shortcuts, tight output.
 

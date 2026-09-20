@@ -12,7 +12,7 @@ The memory home's `MANIFEST.md` is the routing table, and it is the only place s
 | <section-slug> | <one-line scope> | <4-6 routing keywords> | yes / no |
 ```
 
-`Sync: no` marks a confidential section that stays machine-local. The seed ships thirteen sections, `infra-advisor`, `exec-writing`, `performance-management`, `people-management`, `vendor-management`, `enterprise-architecture`, `stakeholders`, `meetings`, `system`, `portfolio-planning`, `platform-products`, `metrics-value` and `risk-regulatory`. Four of them, `infra-advisor`, `enterprise-architecture`, `platform-products` and `metrics-value`, are the technology set, which initialization offers to retire for an owner whose domain is not technology. Group sections are not seeded. Initialization adds one per org group, so a live manifest grows past thirteen. The manifest's own routing notes carry the rest, including how the overlapping sections divide and where each kind of capture lands.
+`Sync: no` marks a confidential section that stays machine-local. The seed ships fifteen sections, `infra-advisor`, `exec-writing`, `performance-management`, `people-management`, `vendor-management`, `enterprise-architecture`, `stakeholders`, `meetings`, `system`, `portfolio-planning`, `platform-products`, `metrics-value`, `risk-regulatory`, `engineering-practice` and `ai-engineering`. Six of them, `infra-advisor`, `enterprise-architecture`, `platform-products`, `metrics-value`, `engineering-practice` and `ai-engineering`, are the technology set, which initialization offers to retire for an owner whose domain is not technology. Group sections are not seeded. Initialization adds one per org group, so a live manifest grows past fifteen. The manifest's own routing notes carry the rest, including how the overlapping sections divide and where each kind of capture lands.
 
 ## positions.md
 
@@ -114,6 +114,35 @@ A row unreviewed for more than 90 days is flagged at the pulse and at maintenanc
 ## org-context.md (portfolio-planning section)
 
 The what-is fact sheet, read first by every skill: role and remit, the groups and their leaders, org shape, flagship and major programs, products or services offered, this period's commitments, honest capacity per group, top constraints, standing forums, key stakeholders, standing context. Facts only, since positions hold the beliefs. `[X]` marks what the user genuinely cannot state today, never a guess. Carries a `Last confirmed` date, refreshed at maintenance and confirmed quarterly.
+
+## delivery-practice.md (engineering-practice section)
+
+One block per lifecycle dimension, written by parvis-sdlc's maturity assessment.
+
+```markdown
+## <Lifecycle dimension>
+- **Current practice:** <one line, what the org actually does today>
+- **Grade:** <grade> (<date>) / `ungraded`
+- **Evidence the grade rested on:** <what was supplied, or what is missing>
+- **Change in flight:** <what is being changed now, and by whom>
+- **Highest-return changes named last time:** <change one, landed / not landed / partial> · <change two, landed / not landed / partial>
+```
+
+A dimension with no supplied evidence is recorded `ungraded` rather than estimated, and the assessment returns the evidence request instead of a number (T2). The last-time line is what makes the next assessment calibratable, so it is filled even when nothing landed.
+
+## defect-patterns.md (engineering-practice section)
+
+One block per recurring defect class found across reviews, written by parvis-software-engineering.
+
+```markdown
+## <Defect class>
+- **Seen:** <count> times, most recently <date>
+- **Repositories:** <aliases only>
+- **Structural cause:** <why this org keeps producing it>
+- **Lifecycle fix:** <the gate or practice change proposed, and where it went> / none proposed
+```
+
+Class altitude only. No credentials, hostnames, exploit paths or customer data (T3). Individual review reports are workspace artifacts filed under `tech-plans/` with a manifest row (T11), and only the recurring class comes back here. A pattern whose fix is a gate or a practice change hands that fix to parvis-sdlc rather than prescribing it.
 
 ## session-log.md (system section)
 

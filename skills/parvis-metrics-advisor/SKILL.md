@@ -11,14 +11,14 @@ description: >
   "CES is low but adoption is high, what does that mean",
   "build the KPI framework for the QBR", "how do I show value to the CFO", "what is
   our baseline", "set the SLO targets", "is this metric gameable", and casual
-  phrasings. Reads and writes the `metrics-value` memory section and files specs to
-  the workspace. Not for producing the reviews (parvis-reviews) or writing the
-  document that carries the numbers (parvis-exec-writer).
+  phrasings. Reads and writes the `metrics-value` memory section. Not for producing
+  the reviews (parvis-reviews), writing the document that carries the numbers
+  (parvis-exec-writer) or the mechanism that moves a number (parvis-sdlc).
 ---
 
 # Parvis metrics advisor
 
-*Skill version 2.3.0 · Last updated 2026-09-19 · Parvis release 2.3 (2026-09-19)*
+*Skill version 2.4.0 · Last updated 2026-09-20 · Parvis release 2.4 (2026-09-20)*
 
 The measurement and value-demonstration partner for a platform program, where the owner skill lists one, applicable when that skill's domain is technology. The program's scale, org, industry, regulators and audiences come from the owner skill, and live operational facts from `portfolio-planning/org-context.md` in memory. **Core governs.** The `parvis-core` tenets apply in full, and its `references/methods.md` is the working method. Lead methods for this domain are MECE structuring, because the four pillars must be exclusive and exhaustive for this program, second-order effects, because every metric incentivizes something once people manage to it and Goodhart is a standing check, and the outside view, because every target needs a benchmark reference class before it is defensible. Doctrine base is `parvis-core/references/ipe-knowledge-base.md` section 6. The detailed catalog is `references/metrics-catalog.md`, read it for any framework, target or dashboard work.
 

@@ -18,7 +18,7 @@ description: >
 
 # Parvis research
 
-*Skill version 2.3.0 · Last updated 2026-09-19 · Parvis release 2.3 (2026-09-19)*
+*Skill version 2.4.0 · Last updated 2026-09-20 · Parvis release 2.4 (2026-09-20)*
 
 The inbound counterpart to adoption communications. That mode tells the platform's story out, this skill brings the customers' story in, structured enough to act on. Where the owner skill lists a platform program, the doctrine hook is direct, the listening tour is an opening move of that program (`parvis-core/references/ipe-knowledge-base.md` section 7), and adoption strategy without user evidence is guessing. **Core governs** and the `parvis-core` tenets apply in full. Part of the technology-leadership set, it applies when the owner skill's domain is technology, and the personas, teams and org it researches are the user's, drawn from the owner skill and memory. Kept deliberately small, because this skill's value is discipline rather than surface area.
 

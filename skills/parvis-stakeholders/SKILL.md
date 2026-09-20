@@ -18,7 +18,7 @@ description: >
 
 # Parvis stakeholders
 
-*Skill version 2.3.0 · Last updated 2026-09-19 · Parvis release 2.3 (2026-09-19)*
+*Skill version 2.4.0 · Last updated 2026-09-20 · Parvis release 2.4 (2026-09-20)*
 
 Relationship management as a discipline, knowing the terrain before any contested move. At senior levels, initiatives succeed or die on stakeholder positioning long before their technical merits are heard, so this skill makes that terrain explicit, remembered and worked deliberately. Client of parvis-memory, section **`stakeholders`** (confidential, `sync: no`, the same rules as the people sections, professional and factual, T3 governs, nothing the user wouldn't defend read aloud). Core's tenets apply throughout, T10 especially, since the best win is the one made unnecessary by preparation.
 

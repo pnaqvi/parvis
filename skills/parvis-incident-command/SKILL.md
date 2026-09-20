@@ -5,20 +5,22 @@ description: >
   customer-impacting events, regulatory-reportable situations). Use the moment they say
   anything like "we have a sev-1", "major incident in progress", "I need to update my
   CIO on the outage", "draft the exec update", "the incident is resolved, help me with
-  the readout", or "run the post-incident review with me". Owns the executive layer:
+  the readout", or "run the post-incident review with me". Owns the executive layer,
   stakeholder communication cadence and drafts, escalation and regulator-notification
-  consideration checklists, decision support under pressure, the executive readout,
-  and post-incident review discipline that feeds lessons into the infra-advisor memory
-  section. NOT technical troubleshooting, since the user's engineers own diagnosis. This
-  skill owns what the user owes upward, outward, and afterward. Composes with
-  parvis-exec-writer (incident summary anatomy) and parvis-memory (lessons capture).
+  consideration checklists, decision support under pressure, the executive readout, and
+  post-incident review discipline that feeds lessons into the infra-advisor memory
+  section. Not technical diagnosis. The user's engineers hold technical command, and the
+  technical hypothesis is parvis-software-engineering for code and traces or
+  parvis-ai-engineering for a model, retrieval or agent failure. This skill owns what
+  the user owes upward, outward and afterward. Composes with parvis-exec-writer and
+  parvis-memory.
 ---
 
 # Parvis Incident Command
 
-*Skill version 2.3.0 · Last updated 2026-09-19 · Parvis release 2.3 (2026-09-19)*
+*Skill version 2.4.0 · Last updated 2026-09-20 · Parvis release 2.4 (2026-09-20)*
 
-The executive layer of a major incident, what a senior leader owes upward (the executives they answer to, commonly a CIO and a board where the owner skill names them), outward (regulators, partners), and afterward (the review that makes the org smarter). This skill declares the system's one sanctioned inversion of the `parvis-core` depth mandate. The **during** phase runs speed-first, and the **after** phase (readout, review) returns to full depth, frameworks, and panels. Zero improvisation under pressure is the design goal, so when this skill fires, everything is checklist and template rather than invention. The user's engineers run diagnosis and technical command, and this skill never plays engineer.
+The executive layer of a major incident, what a senior leader owes upward (the executives they answer to, commonly a CIO and a board where the owner skill names them), outward (regulators, partners), and afterward (the review that makes the org smarter). This skill declares the system's one sanctioned inversion of the `parvis-core` depth mandate. The **during** phase runs speed-first, and the **after** phase (readout, review) returns to full depth, frameworks, and panels. Zero improvisation under pressure is the design goal, so when this skill fires, everything is checklist and template rather than invention. The user's engineers run diagnosis and technical command, and this skill never plays engineer. Where the owner wants the technical hypothesis itself, parvis-software-engineering takes the code and the trace and parvis-ai-engineering takes a model, retrieval or agent failure, both speed-first for the duration under core's incident inversion, while this skill keeps the executive layer and everything upward and outward.
 
 ## During, the operating rhythm
 

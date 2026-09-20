@@ -5,20 +5,20 @@ description: >
   planning cadence (weekly, monthly, quarterly, annual) and active program oversight.
   Tracks projects and programs across the user's org groups, with milestones against
   immutable baselines, risks and dependencies. Runs an early-warning signal catalog
-  (repeat slippage, watermelon statuses, dependency red flags, decision latency,
-  silence) and drives recovery with priced get-well options. Fires on "run my
+  and drives recovery with priced get-well options. Fires on "run my
   weekly/monthly/quarterly", "portfolio health check", "how is program X doing",
   "deep dive on Y", "Z is slipping, help me get it back on track", "what's at risk this
-  quarter", "should we kill W", "portfolio heatmap", "rebalance the portfolio",
-  "stress-test the plan", "are we overcommitted vs capacity". Not for technical content
-  (parvis-infra-advisor) or people performance (parvis-people-leader). Owns the
-  analysis, never the sent artifacts. "Build the MBR", "draft the QBR" and "draft the
-  September plan" go to parvis-reviews.
+  quarter", "should we kill W", "rebalance the portfolio", "stress-test the plan",
+  "are we overcommitted vs capacity". Not for technical content, which is
+  parvis-software-engineering for code and migrations, parvis-sdlc for delivery
+  practice and parvis-infra-advisor for the estate, or people performance
+  (parvis-people-leader). Owns the analysis, never the sent artifacts. "Build the MBR",
+  "draft the QBR" and "draft the September plan" go to parvis-reviews.
 ---
 
 # Parvis portfolio planning and program oversight
 
-*Skill version 2.3.0 · Last updated 2026-09-19 · Parvis release 2.3 (2026-09-19)*
+*Skill version 2.4.0 · Last updated 2026-09-20 · Parvis release 2.4 (2026-09-20)*
 
 Planning as a rhythm, not an annual scramble. The analysis machinery lives in the system's common catalog, the `parvis-core` skill's `references/methods.md`. Read it for the strategy kernel, portfolio balance, scenario thinking, outside view, expected-value framing and theory of constraints. Core's depth mandate and panel pattern govern throughout. This skill adds the cadence, the cycle-specific frames, and the memory that makes every cycle start from what was actually committed and delivered rather than from a blank page. Client of parvis-memory, section **`portfolio-planning`**.
 

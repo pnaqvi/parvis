@@ -1,6 +1,6 @@
 # Why Parvis exists
 
-*Document 1 of 6 · release 2.3, September 2026 · Lives in parvis-core so help mode answers from it.*
+*Document 1 of 6 · release 2.4, September 2026 · Lives in parvis-core so help mode answers from it.*
 
 ## The problem it solves
 
@@ -16,11 +16,11 @@ Parvis is the fix, built as three commitments. Everything specific about you (yo
 
 ## Who it fits
 
-The method, the tenets, memory, the writer, the cadence, people leadership, stakeholders, vendors, risk and incidents work for any senior leader. A set of technology-leadership skills (the infra advisor, the metrics advisor, customer research and the platform program doctrine) goes deeper for leaders whose domain is technology, and applies when the owner skill says that is your domain. The risk skill is written for regulated organizations in general, and initialization asks which frameworks, regulators and rating scale yours actually uses.
+The method, the tenets, memory, the writer, the cadence, people leadership, stakeholders, vendors, risk and incidents work for any senior leader. A set of technology-leadership skills (the infra advisor, software engineering, the delivery lifecycle, AI engineering, the metrics advisor, customer research and the platform program doctrine) goes deeper for leaders whose domain is technology, and applies when the owner skill says that is your domain. The risk skill is written for regulated organizations in general, and initialization asks which frameworks, regulators and rating scale yours actually uses.
 
 ## What it is, concretely
 
-Seventeen skills with one job each, listed with the phrases that reach them in `skills-reference.md`. They compose by reference, persona from one place, method from one place, memory and documents through one owner, so nothing is maintained twice.
+Twenty skills with one job each, listed with the phrases that reach them in `skills-reference.md`. They compose by reference, persona from one place, method from one place, memory and documents through one owner, so nothing is maintained twice.
 
 ## What it deliberately is not
 

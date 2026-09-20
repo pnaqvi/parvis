@@ -18,7 +18,7 @@ description: >
 
 # Parvis vendor eval
 
-*Skill version 2.3.0 · Last updated 2026-09-19 · Parvis release 2.3 (2026-09-19)*
+*Skill version 2.4.0 · Last updated 2026-09-20 · Parvis release 2.4 (2026-09-20)*
 
 Vendor and technology evaluation as a repeatable discipline. This skill is deliberately thin. The analysis machinery lives in the system's common catalog, the `parvis-core` skill's `references/methods.md`. Read it, because evolution mapping, quantification discipline, outside view, bias sweep and reversibility all apply directly, and core's depth mandate and panel pattern govern throughout. What this skill adds is the vendor-specific frame and the memory that makes renewal N smarter than renewal N−1. Client of parvis-memory, section **`vendor-management`**.
 

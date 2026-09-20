@@ -1,0 +1,65 @@
+# Defect catalog
+
+*Load-on-demand companion to `parvis-software-engineering`. The finding row every mode emits, the severity and confidence rubric, and the defect classes worth hunting at this org's scale. Each class carries where it hides, what to read for, the discriminating test and the failure it produces. Language and datastore specifics live in `language-and-data-traps.md`.*
+
+## 1. The finding row
+
+Every mode emits findings in one shape, so a review, a hunt and a triage can be merged without rework.
+
+| Field | Content |
+|---|---|
+| ID | `F-01` upward within the artifact, stable once sent |
+| Class | one class name from section 3, or `design` for a limitation with no defect yet |
+| Location | path and line range, or `[X]` with the reason it could not be located |
+| Evidence | the read that supports it, quoted short, plus `git blame` or `git log` context where it changes the reading |
+| Failure | what the user experiences when it fires, not what the code does |
+| Trigger scale | the load, data volume, concurrency or elapsed time at which it starts to bite |
+| Severity | `critical`, `high`, `medium`, `low`, per section 2 |
+| Confidence | stated on both axes, structural and behavioral, each `high`, `medium` or `low`, capped per section 2 |
+| Discriminating test | the one query, log filter, metric or experiment that confirms or kills it |
+| Fix | the smallest change that removes the failure, with its cost and its blast radius |
+
+A finding with no location and no discriminating test is not a finding, it is a worry, reported as one under a separate heading. A finding whose fix costs more than the failure it prevents says so in the fix field.
+
+## 2. Severity and confidence
+
+Severity is blast radius times likelihood divided by detectability, judged rather than computed, with the inputs stated so the user can overrule the verdict.
+
+- Blast radius is who is affected when it fires, from one request through one tenant to all writes, and whether persisted state is corrupted. Anything that leaves durable state wrong is at least high, because the outage ends and the bad rows do not.
+- Likelihood is how ordinary the trigger is. A race that needs two writers on the same key in the same millisecond is rarer than one that needs two deploys to overlap, and both become certain at this org's developer count and traffic.
+- Detectability is whether the failure announces itself. Silent wrong answers outrank loud crashes, since a crash has an owner in minutes and a dropped message is found by a customer.
+
+Confidence is separate from severity and never merged with it, and it runs on two axes rather than one, because absence is provable by reading in a way that behavior is not.
+
+- A **structural** claim says what the code contains, that a bound, a deduplication key, an invalidation, a timeout or an alert is present or absent on the paths that reach this state. A read settles it, so it may carry high confidence when it cites file and line and names what was searched and not found. Where a class below says it is confirmed by inspection, this is the sense meant.
+- A **behavioral** claim says what happens in production, that the defect fires, how often, on which path and what it costs. A read never settles it, so it is capped at medium without observed evidence, meaning a log line, a metric, a reproduction or a trace the user supplies. The file in hand may be overridden by configuration, replaced at runtime, unreachable in the deployed path or already fixed on a branch that has not merged.
+
+Every row states both, so high structural and medium behavioral is the ordinary shape of a static finding rather than a contradiction, and the severity call is made on the behavioral reading. Each class below names which sense its discriminating test settles. When the access mode is read-only plus git and grep, say in the report that every behavioral figure is capped rather than letting it be inferred.
+
+## 3. The classes
+
+**Concurrency and ordering.** Shared mutable state reached from more than one thread, coroutine, pod or consumer, and any check-then-act sequence across that state. Hides in lazy initialization, in counters and accumulators, in cache population, and in code that was single-threaded when written and is now called from an executor. Read for fields mutated outside a lock, collections that are not the concurrent variants, compound operations on atomics, and any assumption that messages arrive in the order they were sent. The discriminating test is whether the invariant still holds when two instances run the path simultaneously, which a concurrent reproduction answers and a code read does not, so it settles the behavioral claim, while the unguarded mutation itself is structural and citable by line. In production it looks like rare wrong totals, duplicated side effects and bugs that vanish under a debugger.
+
+**Retry and idempotency.** Any write reachable from a retry, a queue redelivery, a client timeout or a user's second click. Hides where the retry is far from the write, for example a gateway or client-library policy retrying a call that charges, sends or increments. Read for retry configuration, for writes without a deduplication key, and for handlers that acknowledge before committing or commit before acknowledging. The discriminating test is to replay the same request twice and compare persisted state, which settles the behavioral claim, while a write reachable from a retry with no deduplication key is structural and confirmed by reading. In production it looks like double charges, duplicate notifications and counts that drift upward over months.
+
+**Resource lifetime and leaks.** Anything acquired that must be released, meaning connections, file handles, threads, sockets, subscriptions, temporary files and native memory. Hides in error paths, in early returns, and in objects that outlive their scope by being cached. Read for acquisitions outside a try-with-resources, context manager or equivalent, for pools with no ceiling or no leak detection, for listeners registered and never removed, and for unbounded executor queues. The discriminating test is a steady-state run under load with handle and pool metrics, which settles the behavioral claim and is execution, therefore off by default, while an acquisition with no release on the error path is structural. In production it looks like a service that is healthy for days and dies at a fixed interval.
+
+**Error handling that hides failure.** Catch blocks that log and continue, broad catches around narrow operations, default values returned where an error was the truth, and swallowed cancellations. Hides most often in batch and background work, where nobody reads the log. Read for catch clauses with no rethrow and no alert, for `except` without a type, for results discarded rather than checked, and for `Result` or `Option` values unwrapped with a fallback. The discriminating test is to ask what metric moves when this path fails, and if none does the class is confirmed structurally by inspection, leaving only how often it fires as the behavioral question. In production it looks like work that silently does not happen and a dashboard that stays green.
+
+**Unbounded growth.** Any collection, queue, cache, retry budget, log field or table that grows with traffic and has no eviction, limit or retention. Read for in-memory maps keyed by request, tenant or session, queues constructed without capacity, caches without a size or TTL, and tables with no archival path. The discriminating test is to name the bound and the eviction policy, and where neither exists the class is confirmed structurally, leaving the growth rate and the time to failure as the behavioral question. In production it looks like slow memory growth ending in a restart loop, or a table whose queries degrade at a size nobody predicted.
+
+**N+1 and chatty calls.** A loop that issues a query, a remote call or a lazy load per element. Hides behind lazy relations, behind repository helpers that look local, and behind a mapper that fetches on access. Read for calls inside iteration, for lazy associations serialized at the edge, and for a per-item authorization or enrichment call. The discriminating test is the query or span count for one request at a realistic collection size, which settles the behavioral claim, while the call inside the loop is structural. In production it looks like latency that scales with result size and a downstream dependency that complains before the caller notices.
+
+**Cache coherence and invalidation.** Any cached value with a second writer, and any cache spanning instances. Read for writes that update the store without invalidating, for TTLs chosen to paper over invalidation, for per-instance caches of data that is edited elsewhere, and for missing stampede protection on hot keys. The discriminating test is to change the underlying value and observe how long a stale read survives, which settles the behavioral claim, while a write that updates the store without invalidating is structural, and whether the stale window is acceptable is the owner's call. In production it looks like a customer seeing an old value on one node and the new one on the next request.
+
+**Time and timezone.** Local clocks used for ordering, wall-clock time used for elapsed time, dates stored without zone, arithmetic that assumes fixed-length days, and expiry compared across machines. Read for local date types on persisted fields, for wall-clock differences used as durations, for scheduled work assuming midnight exists, and for tokens or locks whose validity crosses instances with unsynchronized clocks. The discriminating test is behavior at a daylight-saving transition and with clocks skewed by a few seconds, which settles the behavioral claim, while a local date type on a persisted field is structural. In production it looks like a duplicated or skipped hour of work twice a year and an off-by-one day in reporting.
+
+**Serialization and schema evolution.** Anything persisted, queued or sent that a different version of the code will read. Read for enums widened without a default branch, for required fields added in place, for polymorphic type information embedded in stored payloads, and for a consumer deployed before its producer. The discriminating test is to deserialize last release's payload with this release's code and the reverse, in both directions, because rollback is the case nobody tries, and that round trip settles the behavioral claim, while a required field added in place is structural. In production it looks like a poison message halting a partition, or a rollback that cannot read the rows written while the new version was live.
+
+**Timeouts, retry amplification and pool exhaustion.** Every call that can go slow rather than fail, and every layer that retries one. Hides in defaults, meaning a client library with no timeout or one longer than the caller's own deadline, and in retries configured at the gateway, the service client and the driver at once, so the factors multiply rather than add. Read for calls with no timeout, for a deadline that is not propagated to the next hop, for retries with no jitter and no budget, for no circuit breaker or bulkhead on a dependency that can degrade, and for a thread or connection pool sized below peak in-flight calls. The discriminating test has two halves. Sum the downstream timeouts times the retry counts along one request path and compare the total against the caller's deadline, which settles the structural claim by arithmetic on configuration alone. Then saturate the pool against a deliberately slowed dependency and watch queue depth, which settles the behavioral claim and needs execution. In production it looks like one dependency slowing rather than failing and taking every caller's threads with it, then retry traffic holding it down after it recovers. It bites at any fan-out above one, immediately.
+
+**Partial failure.** Any operation writing to two places, meaning two tables without one transaction, a table and a queue, a store and a cache, or two services. Read for a second write after a commit, for dual writes with no outbox, for compensations that themselves can fail, and for no reconciliation anywhere. The discriminating test is to kill the process between the two writes and describe the resulting state, which settles the behavioral claim, while a second write after a commit with no outbox and no reconciliation is structural. In production it looks like records that exist on one side only, found by a customer or by an auditor rather than by a monitor.
+
+## 4. Ruling a class out
+
+A class ruled out is reported with its reason, since a negative read is evidence the next reviewer should not repeat. Acceptable reasons are that the construct is absent, that the path is single-writer by design with the design named, or that a bound, key or reconciliation exists and is cited by file and line. "Looked fine" is not a reason. Classes that could not be assessed under the current access mode are listed separately as not assessed, never as clear.

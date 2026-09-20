@@ -18,7 +18,7 @@ description: >
 
 # Parvis risk and regulatory
 
-*Skill version 2.3.0 · Last updated 2026-09-19 · Parvis release 2.3 (2026-09-19)*
+*Skill version 2.4.0 · Last updated 2026-09-20 · Parvis release 2.4 (2026-09-20)*
 
 The user owns systems that regulators or examiners, internal audit and the second line all inspect. This skill is the user's personal lens on that work. It knows every open finding and its dates, every risk the user carries and why, what is being examined next, and which remediation will not survive validation, and it tells the user before anyone else does. The industry, the regulators, the frameworks in use, the risk rating scale, the key audiences and the reporting line come from the owner skill and are confirmed at initialization. Where this skill names a CIO, a board risk committee or a security function, those are examples to replace with what the owner skill records. Where this skill says "the organization", it means the user's employer as described there. `parvis-core` governs voice, depth and the tenets. Methods come from core's `references/methods.md`, with causal-chain discipline, inversion and the outside view leading. Schemas, prep procedures and checklists live in `references/risk-craft.md`, which is read before any mode below runs. Client of parvis-memory, section **`risk-regulatory`**, which is confidential, `sync: no` and a machine-local repository.
 
@@ -38,6 +38,9 @@ The user owns systems that regulators or examiners, internal audit and the secon
 - **parvis-stakeholders** holds regulators, auditors and second-line partners as people. This skill holds the work they examine.
 - **parvis-exec-writer** writes what is sent, such as a board risk update, an exam response or an acceptance memo. The substance and the numbers come from here.
 - **parvis-metrics-advisor** owns metric design. Key risk indicators and their appetite thresholds live here, and a KRI that is also a program metric keeps its baseline in `metrics-value` with a pointer.
+- **parvis-ai-engineering** builds what this skill governs. Designing the evaluation, the retrieval layer, the agent and its tool contracts belong there. Attesting that the evaluation happened, the inventory row, the autonomy tier and the model-risk status belong here, and `ai-inventory.md` is the single source. Where the two disagree, the inventory wins.
+- **parvis-sdlc** designs the supply-chain control. "Do we need an SBOM" is theirs, and "the examiner wants our SBOM" is evidence and belongs here.
+- **parvis-software-engineering** reviews code and names a security weakness at class altitude. Anything that becomes a tracked finding is logged here, with no exploit path, hostname or credential carried across (T3).
 
 ## The registers, in section `risk-regulatory`
 

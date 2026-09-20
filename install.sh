@@ -80,17 +80,22 @@ LEGACY_BASE="$HOME/ai_working_Directory"
 LEGACY_NAMES=(infra-platform-memory infra-platform-workspace)
 CLAUDE_MD="$HOME/.claude/CLAUDE.md"
 RECEIPT="$HOME/.claude/.parvis-install.json"
+# The base pointer. Uninstall removes the receipt, which was the only record of the base, so the
+# base is also kept here, one path on one line. Uninstall leaves this file behind on purpose, and a
+# later install with no receipt and no PARVIS_BASE reads it instead of seeding at the default base.
+POINTER="$HOME/.claude/.parvis-home"
 # tr strips a carriage return that a Windows checkout can leave in VERSION
 SYSTEM_VERSION="$( { tr -d ' \t\r\n' < "$BUNDLE_DIR/VERSION"; } 2>/dev/null || true)"
 
-# The roster. Verification checks exactly these seventeen names. Release 2.1 added parvis, the
-# /parvis session command, 2.2 added parvis-risk-regulatory, and 2.3 made the identity skill the
-# owner skill parvis-owner, shipped as a template that each person fills in with their own background.
-ROSTER=(be-human parvis-owner parvis-core parvis-exec-writer parvis-incident-command
-        parvis-infra-advisor parvis-meeting-prep parvis-memory parvis-metrics-advisor
-        parvis-people-leader parvis-portfolio-planning parvis-research parvis-reviews
-        parvis-risk-regulatory
-        parvis-stakeholders parvis-vendor-eval parvis)
+# The roster. Verification checks exactly these twenty names. Release 2.1 added parvis, the
+# /parvis session command, 2.2 added parvis-risk-regulatory, 2.3 made the identity skill the
+# owner skill parvis-owner, shipped as a template that each person fills in with their own
+# background, and 2.4 added parvis-ai-engineering, parvis-sdlc and parvis-software-engineering.
+ROSTER=(be-human parvis-owner parvis-ai-engineering parvis-core parvis-exec-writer
+        parvis-incident-command parvis-infra-advisor parvis-meeting-prep parvis-memory
+        parvis-metrics-advisor parvis-people-leader parvis-portfolio-planning
+        parvis-research parvis-reviews parvis-risk-regulatory parvis-sdlc
+        parvis-software-engineering parvis-stakeholders parvis-vendor-eval parvis)
 
 # Skills retired by the 2.0 merge. The infra installer never wrote a receipt, so a roster diff
 # cannot find these. Every name is spelled out on purpose and no pattern match is ever used.
@@ -209,6 +214,27 @@ backup_profile() {
   return 0
 }
 
+# newest_profile_backup prints the most recently written profile backup, and nothing when there is
+# none. Both spellings count, the first plain one and every timestamped one beside it.
+newest_profile_backup() {
+  { ls -t "$HOME"/.claude/parvis-retired-profile-backup*.md 2>/dev/null || true; } | head -n 1
+}
+
+# profile_backup_stamp FILE prints when the backup was taken, read from the timestamp in its name,
+# so a restore offer always says which backup it means.
+profile_backup_stamp() {
+  local b s
+  b="$(basename "$1")"
+  s="${b#parvis-retired-profile-backup-}"
+  s="${s%.md}"
+  case "$s" in
+    [0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9])
+      printf '%s-%s-%s %s:%s:%s UTC\n' \
+        "${s:0:4}" "${s:4:2}" "${s:6:2}" "${s:8:2}" "${s:10:2}" "${s:12:2}" ;;
+    *) printf 'an earlier uninstall\n' ;;
+  esac
+}
+
 # is_own_repo DIR succeeds when DIR is the top level of its own git work tree. A directory that
 # only sits inside an enclosing repository, such as a dotfiles repo at $HOME, does not count. A
 # worktree or a --separate-git-dir repository, whose .git is a file, does.
@@ -274,6 +300,21 @@ receipt_list() {
   sed -n "/^  \"$1\": \[\$/,/^  \]/p" "$RECEIPT" \
     | sed -n 's/^    "\(.*\)",\{0,1\}$/\1/p' \
     | json_unescape
+}
+
+# pointer_base prints the base the pointer file records, trailing slashes stripped, and nothing when
+# there is no pointer. Only the first line counts, and a CR a Windows editor left is dropped.
+pointer_base() {
+  [ -f "$POINTER" ] || return 0
+  strip_slashes "$( { head -n 1 "$POINTER" | tr -d '\r'; } 2>/dev/null || true)"
+  printf '\n'
+}
+
+# write_pointer records the base in use, so the location survives the receipt. Written on every
+# install and refreshed on uninstall, which is the run that takes the receipt away.
+write_pointer() {
+  mkdir -p "$(dirname "$POINTER")" || return 1
+  printf '%s\n' "$(dirname "$MEM_DST")" > "$POINTER.tmp" && mv -f "$POINTER.tmp" "$POINTER"
 }
 
 # block_scan MODE FILE is the one parser for the managed block. The guard, the version check and
@@ -592,6 +633,7 @@ REC_MEM_RAW=""
 REC_WS_RAW=""
 REC_MEM=""
 REC_WS=""
+REC_BASE=""
 # Where --relocate moves the homes from. Empty unless the recorded homes differ from the new ones.
 RELOC_FROM_MEM=""
 RELOC_FROM_WS=""
@@ -674,6 +716,24 @@ if receipt_valid; then
     fi
   fi
 fi
+# The pointer file, read only when there is no receipt at all and no PARVIS_BASE. It is what an
+# uninstall leaves behind, so a plain reinstall finds the real homes instead of seeding a second,
+# empty pair at the default base. A pointed-at base passes the same path checks as any other, so a
+# pointer naming $HOME, a parent of it or anything under ~/.claude is refused like any other path.
+POINTER_BASE="$(pointer_base)"
+if [ -n "$POINTER_BASE" ] && [ -z "$BASE_FROM_ENV" ] && ! receipt_valid; then
+  why="$(homes_problem "$POINTER_BASE/parvis-memory" "$POINTER_BASE/parvis-workspace")"
+  if [ -n "$why" ]; then
+    echo "WARNING. $(display_path "$POINTER") names the base $POINTER_BASE, which cannot be used, $why."
+    echo "      It is ignored."
+    POINTER_BASE=""
+  else
+    PARVIS_BASE="$POINTER_BASE"
+    MEM_DST="$PARVIS_BASE/parvis-memory"
+    WS_DST="$PARVIS_BASE/parvis-workspace"
+    echo "NOTE. No install receipt. The base $PARVIS_BASE comes from $(display_path "$POINTER")."
+  fi
+fi
 if [ "$RELOCATE" -eq 1 ] && [ -z "$RELOC_FROM_MEM" ] && { [ -z "$REC_MEM" ] || [ -z "$REC_WS" ]; }; then
   echo "REFUSED. --relocate moves the homes the install receipt records, and $RECEIPT records none." >&2
   echo "Run bash install.sh once without --relocate first. Nothing was changed." >&2
@@ -686,6 +746,28 @@ if [ -n "$HOMES_WHY" ] && { [ "$MODE" = "install" ] || [ "$PURGE" -eq 1 ]; }; th
   echo "REFUSED. The data homes cannot be used, $HOMES_WHY." >&2
   echo "Set PARVIS_BASE to an absolute directory of its own. Nothing was changed." >&2
   exit 1
+fi
+
+# The safety net under the pointer. Before a home is seeded fresh, every base this machine has a
+# record of is checked for homes that already exist. Seeding beside them would split the user's
+# memory in two, silently, so the run stops and names the command that uses the real homes.
+if [ "$MODE" = "install" ] && [ "$RELOCATE" -eq 0 ] && { [ ! -d "$MEM_DST" ] || [ ! -d "$WS_DST" ]; }; then
+  for cand in "$REC_BASE" "$POINTER_BASE"; do
+    [ -n "$cand" ] || continue
+    [ "$cand" = "$(dirname "$MEM_DST")" ] && continue
+    if [ -d "$cand/parvis-memory" ] || [ -d "$cand/parvis-workspace" ]; then
+      echo "REFUSED. Parvis homes already exist at the base" >&2
+      echo "  $cand" >&2
+      echo "and this run would seed a second, empty pair at" >&2
+      echo "  $(dirname "$MEM_DST")" >&2
+      echo "To install against the homes you already have, run" >&2
+      echo "  PARVIS_BASE=\"$cand\" bash install.sh" >&2
+      echo "To move them to the new base instead, add --relocate to that command." >&2
+      echo "To start fresh at the new base, move or remove the homes at $cand first." >&2
+      echo "Nothing was changed." >&2
+      exit 1
+    fi
+  done
 fi
 
 # ---- Uninstall mode --------------------------------------------------------
@@ -845,6 +927,14 @@ if [ "$MODE" = "uninstall" ]; then
     done
     echo "      Data homes are kept. Use --uninstall --purge to delete them."
   fi
+  # The receipt goes next, and it was the only record of the base. The pointer keeps it, so a plain
+  # reinstall finds these homes again instead of seeding an empty pair at the default base.
+  if write_pointer; then
+    echo "      Base $(dirname "$MEM_DST") remembered in $(display_path "$POINTER"), which is left behind."
+  else
+    echo "      WARNING. Could not write $(display_path "$POINTER"), so the base is not remembered."
+    echo "      Reinstall with the PARVIS_BASE command printed at the end of this run."
+  fi
   while IFS= read -r h; do
     [ -n "$h" ] && [ "$PURGE" -eq 0 ] && echo "      legacy home left untouched  $h"
   done < <(legacy_homes)
@@ -867,6 +957,18 @@ if [ "$MODE" = "uninstall" ]; then
   fi
 
   synced_note
+  echo
+  # The base, spelled out, and the one command that reinstalls against it. Printed whether the run
+  # succeeded or not, because this is the fact the user needs and the receipt no longer holds it.
+  echo "Base   $(dirname "$MEM_DST")"
+  if [ "$PURGE" -eq 1 ]; then
+    echo "       The data homes there were deleted by --purge. A reinstall seeds new ones."
+  else
+    echo "       Your data homes are still there, untouched."
+  fi
+  echo "Reinstall with"
+  echo "  PARVIS_BASE=\"$(dirname "$MEM_DST")\" bash install.sh"
+  echo "A plain bash install.sh finds the same base, from $(display_path "$POINTER")."
   echo
   if [ "$problems" -eq 0 ]; then
     echo "Uninstall complete. Restart Claude Code so it drops the removed skills."
@@ -1000,6 +1102,10 @@ save_receipt() {
   if ! write_receipt; then
     echo "      ERROR. Could not write the install receipt $RECEIPT"
     fail=1
+  fi
+  # The pointer is refreshed with the receipt, so the two can never name different bases
+  if ! write_pointer; then
+    echo "      WARNING. Could not write $(display_path "$POINTER"), so an uninstall would forget the base."
   fi
 }
 
@@ -1310,12 +1416,13 @@ ADOPTED=0
 ADOPT_FAILED=0
 OLD_F="$SKILLS_DST/$OLD_OWNER_SKILL/SKILL.md"
 OWN_F="$SKILLS_DST/$OWNER_SKILL/SKILL.md"
-if valid_skill_name "$OLD_OWNER_SKILL" && ! is_synced_path "$SKILLS_DST/$OLD_OWNER_SKILL" && \
-   [ ! -L "$SKILLS_DST/$OLD_OWNER_SKILL" ] && [ -f "$OLD_F" ] && ! is_template_skill "$OLD_F" && \
-   { in_list "$OLD_OWNER_SKILL" ${PREV_ROSTER[@]+"${PREV_ROSTER[@]}"} || looks_like_profile "$OLD_OWNER_SKILL"; } && \
-   { [ ! -f "$OWN_F" ] || is_template_skill "$OWN_F"; }; then
-  tmp="$OWN_F.parvis-tmp"
-  # Only the name line inside the leading frontmatter changes, and a CR at its end is kept
+
+# write_owner_from FILE writes FILE into the owner skill, with the name line inside the leading
+# frontmatter set to the owner skill's name and a CR at its end kept. Nothing else changes. Used by
+# the adoption below and by the restore from a profile backup. Returns 1 when the result would
+# still read as the untouched template, and then the owner skill is left exactly as it was.
+write_owner_from() {
+  local src="$1" tmp="$OWN_F.parvis-tmp"
   if mkdir -p "$(dirname "$OWN_F")" && \
      LC_ALL=C awk -v BINMODE=3 -v name="$OWNER_SKILL" '
        { t = $0; cr = ""; if (t ~ /\r$/) { cr = "\r"; sub(/\r$/, "", t) } }
@@ -1323,11 +1430,20 @@ if valid_skill_name "$OLD_OWNER_SKILL" && ! is_synced_path "$SKILLS_DST/$OLD_OWN
        fm == 1 && t == "---" { fm = 2 }
        fm == 1 && !done && t ~ /^name:/ { print "name: " name cr; done = 1; next }
        { print }
-     ' "$OLD_F" > "$tmp" && mv -f "$tmp" "$OWN_F" && ! is_template_skill "$OWN_F"; then
+     ' "$src" > "$tmp" && ! is_template_skill "$tmp" && mv -f "$tmp" "$OWN_F"; then
+    return 0
+  fi
+  rm -f "$tmp"
+  return 1
+}
+if valid_skill_name "$OLD_OWNER_SKILL" && ! is_synced_path "$SKILLS_DST/$OLD_OWNER_SKILL" && \
+   [ ! -L "$SKILLS_DST/$OLD_OWNER_SKILL" ] && [ -f "$OLD_F" ] && ! is_template_skill "$OLD_F" && \
+   { in_list "$OLD_OWNER_SKILL" ${PREV_ROSTER[@]+"${PREV_ROSTER[@]}"} || looks_like_profile "$OLD_OWNER_SKILL"; } && \
+   { [ ! -f "$OWN_F" ] || is_template_skill "$OWN_F"; }; then
+  if write_owner_from "$OLD_F"; then
     ADOPTED=1
     echo "      Adopted your filled-in profile into $OWNER_SKILL, from $(display_path "$OLD_F")."
   else
-    rm -f "$tmp"
     ADOPT_FAILED=1
     fail=1
     echo "      ERROR. Could not adopt $(display_path "$OLD_F") into $OWNER_SKILL, so $OLD_OWNER_SKILL is kept."
@@ -1376,6 +1492,44 @@ for n in ${CLAIMED[@]+"${CLAIMED[@]}"}; do
 done
 CLAIMED=(${KEEP[@]+"${KEEP[@]}"})
 save_receipt
+
+# Offer back a profile an earlier uninstall saved. Uninstall copies a filled-in identity profile to
+# ~/.claude/parvis-retired-profile-backup*.md, and nothing ever read it again, so a reinstall on a
+# machine whose bundle ships the template left the owner skill blank. This runs only while the
+# installed owner skill is still the untouched template, so a filled-in one is never overwritten,
+# and it says nothing at all in that case. The newest backup is the one offered.
+RESTORED=0
+RESTORE_SRC=""
+if [ -f "$OWN_F" ] && is_template_skill "$OWN_F" && [ "$ADOPTED" -eq 0 ]; then
+  RESTORE_SRC="$(newest_profile_backup)"
+  [ -n "$RESTORE_SRC" ] && [ -f "$RESTORE_SRC" ] && ! is_template_skill "$RESTORE_SRC" || RESTORE_SRC=""
+fi
+if [ -n "$RESTORE_SRC" ]; then
+  stamp="$(profile_backup_stamp "$RESTORE_SRC")"
+  echo "      The owner skill is still the unfilled template, and a profile backup from $stamp is here"
+  echo "        $(display_path "$RESTORE_SRC")"
+  if [ -t 0 ]; then
+    printf '      Restore it into %s? Type yes to restore, anything else keeps the template: ' "$OWNER_SKILL"
+    answer=""
+    read -r answer || true
+    if [ "$answer" = "yes" ]; then
+      if write_owner_from "$RESTORE_SRC"; then
+        RESTORED=1
+        echo "      Restored your profile into $OWNER_SKILL from the backup of $stamp."
+      else
+        echo "      ERROR. Could not restore that backup, so $OWNER_SKILL is still the template."
+        fail=1
+      fi
+    else
+      echo "      Kept the template. The backup is left where it is."
+    fi
+  else
+    # No terminal, so nothing is asked and nothing hangs. The one command is printed instead.
+    echo "      This run is not interactive, so nothing was restored. To restore it yourself, run"
+    echo "        cp \"$RESTORE_SRC\" \"$OWN_F\""
+    echo "      then check that its name line reads name: $OWNER_SKILL."
+  fi
+fi
 
 # ---- 1.5 Always-on instructions (guaranteed context via user CLAUDE.md) ----
 echo "[1.5] User instructions: ~/.claude/CLAUDE.md"
@@ -1483,6 +1637,76 @@ if [ -d "$WS_DST" ]; then
 else
   cp -R "$BUNDLE_DIR/workspace-seed" "$WS_DST"
   echo "      Created $WS_DST, seeded from the bundle."
+fi
+
+# A release can add a workspace folder or a seed file, the way it can add a memory section, and
+# until now that addition never reached an existing home. Each seed path the home lacks is created
+# or copied, additive only. Nothing already there is rewritten, whatever it now holds.
+# ws_manifest_add REL names REL in the Folders line of the home's manifest, in the seed's own
+# wording when the seed describes it. Returns 0 when the line was rewritten, 2 when it already
+# names REL and nothing was touched, and 1 when the manifest could not be rewritten.
+ws_manifest_add() {
+  local rel="$1" man="$WS_DST/MANIFEST.md" frag tmp
+  [ -f "$man" ] || return 1
+  tr -d '\r' < "$man" | sed -n 's/^Folders: //p' | head -n 1 | grep -qF "$rel/" && return 2
+  frag="$(tr -d '\r' < "$BUNDLE_DIR/workspace-seed/MANIFEST.md" | sed -n 's/^Folders: //p' | head -n 1 \
+    | LC_ALL=C awk -v r="$rel/" -F ' · ' '{ for (i = 1; i <= NF; i++) if (index($i, r) == 1) { print $i; exit } }')"
+  [ -n "$frag" ] || frag="$rel/"
+  tmp="$man.parvis-tmp"
+  if LC_ALL=C awk -v BINMODE=3 -v frag="$frag" '
+      { t = $0; cr = ""; if (t ~ /\r$/) { cr = "\r"; sub(/\r$/, "", t) } }
+      !done && t ~ /^Folders: / { print t " · " frag cr; done = 1; next }
+      { print }
+      END { exit (done ? 0 : 1) }
+    ' "$man" > "$tmp" && mv -f "$tmp" "$man"; then
+    return 0
+  fi
+  rm -f "$tmp"
+  return 1
+}
+ADDED_WS=()
+WS_MAN_CHANGED=0
+if [ -d "$WS_DST" ]; then
+  while IFS= read -r rel; do
+    [ -n "$rel" ] || continue
+    if [ -e "$WS_DST/$rel" ] || [ -L "$WS_DST/$rel" ]; then continue; fi
+    if [ -d "$BUNDLE_DIR/workspace-seed/$rel" ]; then
+      if mkdir -p "$WS_DST/$rel"; then
+        ADDED_WS+=("$rel")
+        echo "      Added the workspace folder $rel from the $SYSTEM_VERSION seed."
+      else
+        echo "      ERROR. Could not add the workspace folder $rel."
+        fail=1
+      fi
+    elif cp "$BUNDLE_DIR/workspace-seed/$rel" "$WS_DST/$rel"; then
+      ADDED_WS+=("$rel")
+      echo "      Added the workspace file $rel from the $SYSTEM_VERSION seed."
+    else
+      echo "      ERROR. Could not add the workspace file $rel."
+      fail=1
+    fi
+  done < <(cd "$BUNDLE_DIR/workspace-seed" && find . -mindepth 1 | sed 's|^\./||' | LC_ALL=C sort)
+fi
+for rel in ${ADDED_WS[@]+"${ADDED_WS[@]}"}; do
+  [ -d "$WS_DST/$rel" ] || continue
+  rc=0
+  ws_manifest_add "$rel" || rc=$?
+  case "$rc" in
+    0) WS_MAN_CHANGED=1; echo "      Registered $rel in the workspace manifest." ;;
+    2) ;;
+    *) echo "      ERROR. Could not name $rel in the Folders line of $WS_DST/MANIFEST.md. Add it by hand."
+       fail=1 ;;
+  esac
+done
+if [ "${#ADDED_WS[@]}" -gt 0 ] && is_own_repo "$WS_DST" && has_commit "$WS_DST"; then
+  paths=(${ADDED_WS[@]+"${ADDED_WS[@]}"})
+  [ "$WS_MAN_CHANGED" -eq 1 ] && paths+=(MANIFEST.md)
+  if git -C "$WS_DST" add -- "${paths[@]}" && \
+     git_commit "$WS_DST" -qm "add workspace seed paths from the $SYSTEM_VERSION seed: ${ADDED_WS[*]}" -- "${paths[@]}"; then
+    echo "      Committed the new workspace paths."
+  else
+    echo "      WARNING. The new workspace paths are in place but uncommitted. Commit them in $WS_DST."
+  fi
 fi
 # Repository state is asked of git itself, never guessed from a .git directory. A home that is
 # not its own repository is made one, and a repository with no commit gets its seed commit, so a
@@ -1633,6 +1857,10 @@ echo "  Updated  (${#UPDATED[@]})  $(join_names ${UPDATED[@]+"${UPDATED[@]}"})"
 echo "  Retired  (${#RETIRED_DONE[@]})  $(join_names ${RETIRED_DONE[@]+"${RETIRED_DONE[@]}"})"
 if [ "$ADOPTED" -eq 1 ]; then
   echo "  Owner skill  filled in, adopted from the earlier $OLD_OWNER_SKILL skill"
+elif [ "$RESTORED" -eq 1 ]; then
+  echo "  Owner skill  filled in, restored from $(display_path "$RESTORE_SRC")"
+elif [ -n "$RESTORE_SRC" ]; then
+  echo "  Owner skill  still the unfilled template, and a saved profile backup is waiting, see above"
 elif [ -f "$OWN_F" ] && ! is_template_skill "$OWN_F"; then
   echo "  Owner skill  filled in, personalized copy kept"
 else
@@ -1674,7 +1902,7 @@ if [ "$fail" -eq 0 ]; then
   else
     echo "Initialization: not started. The system is installed but knows nothing yet."
     echo "Next steps"
-    echo "  1. Restart Claude Code and run /skills to confirm seventeen skills."
+    echo "  1. Restart Claude Code and run /skills to confirm twenty skills."
     echo "  2. If an employer manages this machine, read install-guide section 0 before any real data."
     echo "  3. Type /parvis, then say \"run the shakedown\" (about 30 to 45 minutes, test data only)."
     echo "  4. Gather the seed pack listed in docs/initialization.md into $WS_DST/inbox/seed/"
