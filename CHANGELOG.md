@@ -2,6 +2,11 @@
 
 The system release is X.Y, recorded in this file and in VERSION. Skills carry X.Y.Z, where Z moves on a skill edit and X.Y re-baselines at a release.
 
+## 2.7 maintenance, ceilings replace the ratchet (2026-09-21)
+- The owner ruled that the system will not be cut to meet a word target before production. A session loads about 7,650 words and the whole system is about 108,000, against a context of a million tokens, so capacity is not the constraint. What the reviews caught was contradiction and drift between copies, which the one-source rule and the release gate's other checks address.
+- T6 now holds owner-set ceilings, 5,000 words for parvis-core/SKILL.md and 65,000 for the always-loaded total, about 55 percent above the 2.7 measurement. A release may grow below them. The gate fails a release that passes one, and only the owner raises a ceiling. The release rows in tools/ratchet-baseline are now a measurement history that never fails a release. This supersedes the 2.7 ratchet and the earlier note that a consolidation was owed.
+- parvis-core moves to 2.7.1.
+
 ## Release 2.7 (2026-09-20)
 - A review of the normative layer, run as thirty-two agents. Six collectors built a register of 2,179 normative statements, five hunters read it blind for contradictions, tensions, drift, gaps and untestable rules, and an adversarial verifier attacked every proposed amendment. The blind pass found five of ten seeded conflicts in full and four in part, which is the evidence it was checking rather than confirming. The owner approved 27 repairs, 12 of 16 constitutional changes and the recommendation set at three gates. A re-audit then found ten conflicts the amendments created, and a further pass closed them.
 - Constitutional change, the ladder. Six lines now rank every collision, in the order protect, truth, owner, attention, depth, core. It replaces the precedence section, the directive's conflict clause and the incident inversion passage. The owner's instruction wins below the truth line, a known falsehood never goes upward, and a waiver records the rule and the date, never the content. An inversion suspends only what it names, and never T2, T3 or T4 on anything sent.

@@ -19,7 +19,7 @@ Work the steps in order. Every proposed edit goes to the owner before it is made
 
 ## Every release
 
-A mirror refresh also runs at every release, and `check-release.sh` confirms the six pairs diff clean. The T6 ratchet is check 10 of the gate. It reads `tools/ratchet-baseline`, and a release that raises the word count of core's skill file or the always-loaded total fails unless that file holds an override line for the release. The owner writes that line, and it quotes the decisions-ledger row saying what the words bought. The gate cannot see the ledger, so maintenance checks that the quoted row exists.
+A mirror refresh also runs at every release, and `check-release.sh` confirms the six pairs diff clean. The T6 ceiling is check 10 of the gate. It reads the ceiling line in `tools/ratchet-baseline`, fails a release that passes it, and appends nothing itself, so the maintainer adds the release's measurement row by hand.
 
 ## Once a year, the sunset
 

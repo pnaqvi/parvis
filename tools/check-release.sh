@@ -42,12 +42,11 @@
 #      visibility this tool cannot read FAILS. It never warns and passes. The one way past is
 #      --accept-unread-visibility with the remote's name. This covers the working tree only, and
 #      git history still holds whatever an earlier commit carried.
-#  10. Word ratchet, T6. tools/ratchet-baseline records the words in parvis-core/SKILL.md and in
-#      all SKILL.md files together at each release. A count above the last row fails unless that
-#      file holds an override line for this release, which quotes the owner's decisions-ledger row
-#      saying what the words bought. The gate reads that line and cannot see the ledger. An
-#      unfilled baseline fails too.
-#      The baseline is never kept in VERSION, which install.sh reads as the bare release string.
+#  10. Word ceiling, T6. tools/ratchet-baseline holds the owner's ceilings for parvis-core/SKILL.md and
+#      for all SKILL.md files together. A release may grow, and it fails only when either count
+#      passes its ceiling. Only the owner raises a ceiling, by editing the ceiling line. The release
+#      rows in that file are a measurement history and never fail a release.
+#      Nothing here is kept in VERSION, which install.sh reads as the bare release string.
 #
 # Looked for nowhere yet, so still designed-only. T11 and T12's tests and T13's test on filed
 # documents concern the live workspace, which is not in this checkout.
@@ -392,54 +391,35 @@ else
   done < <(git -C "$REPO" remote 2>/dev/null || true)
 fi
 
-# ---- 10. Word ratchet --------------------------------------------------------------------
-note "[10/$CHECKS] Word ratchet, parvis-core and the always-loaded total against tools/ratchet-baseline"
+# ---- 10. Word ceiling ---------------------------------------------------------------------
+# The owner set ceilings, not a ratchet. A release may grow. It fails only when parvis-core or the
+# always-loaded total passes its ceiling, and only the owner raises a ceiling, by editing the
+# ceiling line in tools/ratchet-baseline. The release rows in that file are a measurement history
+# and never fail a release on their own.
+note "[10/$CHECKS] Word ceiling, parvis-core and the always-loaded total against tools/ratchet-baseline"
 now_core="$(wc -w < "$CORE" | tr -d ' ')"
 now_total="$(cat "$SKILLS_DIR"/*/SKILL.md | wc -w | tr -d ' ')"
 is_count() { case "$1" in ''|*[!0-9]*) return 1 ;; esac; return 0; }
-# has_override X.Y succeeds on a well-formed override line for that release, which is the word
-# override, the release, a date and at least four words quoted from the owner's decisions-ledger
-# row on what the words bought.
-has_override() {
-  printf '%s\n' "$base_text" | awk -v rel="$1" '
-    $1 == "override" && $2 == rel && $3 ~ /^[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]$/ && NF >= 7 { ok = 1 }
-    END { exit ok ? 0 : 1 }'
-}
 if [ ! -f "$BASELINE" ]; then
-  report_fail "tools/ratchet-baseline is missing, so the ratchet has nothing to hold against"
+  report_fail "tools/ratchet-baseline is missing, so there is no ceiling to hold against"
 else
-  base_text="$(tr -d '\r' < "$BASELINE" | grep -v '^[ \t]*#' || true)"
-  rows="$(printf '%s\n' "$base_text" | awk '$1 == "release" { print $2, $3, $4 }')"
-  p_rel=""; p_core=""; p_total=""; unfilled=0
-  while read -r b_rel b_core b_total; do
-    [ -n "$b_rel" ] || continue
-    if ! is_count "$b_core" || ! is_count "$b_total" \
-       || ! printf '%s\n' "$b_rel" | grep -qE '^[0-9]+\.[0-9]+$'; then
-      report_fail "tools/ratchet-baseline has an unfilled or unreadable row, release $b_rel $b_core $b_total"
-      unfilled=1
-      continue
-    fi
-    if [ -n "$p_rel" ] && { [ "$b_core" -gt "$p_core" ] || [ "$b_total" -gt "$p_total" ]; } \
-       && ! has_override "$b_rel"; then
-      report_fail "the row for $b_rel rises above the row for $p_rel and no override line names $b_rel"
-    fi
-    p_rel="$b_rel"; p_core="$b_core"; p_total="$b_total"
-  done <<EOD
-$rows
-EOD
-  if [ "$unfilled" -eq 1 ] || [ -z "$p_rel" ]; then
-    if [ "$unfilled" -eq 0 ]; then report_fail "tools/ratchet-baseline holds no release row"; fi
-    printf '  measured now, parvis-core %s words and the always-loaded total %s\n' "$now_core" "$now_total"
+  base_text="$(tr -d '' < "$BASELINE" | grep -v '^[ 	]*#' || true)"
+  c_core="$(printf '%s
+' "$base_text" | awk '$1 == "ceiling" { print $2; exit }')"
+  c_total="$(printf '%s
+' "$base_text" | awk '$1 == "ceiling" { print $3; exit }')"
+  if ! is_count "$c_core" || ! is_count "$c_total"; then
+    report_fail "tools/ratchet-baseline holds no readable ceiling line, which reads: ceiling <core words> <always-loaded words>"
+    printf '  measured now, parvis-core %s words and the always-loaded total %s
+' "$now_core" "$now_total"
   else
-    rise=""
-    if [ "$now_core" -gt "$p_core" ]; then rise="parvis-core $now_core against $p_core"; fi
-    if [ "$now_total" -gt "$p_total" ]; then rise="${rise:+$rise, }the always-loaded total $now_total against $p_total"; fi
-    if [ -z "$rise" ]; then
-      note "  ok   parvis-core $now_core of $p_core, always-loaded $now_total of $p_total, baseline release $p_rel"
-    elif [ -n "$REL" ] && [ "$REL" != "$p_rel" ] && has_override "$REL"; then
-      report_override "the ratchet rose, $rise, under the override line for $REL, which quotes the owner's decisions-ledger row"
+    over=""
+    if [ "$now_core" -gt "$c_core" ]; then over="parvis-core $now_core against a ceiling of $c_core"; fi
+    if [ "$now_total" -gt "$c_total" ]; then over="${over:+$over, }the always-loaded total $now_total against a ceiling of $c_total"; fi
+    if [ -z "$over" ]; then
+      note "  ok   parvis-core $now_core of $c_core, always-loaded $now_total of $c_total"
     else
-      report_fail "the ratchet rose over release $p_rel, $rise. Give the words back, or add an override line for the new release quoting the owner's decisions-ledger row."
+      report_fail "over the owner's ceiling, $over. Give the words back, or have the owner raise the ceiling line."
     fi
   fi
 fi

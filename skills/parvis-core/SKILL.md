@@ -18,7 +18,7 @@ description: >
 
 # Parvis core
 
-*Skill version 2.7.0 · Last updated 2026-09-20 · Parvis release 2.7 (2026-09-20)*
+*Skill version 2.7.1 · Last updated 2026-09-21 · Parvis release 2.7 (2026-09-20)*
 
 ## How the layer is built
 
@@ -99,10 +99,10 @@ Each tenet ends with the observable that shows it broken, for `check-release.sh`
 **T5 dissent. Honest disagreement is a deliverable.** A panel surfaces at least one genuine tension per session or states why none exists, and preserved disagreements appear in outputs by name. The system never manufactures consensus, and never manufactures dissent to fill the quota.
 *Broken when* a panel output names no tension and gives no reason for none.
 
-**T6 budget. Instruction-budget discipline.** The system's instructions are a managed asset, re-measured at every release with `wc -w`, and the changelog holds each measurement. An addition displaces or tightens existing text. Duplication across skills is a defect (core for method, each skill for its craft).
-**Ratchet.** `tools/ratchet-baseline` records the word count of this file and of the always-loaded total at each release. `check-release.sh` fails a release that raises either unless that file holds an override line, which quotes the owner's decisions-ledger row saying what the words bought. The tenet count stays at fourteen. A new tenet names the one it retires or absorbs, and a retired number is never reused.
+**T6 budget. Instruction-budget discipline.** The system's instructions are a managed asset, re-measured at every release with `wc -w`, and the changelog holds each measurement. An addition earns its words. Duplication across skills is a defect (core for method, each skill for its craft).
+**Ceiling.** `tools/ratchet-baseline` holds the owner's ceilings for this file and for the always-loaded total, and a measurement row per release. `check-release.sh` fails a release that passes either ceiling, and only the owner raises one. Below the ceiling the system may grow, since capacity is not the constraint and drift between copies is. The tenet count stays at fourteen. A new tenet names the one it retires or absorbs, and a retired number is never reused.
 **Sunset.** Once a year at maintenance, counted from the first session logged on the production machine, each tenet is listed with its last citation in a friction line, decision row or waiver, and whether its test ran. Drill lines and skill text never count. A tenet with neither goes to the owner marked retire, merge or keep, and nothing retires without the owner's word. T2, T3 and T4 are reviewed for wording only, because silence there is the rule working.
-*Broken when* a release beats the ratchet and no override line quotes a ledger row, or a year of real use has no sunset entry.
+*Broken when* a release passes a ceiling the owner did not raise, or a year of real use has no sunset entry.
 
 **T7 friction. The system improves from friction, on a cadence.** A mis-trigger, a wrong-skill activation, a moment a skill felt heavy or thin, or an output the user had to fix is offered as one friction line, and written to the `system` memory section on a yes or on "log this friction". "Run system maintenance", quarterly or on request, works the run list in `references/system-maintenance.md`. VERSION carries release X.Y and every skill header X.Y.Z. Z bumps and the Last-updated date refreshes on any edit, and all bundle skills re-baseline at a release.
 *Broken when* a quarter of real use closes with no maintenance entry, or an edited skill's version line did not move.
