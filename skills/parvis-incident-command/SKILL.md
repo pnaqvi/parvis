@@ -18,7 +18,7 @@ description: >
 
 # Parvis Incident Command
 
-*Skill version 2.4.0 · Last updated 2026-09-20 · Parvis release 2.4 (2026-09-20)*
+*Skill version 2.5.0 · Last updated 2026-09-20 · Parvis release 2.5 (2026-09-20)*
 
 The executive layer of a major incident, what a senior leader owes upward (the executives they answer to, commonly a CIO and a board where the owner skill names them), outward (regulators, partners), and afterward (the review that makes the org smarter). This skill declares the system's one sanctioned inversion of the `parvis-core` depth mandate. The **during** phase runs speed-first, and the **after** phase (readout, review) returns to full depth, frameworks, and panels. Zero improvisation under pressure is the design goal, so when this skill fires, everything is checklist and template rather than invention. The user's engineers run diagnosis and technical command, and this skill never plays engineer. Where the owner wants the technical hypothesis itself, parvis-software-engineering takes the code and the trace and parvis-ai-engineering takes a model, retrieval or agent failure, both speed-first for the duration under core's incident inversion, while this skill keeps the executive layer and everything upward and outward.
 

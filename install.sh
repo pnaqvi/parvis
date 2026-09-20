@@ -87,15 +87,16 @@ POINTER="$HOME/.claude/.parvis-home"
 # tr strips a carriage return that a Windows checkout can leave in VERSION
 SYSTEM_VERSION="$( { tr -d ' \t\r\n' < "$BUNDLE_DIR/VERSION"; } 2>/dev/null || true)"
 
-# The roster. Verification checks exactly these twenty names. Release 2.1 added parvis, the
+# The roster. Verification checks exactly these twenty-two names. Release 2.1 added parvis, the
 # /parvis session command, 2.2 added parvis-risk-regulatory, 2.3 made the identity skill the
 # owner skill parvis-owner, shipped as a template that each person fills in with their own
-# background, and 2.4 added parvis-ai-engineering, parvis-sdlc and parvis-software-engineering.
+# background, 2.4 added parvis-ai-engineering, parvis-sdlc and parvis-software-engineering, and
+# 2.5 added parvis-finops and parvis-itam.
 ROSTER=(be-human parvis-owner parvis-ai-engineering parvis-core parvis-exec-writer
-        parvis-incident-command parvis-infra-advisor parvis-meeting-prep parvis-memory
-        parvis-metrics-advisor parvis-people-leader parvis-portfolio-planning
-        parvis-research parvis-reviews parvis-risk-regulatory parvis-sdlc
-        parvis-software-engineering parvis-stakeholders parvis-vendor-eval parvis)
+        parvis-finops parvis-incident-command parvis-infra-advisor parvis-itam
+        parvis-meeting-prep parvis-memory parvis-metrics-advisor parvis-people-leader
+        parvis-portfolio-planning parvis-research parvis-reviews parvis-risk-regulatory
+        parvis-sdlc parvis-software-engineering parvis-stakeholders parvis-vendor-eval parvis)
 
 # Skills retired by the 2.0 merge. The infra installer never wrote a receipt, so a roster diff
 # cannot find these. Every name is spelled out on purpose and no pattern match is ever used.
@@ -117,7 +118,7 @@ OLD_OWNER_MARKER="<!-- parvis:user-template -->"
 PROFILE_BACKUP="$HOME/.claude/parvis-retired-profile-backup.md"
 
 # Memory sections kept as nested local-only repos
-CONFIDENTIAL=("people-management" "performance-management" "stakeholders" "risk-regulatory")
+CONFIDENTIAL=("people-management" "performance-management" "stakeholders" "risk-regulatory" "asset-estate")
 
 # Managed block markers, each spelled once. The opening line is built from VERSION, so the version
 # the guard looks for and the version written into the block can never disagree.
@@ -1902,7 +1903,7 @@ if [ "$fail" -eq 0 ]; then
   else
     echo "Initialization: not started. The system is installed but knows nothing yet."
     echo "Next steps"
-    echo "  1. Restart Claude Code and run /skills to confirm twenty skills."
+    echo "  1. Restart Claude Code and run /skills to confirm twenty-two skills."
     echo "  2. If an employer manages this machine, read install-guide section 0 before any real data."
     echo "  3. Type /parvis, then say \"run the shakedown\" (about 30 to 45 minutes, test data only)."
     echo "  4. Gather the seed pack listed in docs/initialization.md into $WS_DST/inbox/seed/"

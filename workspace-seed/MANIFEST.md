@@ -7,3 +7,4 @@ Naming: YYYY-MM-DD-<kebab-slug>.<ext> · Status: draft | final | superseded → 
 | Date | Path | Type | Description (one line) | Status | Source |
 |---|---|---|---|---|---|
 | 2026-08-10 | project-plans/risk-register.md | register | Standing program risk register (single source for review risk sections) | final | system seed |
+| 2026-09-20 | tech-plans/saas-estate-register.md | register | SaaS estate register, one row per application (parvis-itam writes, finops and vendor-eval read, dates cite vendor-management) | final | system seed |

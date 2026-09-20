@@ -12,7 +12,7 @@ The memory home's `MANIFEST.md` is the routing table, and it is the only place s
 | <section-slug> | <one-line scope> | <4-6 routing keywords> | yes / no |
 ```
 
-`Sync: no` marks a confidential section that stays machine-local. The seed ships fifteen sections, `infra-advisor`, `exec-writing`, `performance-management`, `people-management`, `vendor-management`, `enterprise-architecture`, `stakeholders`, `meetings`, `system`, `portfolio-planning`, `platform-products`, `metrics-value`, `risk-regulatory`, `engineering-practice` and `ai-engineering`. Six of them, `infra-advisor`, `enterprise-architecture`, `platform-products`, `metrics-value`, `engineering-practice` and `ai-engineering`, are the technology set, which initialization offers to retire for an owner whose domain is not technology. Group sections are not seeded. Initialization adds one per org group, so a live manifest grows past fifteen. The manifest's own routing notes carry the rest, including how the overlapping sections divide and where each kind of capture lands.
+`Sync: no` marks a confidential section that stays machine-local. The seed ships seventeen sections, `infra-advisor`, `exec-writing`, `performance-management`, `people-management`, `vendor-management`, `enterprise-architecture`, `stakeholders`, `meetings`, `system`, `portfolio-planning`, `platform-products`, `metrics-value`, `risk-regulatory`, `engineering-practice`, `ai-engineering`, `cloud-economics` and `asset-estate`. Six of them, `infra-advisor`, `enterprise-architecture`, `platform-products`, `metrics-value`, `engineering-practice` and `ai-engineering`, are the technology set, which initialization offers to retire for an owner whose domain is not technology. Group sections are not seeded. Initialization adds one per org group, so a live manifest grows past seventeen. The manifest's own routing notes carry the rest, including how the overlapping sections divide and where each kind of capture lands.
 
 ## positions.md
 
@@ -143,6 +143,44 @@ One block per recurring defect class found across reviews, written by parvis-sof
 ```
 
 Class altitude only. No credentials, hostnames, exploit paths or customer data (T3). Individual review reports are workspace artifacts filed under `tech-plans/` with a manifest row (T11), and only the recurring class comes back here. A pattern whose fix is a gate or a practice change hands that fix to parvis-sdlc rather than prescribing it.
+
+## license-positions.md (asset-estate section)
+
+One block per material publisher, written by parvis-itam.
+
+```markdown
+## <Publisher>
+- **Metric family in force:** <the counting basis that governs, in one phrase>
+- **Entitlement basis:** <contract reference only, no terms quoted>
+- **State:** compliant / at risk / gap / unknown
+- **Direction:** improving / stable / worsening / unknown (since <date>)
+- **Last reconciled:** <date> · **Method:** <how the reading was taken>
+- **The assumption it rests on:** <the one thing that, if untrue, flips the state>
+- **Trigger that would break it:** <the observable change>
+- **Routed:** <issue raised in risk-regulatory by ID> / <negotiation open in vendor-eval> / none
+```
+
+Direction and state only. No entitlement counts, consumption counts, rates or currency anywhere in memory, since the set of at-risk rows across publishers is what a compliance team would want (T3). The reconciliation behind a state files to `tech-plans/` with a manifest row, and only the position comes back here. A shortfall that meets the issue-raising bar gets one row in `risk-regulatory`, never a second here.
+
+## obligations.md (asset-estate section)
+
+One block per open-source license family in use, written by parvis-itam.
+
+```markdown
+## <License family>
+- **Obligation class:** <notice / source availability / reciprocity on modification / network-use reciprocity / patent or attribution condition>
+- **Deployment shape that fires it:** <what has to be true for the obligation to bite>
+- **Where it is deployed:** <estate view at component altitude, no repository paths or hostnames>
+- **State:** satisfied / action needed / unknown
+- **Routing to legal:** not routed / open with counsel (<date>) / cleared (<date>, in the user's own paraphrase)
+- **Last reviewed:** <date> (<what prompted it>)
+```
+
+The SBOM feeding this comes from parvis-sdlc's pipeline. The file records what the licenses in it oblige and where an obligated component runs, never a legal conclusion, which is counsel's call, so it records the routing state instead.
+
+## saas-estate-register.md (workspace tech-plans/)
+
+The estate view, written by parvis-itam and read by parvis-finops and parvis-vendor-eval: | Application | Owner | Seat model | Utilization state | Consolidation candidacy | Data exit | Renewal pointer |. Utilization state is `measured`, `asserted` or `unknown`, and a measured row names how the reading was taken. Data exit records whether the export path is tested, asserted or unchecked, which is what decides whether a consolidation is real. The renewal pointer cites the `vendor-management` revisit trigger holding the dates, never a date copied here. No counts, no currency, no contract terms (T3). It lives in the workspace with a manifest row, not in memory.
 
 ## session-log.md (system section)
 

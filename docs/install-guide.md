@@ -1,6 +1,6 @@
 # Installing Parvis
 
-*Document 2 of 6 · release 2.4, September 2026 · New machine, new account, update, and removal, all through one script, `install.sh`.*
+*Document 2 of 6 · release 2.5, September 2026 · New machine, new account, update, and removal, all through one script, `install.sh`.*
 
 The system has four portable parts that move differently. **Skills** are files and account-independent. **The owner skill** at `~/.claude/skills/parvis-owner/SKILL.md` holds who you are, and once you fill it in, it is yours and never overwritten. **Memory**, the memory home at `<base>/parvis-memory/`, holds your curated thinking. **The workspace**, the workspace home at `<base>/parvis-workspace/`, holds your working documents. One fact makes any new account workable. Claude Code loads skills from disk at `~/.claude/skills/`, so whichever account is signed in, the files work. Skills saved in claude.ai are the opposite, per account and never per machine.
 
@@ -12,7 +12,7 @@ This section applies when the system will run on a machine your employer manages
 
 **Managed accounts.** A work Claude account may be enterprise-managed. Admins control features, and an org can disable saving custom skills in claude.ai. A missing Save button is a setting, not a broken package, and the Claude Code path usually still works.
 
-**Posture, decided rather than defaulted.** *Split*, recommended for work, means fresh work-side homes seeded by re-running initialization there, kept machine-local or in an employer-sanctioned repository. *Unified*, one private repository across machines, only if policy clearly permits. Either way the per-section sync rules hold. The `sync: no` sections (`people-management`, `performance-management`, `stakeholders`, `risk-regulatory`) stay machine-local. Moves between the two worlds happen as explicit capture files through the destination's `inbox/`, never as background sync.
+**Posture, decided rather than defaulted.** *Split*, recommended for work, means fresh work-side homes seeded by re-running initialization there, kept machine-local or in an employer-sanctioned repository. *Unified*, one private repository across machines, only if policy clearly permits. Either way the per-section sync rules hold. The `sync: no` sections (`people-management`, `performance-management`, `stakeholders`, `risk-regulatory`, `asset-estate`) stay machine-local. Moves between the two worlds happen as explicit capture files through the destination's `inbox/`, never as background sync.
 
 ## §1. Get the bundle
 
@@ -34,17 +34,17 @@ The script runs on macOS, Linux and WSL. It needs bash 3.2 or later, standard PO
 
 What a run does, in the order it prints.
 
-0. **Preflight.** Before anything changes, the script checks that git is installed, that the bundle is complete (`VERSION`, all twenty roster skills and both seed manifests), that `~/.claude/skills/` and each skill in it are not a link to the bundle's own `skills/` (replacing a skill deletes the old copy first, which would delete the source), and that any managed block in `~/.claude/CLAUDE.md` is well formed. If any check fails, the run stops with nothing changed. Running the script through a symlink to `install.sh` works, because it finds the real bundle behind the link.
+0. **Preflight.** Before anything changes, the script checks that git is installed, that the bundle is complete (`VERSION`, all twenty-two roster skills and both seed manifests), that `~/.claude/skills/` and each skill in it are not a link to the bundle's own `skills/` (replacing a skill deletes the old copy first, which would delete the source), and that any managed block in `~/.claude/CLAUDE.md` is well formed. If any check fails, the run stops with nothing changed. Running the script through a symlink to `install.sh` works, because it finds the real bundle behind the link.
 1. **Skills.** Every skill directory in the bundle is copied into `~/.claude/skills/`, replacing an existing copy of the same name, with one exception. **The `parvis-owner` skill is copied only when `~/.claude/skills/parvis-owner/SKILL.md` does not exist, or when the installed copy still carries the `<!-- parvis:owner-template -->` marker**, meaning it was never filled in. A filled-in owner skill is kept exactly as it is, and the run says so. If a skill cannot be copied, the run stops there, before any retirement and before `CLAUDE.md` or the data homes are touched. Then retirement runs. Any skill named in the previous receipt and absent from this release is removed, and so are the twelve retired `infra-platform-*` skills, which are named one by one in the script because the old infra installer never wrote a receipt. A name that is in this release is never retired. Before retirement, when `parvis-owner` is absent or still the template and an earlier install left a filled-in `~/.claude/skills/user/SKILL.md`, the script copies that profile into `parvis-owner`, rewrites its `name:` line and says it adopted your profile. Before retiring a receipt-named skill whose `SKILL.md` looks like a filled-in identity profile, it also copies it to `~/.claude/parvis-retired-profile-backup.md` and says so, so a profile from an earlier install survives the move to `parvis-owner`. The script refuses to remove anything that is not a plain skill name directly under `~/.claude/skills/`, and it never touches the `synced` directory. Every removal is checked afterwards, and one that did not happen is reported as an error, never as removed.
 2. **Managed block.** A short versioned block in `~/.claude/CLAUDE.md` points every session at the owner skill as the identity source, the Prime Directive, the be-human rule, parvis-core, and both homes at the paths this install actually uses. It names no person. A block that already matches exactly is left untouched. An older or different block is replaced, never duplicated. The file is rewritten through a temporary file beside it that is then renamed into place, so a failed write never leaves it half written, and a symlinked `CLAUDE.md` keeps its link. A read-only `CLAUDE.md` is never overwritten. The run reports it as an error and leaves the file as it was. Success is judged by reading the file back, never assumed. A block is a start line followed by the nearest end line, and both may be indented or carry trailing spaces. A start line with no end line of its own is malformed, including a stray start followed later by a real block, and the preflight then stops the run with the file unchanged for you to fix by hand.
-3. **Memory home.** Nothing already in an existing `parvis-memory` is changed. A section a release adds is copied in whole from the seed and its manifest row inserted into the routing table, and nothing else is written. Otherwise the home is seeded from the bundle's `memory/`, fifteen sections plus the manifest, creating the base directory if needed and printing the full path it created. The sections for your org groups are not seeded. Initialization creates one per group from the owner skill.
-4. **Workspace home.** The files of an existing `parvis-workspace` are never touched. Otherwise it is seeded from `workspace-seed/`. Either way it is put under git as described next.
-5. **Version control.** Each home is checked by asking git itself whether it is the top level of its own repository with at least one commit. A home that only sits inside an enclosing repository, such as a dotfiles repository at `$HOME`, does not count, and a worktree or `--separate-git-dir` repository does. A home that is not its own repository becomes one, and a repository with no commit gets its seed commit, so a seed commit that failed on an earlier run is completed on the next. The four confidential memory sections become nested, independent, local-only repositories the same way. On every run, fresh install or update, the installer makes sure the outer repository ignores all four, so a remote added later cannot carry them, and it puts each ignore rule on a line of its own even when `.gitignore` ends without a newline. One case needs you. If an older memory home already committed a confidential section into the outer repository, an ignore rule cannot untrack it, so the installer prints a warning with the exact `git rm -r --cached` command to run before you add any remote. It never rewrites your history itself. Each commit uses the git identity the target repository resolves, and when that repository lacks a name or an email, a neutral local identity is used for it.
+3. **Memory home.** Nothing already in an existing `parvis-memory` is changed. A section a release adds is copied in whole from the seed and its manifest row inserted into the routing table, and nothing else is written. Otherwise the home is seeded from the bundle's `memory/`, seventeen sections plus the manifest, creating the base directory if needed and printing the full path it created. The sections for your org groups are not seeded. Initialization creates one per group from the owner skill.
+4. **Workspace home.** Nothing already in an existing `parvis-workspace` is changed. A folder or a seed file a release adds is created or copied in, a new folder is also named in the Folders line of the home's manifest, and a new seed document leaves its manifest row for you to add. Otherwise the home is seeded from `workspace-seed/`. Either way it is put under git as described next.
+5. **Version control.** Each home is checked by asking git itself whether it is the top level of its own repository with at least one commit. A home that only sits inside an enclosing repository, such as a dotfiles repository at `$HOME`, does not count, and a worktree or `--separate-git-dir` repository does. A home that is not its own repository becomes one, and a repository with no commit gets its seed commit, so a seed commit that failed on an earlier run is completed on the next. The five confidential memory sections become nested, independent, local-only repositories the same way. On every run, fresh install or update, the installer makes sure the outer repository ignores all five, so a remote added later cannot carry them, and it puts each ignore rule on a line of its own even when `.gitignore` ends without a newline. One case needs you. If an older memory home already committed a confidential section into the outer repository, an ignore rule cannot untrack it, so the installer prints a warning with the exact `git rm -r --cached` command to run before you add any remote. It never rewrites your history itself. Each commit uses the git identity the target repository resolves, and when that repository lacks a name or an email, a neutral local identity is used for it.
 6. **Legacy infra data homes, detected and reported, not migrated.** If `infra-platform-memory` or `infra-platform-workspace` exists under the default base, under the chosen base, or beside the homes the receipt records, the script prints its path and says that this release does not migrate it. It is left completely untouched. Nothing is copied from it, nothing is committed, and nothing about it goes into the receipt, so every later run reports it again. There is no migration. Carrying items over by hand is the supported route, and §8 says how.
-7. **Verification.** All twenty roster skills present, every retired skill name absent (not only the ones this run removed), both manifests present, and each home its own git repository with at least one commit.
+7. **Verification.** All twenty-two roster skills present, every retired skill name absent (not only the ones this run removed), both manifests present, and each home its own git repository with at least one commit.
 8. **Receipt and summary.** The script writes the install receipt (below) as soon as the skills are copied and rewrites it after every later step, so even a run that fails partway leaves every installed skill claimed for `--uninstall`. It then prints what was added, updated, kept and retired, how many legacy homes were found and left untouched, what happened to the managed block, and whether the owner skill is still the unfilled template. A run with errors says so and exits non-zero. It is safe to re-run.
 
-Then restart Claude Code and run `/skills`. Twenty skills should list.
+Then restart Claude Code and run `/skills`. Twenty-two skills should list.
 
 ### The owner skill, your one file
 
@@ -96,7 +96,7 @@ own_repo() { [ "$(git -C "$1" rev-parse --show-toplevel 2>/dev/null)" -ef "$1" ]
 has_commit() { git -C "$1" rev-parse -q --verify HEAD >/dev/null 2>&1; }
 ```
 
-1. **Skills, all twenty.** First make sure `~/.claude/skills` is not a link to this bundle's own `skills/`, because the `rm -rf` below would then delete the source. Copy each skill directory in, replacing an old copy of the same name, and never touch `synced`. The loop skips `parvis-owner` when a filled-in copy is already installed.
+1. **Skills, all twenty-two.** First make sure `~/.claude/skills` is not a link to this bundle's own `skills/`, because the `rm -rf` below would then delete the source. Copy each skill directory in, replacing an old copy of the same name, and never touch `synced`. The loop skips `parvis-owner` when a filled-in copy is already installed.
    ```bash
    mkdir -p ~/.claude/skills
    for d in skills/*/; do
@@ -131,31 +131,31 @@ has_commit() { git -C "$1" rev-parse -q --verify HEAD >/dev/null 2>&1; }
    own_repo "$W" || git -C "$W" init -q
    has_commit "$W" || { git -C "$W" add -A && git -C "$W" commit -qm "seed workspace (Parvis)"; }
    ```
-5. **The outer memory repository and its four confidential ignore lines.** The ignore lines must be in place before the first commit, so the confidential sections never enter the outer history.
+5. **The outer memory repository and its five confidential ignore lines.** The ignore lines must be in place before the first commit, so the confidential sections never enter the outer history.
    ```bash
    M="$BASE/parvis-memory"
    if ! own_repo "$M"; then
      git -C "$M" init -q
      printf '%s\n' "# Confidential sections: independent local-only repos (see install-guide §0)" \
        "sections/people-management/" "sections/performance-management/" "sections/stakeholders/" \
-       "sections/risk-regulatory/" >> "$M/.gitignore"
+       "sections/risk-regulatory/" "sections/asset-estate/" >> "$M/.gitignore"
    fi
    ```
-   On a repository that already existed, add any of the four `sections/<name>/` lines that `.gitignore` lacks, each on a line of its own, and give the file a final newline first if it has none. Then make the seed commit if the repository has no commit yet.
+   On a repository that already existed, add any of the five `sections/<name>/` lines that `.gitignore` lacks, each on a line of its own, and give the file a final newline first if it has none. Then make the seed commit if the repository has no commit yet.
    ```bash
    has_commit "$M" || { git -C "$M" add -A && git -C "$M" commit -qm "seed memory (Parvis)"; }
    ```
    If `git -C "$M" ls-files sections/<name>` lists anything, the outer repository already tracks that section, so run `git -C "$M" rm -r --cached "sections/<name>"` and commit before adding any remote.
-6. **The four nested local-only repositories,** one per confidential section, each made its own repository with a seed commit if it is not one already.
+6. **The five nested local-only repositories,** one per confidential section, each made its own repository with a seed commit if it is not one already.
    ```bash
-   for s in people-management performance-management stakeholders risk-regulatory; do
+   for s in people-management performance-management stakeholders risk-regulatory asset-estate; do
      S="$M/sections/$s"
      mkdir -p "$S"
      own_repo "$S" || git -C "$S" init -q
      has_commit "$S" || { git -C "$S" add -A && git -C "$S" commit -qm "seed $s (local-only)" --allow-empty; }
    done
    ```
-7. **Verify.** Each of the twenty roster skills has a `SKILL.md` under `~/.claude/skills/`, none of the twelve retired `infra-platform-*` names remains there, both homes hold a `MANIFEST.md`, and `own_repo` and `has_commit` both succeed for each home. Then restart Claude Code and run `/skills`.
+7. **Verify.** Each of the twenty-two roster skills has a `SKILL.md` under `~/.claude/skills/`, none of the twelve retired `infra-platform-*` names remains there, both homes hold a `MANIFEST.md`, and `own_repo` and `has_commit` both succeed for each home. Then restart Claude Code and run `/skills`.
 
 The commits need a git identity, a name and an email both, as the target repository resolves them. If it lacks either, set them, or run each commit as `git -c user.name="Parvis User" -c user.email="user@parvis.local" ...`, which is what the script does. Neither the manual path nor the script migrates legacy `infra-platform-*` data homes, see §8. Re-run the script once it works, and it will write the receipt.
 
@@ -202,7 +202,7 @@ With two machines, home is the rehearsal and the work machine is where the syste
 
 ## §6. Verify, five minutes
 
-1. `/skills` shows twenty skills.
+1. `/skills` shows twenty-two skills.
 2. "Quick take on <anything small>". The advisor names which memory it found, and "proceeding memoryless" means a path is wrong.
 3. "Remember this, test capture, delete me". It lands in the right section with a git commit and a read-back confirmation. Then delete it.
 4. "File this as a tech plan, test doc, delete me". It lands in `tech-plans/` with a manifest row. Then delete it.

@@ -1,8 +1,8 @@
 # Parvis
 
-**A personal executive operating system for Claude that anyone can adopt.** Twenty composable skills, two git-backed data homes (a sectioned memory and a document workspace), a shared frameworks catalog, and thirteen binding tenets. Everything about you lives in one file, the `parvis-owner` skill. Fill it in and the whole system knows your role, your org, your scale, your industry and how you like to be written to.
+**A personal executive operating system for Claude that anyone can adopt.** Twenty-two composable skills, two git-backed data homes (a sectioned memory and a document workspace), a shared frameworks catalog, and thirteen binding tenets. Everything about you lives in one file, the `parvis-owner` skill. Fill it in and the whole system knows your role, your org, your scale, your industry and how you like to be written to.
 
-Release **2.4** · License **Apache-2.0**
+Release **2.5** · License **Apache-2.0**
 
 ## What it does
 
@@ -13,15 +13,15 @@ The core works for any senior leader. The technology-leadership skills (the infr
 ## Contents
 
 ```
-skills/          20 Claude skills. parvis (the /parvis session), parvis-owner (identity
+skills/          22 Claude skills. parvis (the /parvis session), parvis-owner (identity
                  template), parvis-core (tenets, frameworks, panels, help), parvis-memory
                  (both homes), parvis-infra-advisor, parvis-software-engineering,
                  parvis-sdlc, parvis-ai-engineering, parvis-metrics-advisor, parvis-research,
                  parvis-exec-writer, parvis-reviews, parvis-portfolio-planning,
                  parvis-meeting-prep, parvis-people-leader, parvis-stakeholders,
-                 parvis-vendor-eval, parvis-risk-regulatory,
+                 parvis-vendor-eval, parvis-finops, parvis-itam, parvis-risk-regulatory,
                  parvis-incident-command, be-human
-memory/          Seed memory home, MANIFEST.md plus 15 sections (templates only). Your org
+memory/          Seed memory home, MANIFEST.md plus 17 sections (templates only). Your org
                  groups get their own sections at initialization
 workspace-seed/  Seed workspace home, MANIFEST.md, strategy/ tech-plans/ project-plans/
                  cadence/ risk/ inbox/ reference/ archive/
@@ -60,7 +60,7 @@ The installer copies the skills into `~/.claude/skills/`, keeps an owner skill y
 
 The script cannot reach `~/.claude/skills/synced/`. Skills delivered by claude.ai account sync are retired on the claude.ai side, and the script says so when it finds that directory.
 
-Then restart Claude Code, run `/skills` to confirm twenty skills, and say **"run the shakedown"** to validate the install. Then gather the seed pack described in `docs/initialization.md` and say **"initialize my system"**, the guided and resumable first-run setup. The installer prints these steps, and `/parvis` offers them until initialization is complete. Anytime, say **"help"** and the system explains itself from its own documents.
+Then restart Claude Code, run `/skills` to confirm twenty-two skills, and say **"run the shakedown"** to validate the install. Then gather the seed pack described in `docs/initialization.md` and say **"initialize my system"**, the guided and resumable first-run setup. The installer prints these steps, and `/parvis` offers them until initialization is complete. Anytime, say **"help"** and the system explains itself from its own documents.
 
 If the system will run on a machine your employer manages, read `docs/install-guide.md` §0 **first**, on policy, managed accounts and memory posture. It is the section with consequences. On a single personal machine with no employer policy in play, install and initialize on it directly.
 
@@ -68,7 +68,7 @@ If the system will run on a machine your employer manages, read `docs/install-gu
 
 Start a session with **`/parvis`**. Parvis greets you by the name in your owner skill, loads your profile, the Prime Directive and both data homes, and handles everything after it as your companion. Add a first request after it if you like, as in `/parvis prep me for the QBR`. Without it the system still works, since the managed block keeps the Prime Directive on in every session.
 
-Say what you need and the right skill fires. *"quick take on X"*, *"spin up the team"*, *"design our platform metrics"*, *"synthesize these interviews"*, *"draft a board memo"*, *"start the September MBR"*, *"run my weekly"*, *"prep me for the risk committee"*, *"build the promotion case"*, *"should we buy X or build it"*, *"we have a sev-1"*, *"remember this"*, *"file this as a tech plan"*, *"where is the Q3 review"*.
+Say what you need and the right skill fires. *"quick take on X"*, *"spin up the team"*, *"design our platform metrics"*, *"synthesize these interviews"*, *"draft a board memo"*, *"start the September MBR"*, *"run my weekly"*, *"prep me for the risk committee"*, *"build the promotion case"*, *"should we buy X or build it"*, *"where is the waste in our cloud spend"*, *"we got an audit letter from a publisher"*, *"we have a sev-1"*, *"remember this"*, *"file this as a tech plan"*, *"where is the Q3 review"*.
 
 The help set, identical in `docs/` and in `skills/parvis-core/references/`.
 - `why-parvis.md`, purpose and design principles

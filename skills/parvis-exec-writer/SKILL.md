@@ -18,7 +18,7 @@ description: >
 
 # Parvis Exec Writer
 
-*Skill version 2.4.0 · Last updated 2026-09-20 · Parvis release 2.4 (2026-09-20)*
+*Skill version 2.5.0 · Last updated 2026-09-20 · Parvis release 2.5 (2026-09-20)*
 
 Document and presentation craft for a senior leader writing upward to their executives, outward to regulators, and downward to their own org. The owner skill supplies the role, the scale, the reporting line and the actual audiences, which commonly include a CIO, a board and its risk committee, and regulators. This skill owns anatomy, register and deck craft, the shape each artifact must take and the voice it must hold. Identity and analysis stay with the skills that own them. The `parvis-core` depth mandate applies. Every artifact gets full craft, never trimmed for token cost, and depth shows up as tightness because every anatomy carries a length ceiling.
 

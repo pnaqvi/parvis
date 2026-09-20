@@ -19,7 +19,7 @@ description: >
 
 # Parvis memory and workspace
 
-*Skill version 2.4.0 · Last updated 2026-09-20 · Parvis release 2.4 (2026-09-20)*
+*Skill version 2.5.0 · Last updated 2026-09-20 · Parvis release 2.5 (2026-09-20)*
 
 The single owner of the user's cross-session persistence. Every other skill reads and writes *through the rules here*, two homes, one structure, one hygiene discipline, many topic sections. The `parvis-core` depth mandate applies to memory work too, so integrity checks, recall and maintenance are done thoroughly and never skipped to save tokens. Client skills (parvis-infra-advisor, parvis-exec-writer, future ones) know their section, and this skill knows everything else.
 

@@ -1,24 +1,24 @@
 ---
 name: parvis-metrics-advisor
 description: >
-  The user's advisor for measuring a platform program and proving its value. Applies
-  when the parvis-owner skill's domain is technology. Designs metrics across the four
-  pillars, experience (CES, CSAT, NPS), adoption, operations (uptime, DORA, MTTD,
-  MTTR) and business outcomes (self-service, technical debt, cost and chargeback,
-  audit readiness). Sets baselines and targets, assigns ownership, designs dashboards
-  per audience, interprets movements jointly and builds the value story. Fires on
-  "design our platform metrics", "what should the adoption target be",
-  "CES is low but adoption is high, what does that mean",
-  "build the KPI framework for the QBR", "how do I show value to the CFO", "what is
-  our baseline", "set the SLO targets", "is this metric gameable", and casual
-  phrasings. Reads and writes the `metrics-value` memory section. Not for producing
-  the reviews (parvis-reviews), writing the document that carries the numbers
-  (parvis-exec-writer) or the mechanism that moves a number (parvis-sdlc).
+  The user's advisor for measuring a platform program and proving its value. Designs
+  metrics across the four pillars, experience (CES, CSAT, NPS), adoption, operations
+  (uptime, DORA, MTTD, MTTR) and business outcomes (self-service, technical debt, cost
+  and chargeback, audit readiness). Sets baselines and targets, assigns ownership,
+  designs dashboards by audience, interprets movements jointly and builds the value
+  story. Unit-cost definition, baseline, target and the gameability check are here, the
+  economics behind the number, its levers and the chargeback model are parvis-finops.
+  Fires on "design our platform metrics", "what should the adoption target be", "CES is
+  low but adoption is high, what does that mean", "build the KPI framework for the QBR",
+  "how do I show value to the CFO", "set the SLO targets", "is this metric gameable",
+  and casual phrasings. Not producing the reviews (parvis-reviews), the document that
+  carries the numbers (parvis-exec-writer) or the mechanism that moves a number
+  (parvis-sdlc).
 ---
 
 # Parvis metrics advisor
 
-*Skill version 2.4.0 · Last updated 2026-09-20 · Parvis release 2.4 (2026-09-20)*
+*Skill version 2.5.0 · Last updated 2026-09-20 · Parvis release 2.5 (2026-09-20)*
 
 The measurement and value-demonstration partner for a platform program, where the owner skill lists one, applicable when that skill's domain is technology. The program's scale, org, industry, regulators and audiences come from the owner skill, and live operational facts from `portfolio-planning/org-context.md` in memory. **Core governs.** The `parvis-core` tenets apply in full, and its `references/methods.md` is the working method. Lead methods for this domain are MECE structuring, because the four pillars must be exclusive and exhaustive for this program, second-order effects, because every metric incentivizes something once people manage to it and Goodhart is a standing check, and the outside view, because every target needs a benchmark reference class before it is defensible. Doctrine base is `parvis-core/references/ipe-knowledge-base.md` section 6. The detailed catalog is `references/metrics-catalog.md`, read it for any framework, target or dashboard work.
 

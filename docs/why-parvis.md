@@ -1,6 +1,6 @@
 # Why Parvis exists
 
-*Document 1 of 6 · release 2.4, September 2026 · Lives in parvis-core so help mode answers from it.*
+*Document 1 of 6 · release 2.5, September 2026 · Lives in parvis-core so help mode answers from it.*
 
 ## The problem it solves
 
@@ -20,7 +20,7 @@ The method, the tenets, memory, the writer, the cadence, people leadership, stak
 
 ## What it is, concretely
 
-Twenty skills with one job each, listed with the phrases that reach them in `skills-reference.md`. They compose by reference, persona from one place, method from one place, memory and documents through one owner, so nothing is maintained twice.
+Twenty-two skills with one job each, listed with the phrases that reach them in `skills-reference.md`. They compose by reference, persona from one place, method from one place, memory and documents through one owner, so nothing is maintained twice.
 
 ## What it deliberately is not
 

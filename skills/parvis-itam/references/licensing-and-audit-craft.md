@@ -1,0 +1,87 @@
+# Licensing and audit craft
+
+*Load-on-demand companion to `parvis-itam`. Read before any license position, reconciliation or audit-defense work.*
+
+## How to use this file, and what it deliberately does not hold
+
+This file holds counting logic, decision procedure and failure modes. It holds no publisher's current terms, no program names, no vendor-attributed metric definitions and no price, because that material stales within months and the contract actually signed overrides the public version anyway. Nothing here is date-stamped, because nothing here is a claim about a vendor's present behavior, and `[model]` applies to the whole file as the author's synthesis rather than a cited source.
+
+The skill's provenance rule binds at the point of use. The metric definition, the counting rule and the eligibility or mobility condition a position depends on are read out of the agreement, verified live and date-stamped, or shipped `[model]` with the confirmation step named. A position that skips this is an opinion wearing a number's clothes.
+
+## The six metric families that bite on a cloud and SaaS estate
+
+For each family, what it counts, where it bites in this estate shape, the ambiguity the counterparty will reach for, and the one artifact that ends the argument.
+
+**Named user, meaning a subscription seat assigned to a person.** The count is of assignments, not of logins, so a provisioned account that nobody has opened in a year still counts. It bites hardest where identity is federated but deprovisioning is not, so leavers, contractors, service accounts and test identities keep their assignment. The ambiguity is the definition of a user, which may reach service accounts, machine identities, or a human reached only through an intermediary. The artifact that settles it is the identity provider's assignment export for a stated date, reconciled against the joiner-mover-leaver record, because a vendor console reports what the vendor sold rather than who is actually entitled.
+
+**Concurrent or floating use.** The count is the peak simultaneous checkout inside a stated window, so the whole dispute is the window and the sampling interval. It bites where a license server is old, where checkouts are not returned on crash, and where a batch job holds a token for its whole run. The ambiguity is whether peak means the maximum observed, a percentile, or the maximum permitted, and whether a denied checkout counts as demand. The artifact that settles it is the license server log for the contract period at the interval the agreement names, kept long enough to cover the whole audit look-back.
+
+**Per device.** The count is of machines authorized to run or access the software, which in a modern estate means the definition of a device has to survive images, virtual desktops, ephemeral build agents and personal machines under a bring-your-own-device policy. The ambiguity is whether a short-lived instance is a device at all, and whether the count is of devices existing at a point in time or of distinct devices seen over a period. The artifact that settles it is the endpoint or orchestrator inventory with a stated lifetime rule, which the lifecycle reference defines.
+
+**Per core or per socket, meaning capacity.** The count is physical capacity of the hardware where the software runs, adjusted by whatever factor table the agreement incorporates, and in cloud it is usually restated as virtual cores with a stated ratio to physical ones. It bites everywhere hardware is elastic, because capacity counted at the wrong boundary multiplies. The ambiguity is the boundary, meaning whether the count follows the running instance, the host, the cluster or the whole pool the workload could reach. The artifact that settles it is a dated topology record showing the boundary and its enforcement, meaning the placement rule or node-pool constraint that made it true, not a screenshot of current state.
+
+**Subcapacity, which is a conditional state of the capacity family rather than a family of its own.** It is the permission to count the smaller virtual boundary instead of the whole physical one, and it is always conditional. The conditions usually include an approved measurement mechanism, its continuous operation, retained reports at a stated frequency, and sometimes a pinning or affinity rule. It bites because the condition fails quietly. An agent stops reporting, a cluster is rebuilt without it, a new region is stood up outside it, and the position silently reverts to full capacity for that period with no alert anywhere. The artifact that settles it is the unbroken measurement report series across the whole period claimed, and a gap in that series is the finding.
+
+**Consumption and transaction metrics, including the newer agent, task and token metrics.** The count is of events the vendor meters, so the vendor's meter is the authority and the organization's own telemetry is only a check on it. It bites because consumption is generated by automation, so a retry storm, a runaway loop or a test harness pointed at production is a commercial event rather than only an engineering one. The ambiguity is the unit, meaning what exactly counts as a task, an action, a document or a call, and whether failed, retried and cached operations are metered. The artifact that settles it is the vendor's metered detail export reconciled against the organization's own request logs for the same window, with the gap explained rather than averaged away.
+
+Version and edition sit underneath all six. A count can come back compliant on a deployment that is a shortfall, because the edition running is above the one bought, or the version is later than a lapsed maintenance state allows, and enabling one feature can promote an edition with no procurement event behind it. Prior-version and downgrade use is a right the agreement grants or does not. The artifact is a dated feature-usage or installed-edition record, not a purchase record.
+
+### Two traps that cut across every family
+
+**Indirect and multiplexed access.** Putting a portal, an integration bus, a data pipeline or an agent between the people and the licensed system does not usually reduce the count, and under some agreements it raises it, because the humans and the systems behind the intermediary are both reachable definitions of a user. It is usually created by an architecture decision nobody sent to this function. Any design that fronts a licensed system with something else gets the licensing question asked at design time, and the answer recorded with the design.
+
+**The look-back period.** Compliance is not a state today, it is a state across the period the agreement lets the publisher examine. That means the evidence that proves a favorable reading has to have been retained continuously, which turns log retention, measurement reports and topology records into commercial artifacts with a retention owner. A position that can be proven only for the current month is undefended for every earlier month in the window.
+
+## Cloud, virtualization and container rules, as classes
+
+Every publisher expresses these differently, and the expression changes. The classes do not. Work any cloud or container case by asking which of these six is in play.
+
+**Eligibility.** Whether an entitlement bought for owned infrastructure may be carried to a provider at all, to which named providers, and to which shapes of their service, since publishers carve out specific large providers by name and revise that list on notice. Two failure modes. Assuming a right the agreement makes conditional on an active support or maintenance state, so letting support lapse retroactively breaks a deployment that has not changed. And pricing a migration on bring-your-own-license economics to a provider the entitlement cannot reach.
+
+**Boundary.** Which physical or logical unit the count is taken across, as above. In container platforms the practical question is whether the workload can be constrained to a licensed node pool, and whether that constraint is enforced by the scheduler or merely intended. An intended constraint counts as unconstrained.
+
+**Mobility and reassignment.** How often an entitlement may move between hosts, users or devices, and what triggers a reassignment, since live migration, autoscaling, failover and disaster-recovery testing all move workloads without anyone deciding to. The failure mode is a platform whose normal operation reassigns faster than the agreement permits, which makes the platform itself the violation.
+
+**Tenancy.** Whether dedicated, shared or bare-metal placement changes the count or the eligibility. The failure mode is an architecture change made for cost or resilience reasons that silently moves the deployment into a different tenancy class.
+
+**Elasticity.** What a burst, an autoscale event, a blue-green deployment or a disaster-recovery exercise does to the count, and whether the metric is peak, average or point-in-time. The failure mode is counting steady state and being audited on peak, since a deployment that doubles for twenty minutes a day has doubled.
+
+**Measurement precondition.** Whether the favorable reading depends on a mechanism that must be running, reporting and retained. Every such dependency is an operational control and gets an owner and a monitor.
+
+Non-production, development, test and disaster recovery are not free by nature. They are free only where the agreement defines them, and a cold standby, a warm standby and an active-active pair are three different things commercially. A deployment called non-production with no contractual definition behind the word is counted as production until proven otherwise.
+
+## The reconciliation procedure
+
+1. Fix the scope and the date. One publisher, one product family, one point in time. A reconciliation across a moving window cannot be defended.
+2. State the metric family and the counting rule in force, from the agreement, with the reference.
+3. Build the entitlement side from the entitlement record, never from an invoice and never from the vendor's portal, since both show what was bought rather than what is held after transfers, mergers, expiries and downgrades.
+4. Build the consumption side from at least two independent sources, then reconcile them to each other before comparing to entitlement. Agreement between two sources with the same blind spot is not corroboration.
+5. Apply the conditional reliefs one at a time, meaning subcapacity, eligibility, non-production definitions and any counted exclusion, and for each one record the condition and the evidence that it held for the whole period.
+6. Compute the gap as a direction and a state, compliant, at risk, gap or unknown, never as a number to be reported upward.
+7. Write the position with its single load-bearing assumption, the trigger that would break it, and the one number or document that would move an unknown to a state, with who holds it.
+
+A reconciliation with no stated sampling method for its consumption side is a reconnaissance, not a position, and is labeled that way.
+
+## Audit defense, as a decision list
+
+Before the letter. Know which agreements carry an audit clause and what notice it requires, and which reliefs depend on a measurement mechanism that could have lapsed. Run the self-assessment while there is no counterparty, because everything fixable is cheaper now and a fix made after notice looks like spoliation. Scope that self-assessment with counsel from the first document rather than after the first spreadsheet, so the working position, the exposure estimate and the undecided remediation options carry whatever protection the jurisdiction allows. Whether that protection attaches here, and what it requires to hold, is counsel's ruling and never this skill's. The point is that the question gets asked before the drafts exist rather than after they are asked for.
+
+A vendor SAM engagement, license review or optimization assessment offered by the account team is the same exercise in a softer envelope, clause invoked or not, and its output routinely becomes the opening position. Run it under the decision list below.
+
+After the letter, decide each of these once and hold the line.
+
+- Paper the exchange first. A mutual non-disclosure agreement covering what moves in both directions, and a written restriction holding the counterparty to this audit, this scope and this period, with a return or deletion obligation at the end. Run a conflict check on whoever is appointed, since the firm performing the audit is often also a reseller or an advisor to the same organization, and raise the conflict in writing where there is one.
+- Answer, with evidence. The scope the clause actually permits, meaning the entities, the products and the period inside it, the named single channel for all communication, and factual data the organization has verified about its own deployment inside that scope.
+- Route, without answering. Any question of contract interpretation, any request to vary the clause, any settlement or pricing conversation, and any deadline negotiation. Sourcing, legal and the executive sponsor own those, and the routing is stated to the counterparty as routing rather than as silence. Agreeing a realistic response schedule through that channel is legitimate defense and not delay, since a short window on a long look-back is itself a tactic.
+- Decide deliberately rather than by default, meaning whether to run vendor-supplied scripts or tooling, what they collect, where the output goes and who reviews it before it leaves. This is a data-handling decision with a security review, not a courtesy.
+- Contest, with method. No number the counterparty produces is a baseline. Require the methodology, the raw data and the script output behind every line of it, re-perform the count against the organization's own reconciliation, and compare the two on scope, on period and on the assumptions each made. Correct the population first, then apply every entitlement, relief and prior-version right the counterparty's model left out. Sort what survives into the disputes worth making, meaning the ones that move the state and can be evidenced from the record, and the noise, and concede the noise early, because doing so buys credibility on the rest.
+- Never volunteer. Data outside the agreed scope, other products, other entities, other periods, internal disagreement about a position, draft calculations, exposure estimates, remediation plans not yet decided, or anything about a different publisher. Every one of those creates a new audit.
+- Never do this. Altering, deleting or reconfiguring a deployment to change what the audit would find, or characterizing a known deployment as something it is not. Preservation runs the same rule the other way, so the logs, measurement reports and topology records the defense will need are frozen on notice rather than left to age out.
+
+The evidence pack is an index, not a library. It lists what exists, where it lives, who owns it and what period it covers, so the response is assembled deliberately rather than by whoever answers first. Nothing leaves the index without the single channel sending it.
+
+At the issue-raising bar the shortfall becomes one row in `parvis-risk-regulatory`. At settlement or true-up, the exposure range and the evidence index hand over to `parvis-vendor-eval` and this skill stops.
+
+## The position statement, in the shape an audit would test
+
+Publisher, product family, agreement reference. Metric family, counting rule, and the version and edition the entitlement covers. Entitlement basis by document reference only. Consumption as a state with its source, its sampling method and its date, the count itself left in the source of record and cited rather than carried. Reliefs claimed, each with the condition it depends on and the evidence it held. Then the state, the single assumption, the trigger that would break it and the one artifact that would settle a dispute. No rates and no currency, per the skill's altitude rule.

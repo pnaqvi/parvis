@@ -1,24 +1,24 @@
 ---
 name: parvis-vendor-eval
 description: >
-  Vendor and technology evaluation for the user, covering build-vs-buy calls, vendor
-  selection and comparison, renewal and negotiation prep, vendor risk and
-  concentration, and stress-testing vendor claims. Use whenever the user
-  evaluates a vendor, product or platform decision, on "should we buy X or build it",
-  "compare these three observability vendors", "the Y renewal is coming up, prep me",
-  "is this vendor's resilience claim real", "how concentrated are we on Z", even
-  casually phrased. Applies core's methods (evolution mapping, outside view) to the
-  vendor domain and keeps a vendor-management memory section so evaluations and vendor
-  lessons compound across renewals. Also
-  anchor-candidate assessment and lock-in registers, "assess Z as our
-  container anchor", "how locked in are we". The advisor owns the anchor decision
-  itself. Not for general strategy (parvis-infra-advisor), contract legalities (the
-  user's sourcing and legal partners) or the decision document (parvis-exec-writer).
+  Vendor and technology evaluation for the user, covering build-vs-buy calls, selection
+  and comparison, renewal and negotiation prep including the ask-stack, vendor risk and
+  concentration, and stress-testing vendor claims. The renewal calendar is here as the
+  single source. Entitlement and license positions are parvis-itam, consumption
+  economics parvis-finops. On rationalizing a SaaS estate it leads on which tools to
+  keep and what the contracts allow. Use whenever the user evaluates a vendor, product
+  or platform decision, on "should we buy X or build it", "compare these observability
+  vendors", "the Y renewal is coming up, prep me", "is this vendor's resilience claim
+  real", "how concentrated are we on Z", even casually phrased. Also anchor-candidate
+  assessment and lock-in registers, "assess Z as our container anchor", "how locked in
+  are we", though parvis-infra-advisor owns the anchor decision and general strategy.
+  Not contract legalities (sourcing and legal) or the decision document
+  (parvis-exec-writer).
 ---
 
 # Parvis vendor eval
 
-*Skill version 2.4.0 · Last updated 2026-09-20 · Parvis release 2.4 (2026-09-20)*
+*Skill version 2.5.0 · Last updated 2026-09-20 · Parvis release 2.5 (2026-09-20)*
 
 Vendor and technology evaluation as a repeatable discipline. This skill is deliberately thin. The analysis machinery lives in the system's common catalog, the `parvis-core` skill's `references/methods.md`. Read it, because evolution mapping, quantification discipline, outside view, bias sweep and reversibility all apply directly, and core's depth mandate and panel pattern govern throughout. What this skill adds is the vendor-specific frame and the memory that makes renewal N smarter than renewal N−1. Client of parvis-memory, section **`vendor-management`**.
 
@@ -58,7 +58,7 @@ Every evaluation writes the decision with confidence and revisit triggers (ledge
 
 Each material vendor gets a file at `sections/vendor-management/vendors/<vendor-slug>.md`, holding a claims table (claim → evidence provided → verified date → status: held / broken / unverified) plus commitments they made to the user, with dates. Every evaluation and every incident involving the vendor updates it, and every renewal prep opens with it ("of nine claims from the 2025 evaluation, two broke"). T2 industrialized, vendors are argued with their own record.
 
-**Renewal triggers.** Every signed decision logs its renewal/expiry date as a dated revisit trigger in the ledger, so review and field-brief modes surface upcoming negotiations with runway. Leverage is built in the six months before the renewal, not the week of.
+**Renewal triggers.** Every signed decision logs its renewal/expiry date as a dated revisit trigger in the ledger, so review and field-brief modes surface upcoming negotiations with runway. This calendar is the single source for what renews when, and parvis-itam and parvis-finops cite it rather than keeping their own. Leverage is built in the six months before the renewal, not the week of.
 
 **TCO checklist (both directions, every evaluation).** License or subscription, integration build, migration in, run-and-operate (the team, forever), vendor-management tax, exit cost and time, and for the build option, engineer-quarters at reference-class rates, the permanent platform team and the opportunity cost of that capacity. A comparison missing any line item is incomplete, not conservative.
 

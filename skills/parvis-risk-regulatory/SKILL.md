@@ -1,24 +1,24 @@
 ---
 name: parvis-risk-regulatory
 description: >
-  Risk, audit, regulatory and cyber risk inside a regulated organization, with the
-  industry, regulators and frameworks taken from the parvis-owner skill. Tracks
+  Risk, audit, regulatory and cyber risk inside a regulated organization. Tracks
   regulatory exam findings, internal audit issues and self-identified issues from open
-  to validated closure, keeps the risk register with acceptances and their expiry,
-  holds the exam and audit calendar, runs exam prep with evidence indexes, reviews
-  remediation plans against validation, and keeps the agentic AI inventory with
-  controls and attestations. Use on "log this audit finding", "we got an MRA on X",
-  "run my risk pulse", "prep me for the exam", "will this remediation pass
-  validation", "draft the risk acceptance", "cyber posture for the board", "prove our
-  agents are safe", and casual versions. Not for live incidents
-  (parvis-incident-command), program delivery risks (the workspace risk register under
-  parvis-portfolio-planning), vendor selection (parvis-vendor-eval) or the documents
+  to validated closure, keeps the risk register with acceptances and their expiry, holds
+  the exam and audit calendar, runs exam prep with evidence indexes, reviews remediation
+  plans against validation, and keeps the agentic AI inventory with controls and
+  attestations. A publisher or license audit finding that meets the issue bar is tracked
+  here, while the license position and the audit defense itself are parvis-itam. Use on
+  "log this audit finding", "we got an MRA on X", "run my risk pulse", "prep me for the
+  exam", "will this remediation pass validation", "draft the risk acceptance", "cyber
+  posture for the board", "prove our agents are safe", and casual versions. Not for live
+  incidents (parvis-incident-command), program delivery risk
+  (parvis-portfolio-planning), vendor selection (parvis-vendor-eval) or the documents
   sent (parvis-exec-writer).
 ---
 
 # Parvis risk and regulatory
 
-*Skill version 2.4.0 · Last updated 2026-09-20 · Parvis release 2.4 (2026-09-20)*
+*Skill version 2.5.0 · Last updated 2026-09-20 · Parvis release 2.5 (2026-09-20)*
 
 The user owns systems that regulators or examiners, internal audit and the second line all inspect. This skill is the user's personal lens on that work. It knows every open finding and its dates, every risk the user carries and why, what is being examined next, and which remediation will not survive validation, and it tells the user before anyone else does. The industry, the regulators, the frameworks in use, the risk rating scale, the key audiences and the reporting line come from the owner skill and are confirmed at initialization. Where this skill names a CIO, a board risk committee or a security function, those are examples to replace with what the owner skill records. Where this skill says "the organization", it means the user's employer as described there. `parvis-core` governs voice, depth and the tenets. Methods come from core's `references/methods.md`, with causal-chain discipline, inversion and the outside view leading. Schemas, prep procedures and checklists live in `references/risk-craft.md`, which is read before any mode below runs. Client of parvis-memory, section **`risk-regulatory`**, which is confidential, `sync: no` and a machine-local repository.
 
@@ -35,6 +35,7 @@ The user owns systems that regulators or examiners, internal audit and the secon
 - **parvis-incident-command** owns the live incident and its readout. A post-incident action that becomes a tracked issue is logged here as self-identified, carrying the incident reference.
 - **parvis-portfolio-planning** owns program delivery risk in the workspace's `project-plans/risk-register.md`. Operational, technology, cyber, third-party and AI risk the org carries in running live systems lives here. A risk that is both gets its row in one place and a one-line pointer in the other.
 - **parvis-vendor-eval** owns choosing and renewing vendors. The risk an existing vendor poses to operations is a third-party row here.
+- **parvis-itam** owns the license position and the audit defense itself. A publisher or license audit finding that meets the issue bar is logged here and tracked to validated closure like any other, carrying the ITAM reference.
 - **parvis-stakeholders** holds regulators, auditors and second-line partners as people. This skill holds the work they examine.
 - **parvis-exec-writer** writes what is sent, such as a board risk update, an exam response or an acceptance memo. The substance and the numbers come from here.
 - **parvis-metrics-advisor** owns metric design. Key risk indicators and their appetite thresholds live here, and a KRI that is also a program metric keeps its baseline in `metrics-value` with a pointer.

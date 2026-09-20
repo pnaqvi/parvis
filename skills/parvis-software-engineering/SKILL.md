@@ -17,7 +17,7 @@ description: >
 
 # Parvis software engineering
 
-*Skill version 2.4.0 · Last updated 2026-09-20 · Parvis release 2.4 (2026-09-20)*
+*Skill version 2.5.0 · Last updated 2026-09-20 · Parvis release 2.5 (2026-09-20)*
 
 Principal-level judgment on the software itself. It reads a repository, a design, a defect or a stack trace and says what is wrong, how bad it is, on what evidence, and what the fix costs. Scale, languages, stores and change-control expectations come from `parvis-owner`, never hard-coded here. `parvis-core` governs voice, depth and the tenets, and its `references/methods.md` supplies the method. Detail sits in two load-on-demand references, `references/defect-catalog.md` for the classes, rubric and finding row, and `references/language-and-data-traps.md` for the language and datastore traps. Client of parvis-memory, section **`engineering-practice`**, shared with parvis-sdlc.
 

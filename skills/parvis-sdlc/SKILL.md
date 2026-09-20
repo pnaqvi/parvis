@@ -1,24 +1,24 @@
 ---
 name: parvis-sdlc
 description: >
-  Software delivery lifecycle as a discipline at the org scale recorded in
-  parvis-owner. Covers trunk and branch strategy, code review practice, the test
-  portfolio, CI/CD pipeline design, quality gates, release
-  and rollback with progressive delivery, environments and test data,
-  developer experience and inner-loop speed, and secure supply chain at process level,
-  meaning provenance, SBOM, signing and secret handling. Fires on "design our
-  branching strategy", "our build takes 40 minutes", "review this pipeline", "is this
-  quality gate theater", "what should our test mix be", "plan the canary rollout", "we
-  need a rollback plan", "grade our delivery maturity", "do we need an SBOM", "why is
-  PR review latency bad". Not metric definition, baseline or target
-  (parvis-metrics-advisor), milestones and capacity (parvis-portfolio-planning),
-  defects in the code itself (parvis-software-engineering) or live incidents
-  (parvis-incident-command).
+  Software delivery lifecycle as a discipline at the org scale parvis-owner records.
+  Covers trunk and branch strategy, code review practice, the test portfolio, CI/CD
+  pipeline design, quality gates, release and rollback with progressive delivery,
+  environments and test data, developer experience and inner-loop speed, and secure
+  supply chain at process level, meaning signing and secret handling. Producing
+  dependency provenance and the SBOM is here, ruling on what its licenses oblige is
+  parvis-itam. Fires on "design our branching strategy", "our build takes 40 minutes",
+  "review this pipeline", "is this quality gate theater", "what should our test mix be",
+  "plan the canary rollout", "we need a rollback plan", "grade our delivery maturity",
+  "do we need an SBOM", "why is PR review latency bad". Not metric definition, baseline
+  or target (parvis-metrics-advisor), milestones and capacity
+  (parvis-portfolio-planning), defects in the code itself (parvis-software-engineering)
+  or live incidents (parvis-incident-command).
 ---
 
 # Parvis SDLC
 
-*Skill version 2.4.0 · Last updated 2026-09-20 · Parvis release 2.4 (2026-09-20)*
+*Skill version 2.5.0 · Last updated 2026-09-20 · Parvis release 2.5 (2026-09-20)*
 
 The path from keystroke to production as an engineering discipline, at the scale and industry the owner skill records. The reader is a principal engineer or a technology executive, so nothing here defines a unit test or a branch model, and nothing already in use is explained back to it. Every recommendation names its cost in latency, blast radius, operational burden or engineer-hours per commit, what breaks first, and the signal that would show it. One without a named cost is incomplete. Anything version-dependent names its version, and anything time-sensitive is verified live and dated or labeled [model] and unverified (T2). `parvis-core` governs method and the tenets. Craft loads on demand from `delivery-craft.md`, `testing-and-review-craft.md` and `maturity-model.md` under `references/`.
 
@@ -55,6 +55,7 @@ The path from keystroke to production as an engineering discipline, at the scale
 - **parvis-incident-command** owns the live incident and its readout. The loop runs one way, from their post-incident review into this skill's insights, as which gate would have caught it.
 - **parvis-infra-advisor** owns the platform and the estate, so a platform version rolled across it is theirs, borrowing release craft from here.
 - **parvis-risk-regulatory** owns findings, controls, attestations and exam evidence as the single source. Designing an SBOM or change-control practice is here, while the examiner's request for one is evidence.
+- **parvis-itam** rules on what the licenses in an SBOM oblige. Producing the dependency provenance and the SBOM, and the pipeline stage that generates them, are here.
 - **parvis-ai-engineering** owns evaluation design and golden sets. The pipeline stage running an eval as a gate, with its flake and override policy, is here.
 - **parvis-people-leader** owns reviewer capability, hiring bars and team topology, and this skill never judges an individual from a pipeline or a commit history.
 - **parvis-vendor-eval** owns buying or renewing the CI or scanning vendor, **parvis-exec-writer** the memo, **parvis-reviews** the cadence artifact.

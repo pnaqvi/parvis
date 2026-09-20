@@ -1,6 +1,6 @@
 # How to use Parvis
 
-*Document 4 of 6 · release 2.4, September 2026 · Commands and rhythms. Say "help" anytime and core's help mode answers from these documents.*
+*Document 4 of 6 · release 2.5, September 2026 · Commands and rhythms. Say "help" anytime and core's help mode answers from these documents.*
 
 ## The map, say the thing and the right skill fires
 
@@ -26,6 +26,8 @@ You don't invoke skills by name, though you can. You say what you need and the d
 | "Initialize my directs" / "run my talent review" / "draft <name>'s review" / "how should I structure the platform teams" | People files, talent reviews, review drafting, org and talent design | people-leader |
 | "Brief me on <name>" / "run my stakeholder review" / "am I ready to ask <name> for Y" | Person briefs, cadence tracking, influence paths, ask-readiness gates | stakeholders |
 | "Should we buy X or build it" / "assess X as our anchor" / "how locked in are we on X" / "the Y renewal is coming up" | Evolution map, TCO, anchor test, lock-in register, renewal prep | vendor-eval |
+| "Our cloud bill jumped" / "where is the waste" / "build the showback model" / "are we overcommitted on a cloud commitment" / "forecast next year's cloud spend" | Allocation and showback design, unit economics, coverage from the demand trough, waste, forecast and variance, each recommendation naming its loser | finops |
+| "How many seats are we actually using" / "we got an audit letter from a publisher" / "our CMDB is wrong" / "can we run this BYOL" / "where is that copyleft library deployed" | Entitlement against consumption, license positions, audit defense, seat economics, open-source obligations, lifecycle through disposal | itam |
 | "Log this audit finding" / "run my risk pulse" / "prep me for the exam" / "will this remediation pass validation" / "prove our agents are safe" | Findings ledger, risk register, exam prep, remediation review, AI inventory | risk-regulatory |
 | "We have a sev-1" / "run a tabletop" | Comms cadence and templates, or a practice drill | incident-command |
 | "Remember this" / "what do I think about X" / "run memory maintenance" / "initialize my system" | Capture, cited recall, housekeeping, first-run setup | memory |

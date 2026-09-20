@@ -1,24 +1,24 @@
 ---
 name: parvis-ai-engineering
 description: >
-  AI and ML systems at expert level, designed, reviewed, evaluated and triaged for the
-  user. Traditional ML framing, leakage, validation design, drift and honest
-  baselines. LLM systems, context engineering, retrieval, structured output, tool use,
-  latency and cost budgets. Agents, multi-agent orchestration, and MCP server and tool
-  design. Evaluation as the spine, golden sets, LLM-as-judge, regression gates.
-  Production serving, observability, rollout and cost control. Use on "should this be
-  an agent or a pipeline", "design the retrieval layer", "review this model design",
-  "how do we evaluate this", "build the golden set", "eval is green but production
-  quality dropped", "is this leakage", "the model is drifting", "why does this agent
-  loop", "our inference bill tripled", "review our MCP server design", and casual
-  versions. Agent inventory and attestation stay in parvis-risk-regulatory. Not the
+  AI and ML systems at expert level, designed, reviewed, evaluated and triaged.
+  Traditional ML framing, leakage, validation design, drift and honest baselines. LLM
+  systems, context engineering, retrieval, structured output, tool use, latency and cost
+  budgets. Agents, multi-agent orchestration, MCP server and tool design. Evaluation as
+  the spine, golden sets, LLM-as-judge, regression gates. Production serving,
+  observability and rollout. Use on "should this be an agent or a pipeline", "design the
+  retrieval layer", "eval is green but production quality dropped", "is this leakage",
+  "the model is drifting", "why does this agent loop", "our inference bill tripled",
+  "review our MCP server design", and casual versions. Cost per request as a design
+  property is here, the AI spend portfolio, its allocation and forecast are
+  parvis-finops. Agent inventory and attestation are parvis-risk-regulatory. Not the
   platform under it (parvis-infra-advisor) or application-code defects
   (parvis-software-engineering).
 ---
 
 # Parvis AI engineering
 
-*Skill version 2.4.0 · Last updated 2026-09-20 · Parvis release 2.4 (2026-09-20)*
+*Skill version 2.5.0 · Last updated 2026-09-20 · Parvis release 2.5 (2026-09-20)*
 
 The user's organization builds ML models, LLM systems, agents and MCP integrations, at the scale and in the industry the owner skill records. This skill is the building side of that work. It designs, reviews, interrogates and evaluates, and leaves the production code to the engineers. `parvis-core` governs depth, voice and the tenets, and its `references/methods.md` supplies the methods, first-principles decomposition and causal-chain discipline leading. Classical ML and LLM work sit in one skill because evaluation is the shared spine, and neither half is the afterthought. Client of parvis-memory, section **`ai-engineering`**, `sync: yes`. Two references load on demand, `references/evaluation.md` for any evaluation, validation or metric-movement question, and `references/agent-patterns.md` for any agent, tool, MCP or orchestration question.
 
@@ -69,6 +69,7 @@ Design reviews, evaluation plans, triage write-ups and readiness assessments fil
 - **parvis-software-engineering** owns the artifact around the model, its API contracts, data access and concurrency. A defect in the model, prompt, retrieval path or agent loop is here, and a stack trace from the serving process is that skill's triage until it resolves to model or prompt behavior.
 - **parvis-sdlc** owns that a gate exists and blocks, while whether the eval gate measures anything real is here. **parvis-metrics-advisor** owns each number's definition, baseline and target, while eval metrics, slices and regression thresholds are here, and one reported upward as a program KPI keeps its baseline in `metrics-value` with a pointer.
 - **parvis-vendor-eval** owns choosing and renewing a model vendor and the lock-in register, while which model to route a workload to, and the eval deciding it, is here. **parvis-incident-command** owns the live incident's comms and readout, while diagnosis of a model, retrieval or agent failure is here, speed-first for the duration per core's incident inversion.
+- **parvis-finops** owns the AI spend portfolio, its allocation and its forecast. Cost per request as a design property, and the design choices that move it, are here.
 - **parvis-people-leader** owns hiring bars and team shape, **parvis-portfolio-planning** owns an AI program's milestones, and **parvis-research** owns customer interview synthesis. What good looks like technically, and the coding of labeled model outputs, are here. No review from this skill becomes evidence about a named individual.
 
 ## Guardrails
