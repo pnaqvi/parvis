@@ -1,6 +1,6 @@
 # portfolio-planning org context
 
-*The what-is fact sheet. Facts, not beliefs, since positions hold the beliefs. Read first by every skill so the user never re-explains their org. Refreshed at maintenance, confirmed quarterly. Use `[X]` only for what the user genuinely cannot state today, never a guess.*
+*The what-is fact sheet. Facts, not beliefs, since positions hold the beliefs. Read first by every skill so the user never re-explains their org. Re-confirmed and stamped at monthly memory maintenance, and flagged once the date is older than about a quarter. Use `[X]` only for what the user genuinely cannot state today, never a guess.*
 
 *Last confirmed: [not yet, run "initialize my system" or a 5-minute refresh]*
 

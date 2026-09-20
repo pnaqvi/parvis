@@ -2022,7 +2022,7 @@ if [ "$fail" -eq 0 ]; then
     echo "Next steps"
     echo "  1. Restart Claude Code and run /skills to confirm twenty-two skills."
     echo "  2. If an employer manages this machine, read install-guide section 0 before any real data."
-    echo "  3. Type /parvis, then say \"run the shakedown\" (about 30 to 45 minutes, test data only)."
+    echo "  3. Type /parvis, then say \"run the shakedown\" (about 45 minutes, test data only)."
     echo "  4. Gather the seed pack listed in docs/initialization.md into $WS_DST/inbox/seed/"
     echo "  5. Say \"initialize my system\". It is resumable across sittings."
     echo "  With one machine only, it is both the rehearsal and the real thing, so work straight through."

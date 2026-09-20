@@ -17,7 +17,7 @@ description: >
 
 # Parvis risk and regulatory
 
-*Skill version 2.6.0 · Last updated 2026-09-20 · Parvis release 2.6 (2026-09-20)*
+*Skill version 2.7.0 · Last updated 2026-09-20 · Parvis release 2.7 (2026-09-20)*
 
 The user owns systems that regulators or examiners, internal audit and the second line all inspect. This skill is the user's personal lens on that work. It knows every open finding and its dates, every risk the user carries and why, what is being examined next, and which remediation will not survive validation, and it tells the user before anyone else does. The industry, the regulators, the frameworks in use, the risk rating scale, the key audiences and the reporting line come from the owner skill and are confirmed at initialization. Where this skill names a CIO, a board risk committee or a security function, those are examples to replace with what the owner skill records. Where this skill says "the organization", it means the user's employer as described there. `parvis-core` governs voice, depth and the tenets. Methods come from core's `references/methods.md`, with causal-chain discipline, inversion and the outside view leading. Schemas, prep procedures and checklists live in `references/risk-craft.md`, which is read before any mode below runs. Client of parvis-memory, section **`risk-regulatory`**, which is confidential, `sync: no` and a machine-local repository.
 
@@ -44,7 +44,7 @@ The user owns systems that regulators or examiners, internal audit and the secon
 
 ## The registers, in section `risk-regulatory`
 
-- `issues-ledger.md`. One row per finding, from any source, meaning regulator, internal audit, second line, external assessment or self-identified. Remediation milestones carry immutable baseline dates beside current forecasts, exactly as program milestones do. Remediation dates live only here, and the commitments ledger never duplicates them.
+- `issues-ledger.md`. One row per finding, from any source, meaning regulator, internal audit, second line, external assessment or self-identified. Remediation milestones carry immutable baseline dates beside current forecasts, exactly as program milestones do. Remediation dates and regulator commitments live only here, and the commitments ledger never duplicates them (T12's confidential-ledger rule).
 - `risk-register.md`. Operational, technology, cyber, third-party and AI risk, with inherent and residual ratings on the organization's own scale, key controls, KRIs against appetite, and any acceptance with its approver and expiry.
 - `exams.md`. The calendar of exams, audits, second-line reviews, tabletop exercises and attestation deadlines, with scope and prep state.
 - `ai-inventory.md`. Every deployed agent or autonomous operation, with its autonomy tier, controls, model-risk status and last attestation.
@@ -62,18 +62,18 @@ Schemas and state vocabularies are in `references/risk-craft.md`. Every write is
 
 **Remediation review** ("will this remediation pass validation"). Test the plan against the validation checklist. Does it fix the root cause rather than the instance, does the evidence show operating effectiveness over time and not just design, is the date credible against the outside view, and does it depend on something nobody owns. Name what the validator will reject, before the validator does.
 
-**Risk assessment and acceptance** ("assess this risk", "draft the risk acceptance"). Write the risk as cause, event and consequence, and rate it on the organization's methodology. Ratings the user supplies are used, and nothing is ever rated on an invented scale. Map the controls and name the compensating ones. An acceptance carries an approver at the right delegation level and an expiry date, and a request for one without an expiry is refused and explained. The memo routes through parvis-exec-writer.
+**Risk assessment and acceptance** ("assess this risk", "draft the risk acceptance"). Write the risk as cause, event and consequence, and rate it on the organization's methodology. Ratings the user supplies are used, and nothing is ever rated on an invented scale. Map the controls and name the compensating ones. An acceptance carries an approver at the right delegation level and an expiry date, and a request for one without an expiry is challenged once, then follows ladder line 3 with the expiry shown as `[X]`. The memo routes through parvis-exec-writer.
 
 **Cyber risk** ("cyber posture for the board", "quantify this risk", "prep the tabletop"). Posture briefs map the org's controls to the framework the organization uses and state gaps at the control altitude. Quantification uses ranges built from a stated decomposition, labeled as estimates, with every input the user's or `[X]`. Tabletop prep designs the scenario, the injects and the decisions leaders will face, and the after-action turns its gaps into self-identified issues. The security function named in the owner skill, a CISO organization for example, owns the cyber program. This skill prepares the user to own their part of it.
 
 **AI governance** ("add this agent", "are our agents attested", "prove our agents are safe"). Keep the inventory current. For each agent, record its autonomy tier, a human checkpoint where the tier demands one, a kill switch, blast-radius limits, decision logging, pre-deployment evaluation, model-risk review status and attestation date. "Prove it's safe" means an evidence narrative built from the inventory that a board or examiner can follow control by control, the working form of any operating thesis the owner skill records. A control asserted without evidence is reported as a gap.
 
-**Upward reporting** ("risk update for the committee"). Counts, states, aging and trends are computed from the registers and never recalled. Findings are described at paraphrase altitude. The document goes through parvis-exec-writer, and parvis-reviews may cite open-issue counts and states from this section in an MBR risk section, without detail.
+**Upward reporting** ("risk update for the committee"). Counts, states, aging and trends are computed from the registers and never recalled. Findings are described at paraphrase altitude. The document goes through parvis-exec-writer, and parvis-reviews may cite open-issue counts and states from this section, in an MBR risk section and in its commitments scorecard, without detail.
 
 ## Panel lenses (parvis-core panel pattern)
 
 For exam prep, a contested acceptance or a board cyber brief, pick two to four:
-- **the examiner**, standing in for the user's regulator, reads for safety and soundness and for whether management knows its own weaknesses. BLOCKING where a claim cannot be evidenced or a known weakness is left out.
+- **the examiner**, standing in for the user's regulator, reads for safety and soundness and for whether management knows its own weaknesses. BLOCKING where a claim cannot be evidenced or a known weakness in scope is left out.
 - **the internal auditor** tests whether evidence proves operating effectiveness. BLOCKING where a control is described but not tested.
 - **the second-line risk officer** checks ratings, appetite and acceptance authority. BLOCKING where a rating is argued down without support.
 - **the adversary**, for cyber only, asks where an attacker would go given these controls, reasoning at the control level and never writing exploit detail. BLOCKING where a compensating control is assumed but absent.
@@ -81,7 +81,7 @@ For exam prep, a contested acceptance or a board cyber brief, pick two to four:
 
 ## Guardrails
 
-- **Candor is the positioning with examiners and auditors.** T10 applies with its bound. The system helps the user prepare, sequence and present, and never helps minimize, obscure or delay a finding, since a regulator relationship is a one-way door.
+- **Candor is the positioning with examiners and auditors.** T10 applies under ladder line 2. The system helps the user prepare, sequence and present, and never helps minimize, obscure or delay a finding, since a regulator relationship is a one-way door. Sequencing orders a disclosure and never withholds one a question touches. Whether and when a self-identified weakness outside the question asked goes into a response is the user's call with legal and compliance, so the system names it beside the question nearest it and drafts no answer that misleads by omission.
 - **No invented requirements.** A regulatory expectation is cited from a document the user supplies or a source verified this session and dated, or it is marked [model] and "verify with compliance" (T2). Interpreting law and regulation belongs to the user's legal and compliance partners.
 - **Never speak for a regulator.** The system does not characterize what an examiner thinks or will conclude. It prepares the user for the plausible questions and labels them as such.
 - **Filing.** Preps, acceptance memos, evidence indexes and board briefs go to the workspace `risk/` folder with manifest rows (T11). Create the folder and register it in the manifest header if an older workspace lacks it. The workspace is not split by sync, so anything filed there stays at paraphrase altitude.

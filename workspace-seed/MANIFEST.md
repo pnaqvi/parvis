@@ -2,7 +2,7 @@
 *Every filed document gets a row. A document not registered here is lost to future sessions.*
 
 Folders: inbox/ (unfiled drop point, empty it at maintenance) · inbox/seed/ (initialization seed pack, emptied when initialization closes) · reference/ (indexed in reference/INDEX.md, licensed material internal-only) · strategy/ · strategy/comms/ · strategy/research/ · tech-plans/ · project-plans/ · project-plans/planning/ · project-plans/meeting-preps/ · risk/ (exam and audit preps, evidence indexes, acceptance memos, board risk briefs, paraphrase altitude only) · cadence/ · cadence/monthly/YYYY-MM/ (plan.md · status.md · mbr.* · metrics-snapshot.md) · cadence/quarterly/YYYY-QN/ (plan.md · status.md · qbr.*) · archive/
-Naming: YYYY-MM-DD-<kebab-slug>.<ext> · Status: draft | final | superseded → <successor path>
+Naming: YYYY-MM-DD-<kebab-slug>.<ext> · Status: draft | final | final, sent YYYY-MM-DD (once the user says it went out) | superseded → <successor path>
 
 | Date | Path | Type | Description (one line) | Status | Source |
 |---|---|---|---|---|---|

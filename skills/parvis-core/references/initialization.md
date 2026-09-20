@@ -1,6 +1,6 @@
 # Initialization, from installed to operational
 
-*Document 3 of 6 · release 2.6, September 2026 · The single home of the initialization sequence. `parvis-memory` runs it and reads this file at the start of every initialization session, and no skill carries a second copy of the steps. The canonical copy ships with the core skill at `skills/parvis-core/references/initialization.md`, and an identical copy lives in `docs/`.*
+*Document 3 of 6 · release 2.7, September 2026 · The single home of the initialization sequence. `parvis-memory` runs it and reads this file at the start of every initialization session, and no skill carries a second copy of the steps. The canonical copy ships with the core skill at `skills/parvis-core/references/initialization.md`, and an identical copy lives in `docs/`.*
 
 Installation puts files in place. Initialization loads what the system needs to know about the user, their org, their programs, their current posture, their positions, their people and their voice. Without it the advisors have no positions to cite, the rhythms have no projects to read, the writer drafts in a generic voice and preps have no stakeholders to pull.
 
@@ -28,7 +28,7 @@ Carry the bundle across, never the homes. The split posture in `install-guide.md
 
 1. **Install**, `bash install.sh`, which ends by pointing here.
 2. **Verify**, `install-guide.md` §6, five minutes.
-3. **Shakedown**, "run the shakedown", about 30 to 45 minutes on marked test data that is deleted at the end. It runs before initialization so the machine is proven before two or three hours of real data go into it, and so test entries never mix with real ones. Drill 8 then tests the cold path and drill 10b uses a sandbox brief. Both are re-checked for real inside initialization.
+3. **Shakedown**, "run the shakedown", about 45 minutes on marked test data that is deleted at the end. It runs before initialization so the machine is proven before two or three hours of real data go into it, and so test entries never mix with real ones. Drill 8 then tests the cold path and drill 10b uses a sandbox brief. Both are re-checked for real inside initialization.
 4. **Gather the seed pack**, below, about 20 minutes of finding files.
 5. **Initialize**, in two or three sittings.
 
@@ -62,7 +62,7 @@ Initialization is document-first. The user gathers what already exists, drops it
 | 2, the thinking | 5 positions, 6 groups and programs, 7 products and metrics | 75 min |
 | 3, people, risk and rhythm | 8 stakeholders, 9 meetings, 10 directs, 11 voice, 12 risk and regulatory, 13 program risks, 14 period, 15 first rhythm, 16 close | 60 min |
 
-Every step drafts, then shows the user the draft, and writes only what they confirm (T4). Each write is committed under the memory hygiene rules, and friction is logged to the `system` section as it happens (T7).
+Every step drafts, then shows the user the draft, and writes only what they confirm (T4). Each write is committed under the memory hygiene rules, and friction is offered in one line as it happens and logged to the `system` section on a yes (T7).
 
 ## The sequence
 
@@ -72,7 +72,7 @@ Every step drafts, then shows the user the draft, and writes only what they conf
 
 **2. Fact sheet, 10 minutes.** Walk `portfolio-planning/org-context.md` line by line, pre-filled from the candidates and from the owner skill's Org section where it is already filled. Role and remit, the org groups and their leaders, org shape, flagship programs, products and services, honest capacity per group, top constraints, standing forums, key stakeholders, standing context. This period's commitments stays empty until a plan is sent. `[X]` remains only where the user genuinely can't answer today, and capacity is often one of those until finance or the PMO supplies it. Set `Last confirmed`. The fact sheet comes first because facts anchor every interview after it.
 
-**3. Build or confirm the owner skill, 10 minutes, 2 if already filled.** The installed owner skill at `~/.claude/skills/parvis-owner/SKILL.md` is the identity source every other skill reads. If it still carries the `<!-- parvis:owner-template -->` marker, draft it from the You bucket (the resume or LinkedIn export) and the confirmed fact sheet, section by section: profile, org, domain and industry, signature accomplishments, positioning, credentials and visibility, communication preferences including punctuation, and optional sensitive context. Show each section for confirmation, leave `[placeholder]` wherever the user has no answer yet, remove the template marker once the user approves the whole draft, set Profile version and Last confirmed, and write it to `~/.claude/skills/parvis-owner/SKILL.md`, never to the bundle. If the skill is already filled in, confirm it is current, and update any role, scope, group or accomplishment that has moved and refresh its Last-confirmed date. The Domain and industry section decides how the technology-leadership skills apply, and the org groups it lists drive step 6.
+**3. Build or confirm the owner skill, 10 minutes, 2 if already filled.** The installed owner skill at `~/.claude/skills/parvis-owner/SKILL.md` is the identity source every other skill reads. If it still carries the `<!-- parvis:owner-template -->` marker, or names someone the user is not, as a first install of the maintainer's copy does, treat it as unfilled and draft it from the You bucket (the resume or LinkedIn export) and the confirmed fact sheet, section by section: profile, org, domain and industry, signature accomplishments, positioning, credentials and visibility, communication preferences including punctuation, and optional sensitive context. Show each section for confirmation, leave `[placeholder]` wherever the user has no answer yet, remove the template marker once the user approves the whole draft, set Profile version and Last confirmed, and write it to `~/.claude/skills/parvis-owner/SKILL.md`, never to the bundle. If the skill is already filled in, confirm it is current, and update any role, scope, group or accomplishment that has moved and refresh its Last-confirmed date. The Domain and industry section decides how the technology-leadership skills apply, and the org groups it lists drive step 6.
 
 **4. Current posture, 15 minutes.** Facts about what is, kept apart from beliefs about what should be. Where the user's domain is technology, this goes into `enterprise-architecture` from the current-posture bucket: the providers and the rough footprint by provider, the anchor technology in place per domain (compute, container, network, storage, observability, data services), the reference architectures in force, and the standing architecture decisions. For another domain, record the equivalent standing operating decisions in the section the user chooses, or mark the step skipped. Each standing decision becomes a decisions-ledger row carrying its original date and any revisit trigger the user names. Target-state documents are filed and cited by path, not summarized into memory. The difference between current state and target state is written down as a fact, since it's the gap every later brief reasons about.
 
@@ -104,7 +104,7 @@ Every step drafts, then shows the user the draft, and writes only what they conf
 
 1. Both homes exist with their manifests, under git, and the shakedown has passed on this machine.
 2. The clearance line is recorded.
-3. The owner skill is filled in and confirmed, with no template marker left.
+3. The owner skill is filled in and confirmed, names the user, and has no template marker left.
 4. `org-context.md` is confirmed, with no `[X]` the user could have resolved today.
 5. The current posture is recorded as facts, with standing decisions ledgered, or the step is skipped on purpose for a non-technology domain.
 6. Positions are seeded across the user's decision domains, or deferred domain by domain.
@@ -125,5 +125,5 @@ The system stays accurate through use rather than re-entry. Captures happen as w
 
 - **Everything recorded is the user's input** (T2). Documents supply candidates and the user supplies the truth. Statuses are honest, and nothing is invented to fill a template.
 - **Confidential sections stay machine-local** on every path. Stakeholders, people, performance, risk-regulatory and asset-estate never reach a remote.
-- **The owner skill is personal and local.** It lives in `~/.claude/skills/parvis-owner/`, the installer never overwrites a filled-in copy, and it never goes back into the bundle.
+- **The owner skill is personal and local.** It lives in `~/.claude/skills/parvis-owner/`, the installer never overwrites a filled-in copy, and an adopter's copy never goes back into the bundle. The bundle carries the maintainer's profile alone, and its release gate checks that Sensitive context is empty and the origin is private.
 - **In claude.ai chat**, with no filesystem, the sequence can run conversationally and produce capture files for the memory inbox, announced as that mode (T8). Real initialization happens where the system lives.

@@ -17,9 +17,9 @@ description: >
 
 # Parvis vendor eval
 
-*Skill version 2.6.0 · Last updated 2026-09-20 · Parvis release 2.6 (2026-09-20)*
+*Skill version 2.7.0 · Last updated 2026-09-20 · Parvis release 2.7 (2026-09-20)*
 
-Vendor and technology evaluation as a repeatable discipline. This skill is deliberately thin. The analysis machinery lives in the system's common catalog, the `parvis-core` skill's `references/methods.md`. Read it, because evolution mapping, quantification discipline, outside view, bias sweep and reversibility all apply directly, and core's depth mandate and panel pattern govern throughout. What this skill adds is the vendor-specific frame and the memory that makes renewal N smarter than renewal N−1. Client of parvis-memory, section **`vendor-management`**.
+Vendor and technology evaluation as a repeatable discipline. This skill is deliberately thin. The analysis machinery lives in the system's common catalog, the `parvis-core` skill's `references/methods.md`. Read it, because evolution mapping, quantification discipline, outside view, bias sweep and reversibility all apply directly, and T1 depth and core's panel pattern govern throughout. What this skill adds is the vendor-specific frame and the memory that makes renewal N smarter than renewal N−1. Client of parvis-memory, section **`vendor-management`**.
 
 ## The evaluation frame
 
@@ -27,7 +27,7 @@ Vendor and technology evaluation as a repeatable discipline. This skill is delib
 
 **Quantify with the full cost, both directions.** Buy price includes integration, exit cost and the vendor-management tax. Build price includes the engineer-quarters *at reference-class rates, not inside-view estimates* (internal platform builds have a well-known base-rate problem, so demand the structural reason this one beats it) plus the permanent run-and-maintain teams. Status quo is always priced.
 
-**Stress-test claims, don't absorb them.** Vendor availability, scale and resilience claims are marketing until evidenced. Ask for the SLA fine print against the marketing number, architecture under failure (their blast radius, not their brochure), reference customers at the user's scale in the user's industry (from the owner skill), and their incident history (public post-mortems are the honest signal, and a vendor with none is hiding or untested). Where web tooling is available, verify claims against current sources and date-stamp what couldn't be verified.
+**Stress-test claims, don't absorb them.** Vendor availability, scale and resilience claims are marketing until evidenced. Ask for the SLA fine print against the marketing number, architecture under failure (their blast radius, not their brochure), reference customers at the user's scale in the user's industry (from the owner skill), and their incident history (public post-mortems are the honest signal, and a vendor with none is hiding or untested). Check them under T2's verify rule.
 
 **Risk dimensions, every evaluation.** Concentration (what else fails if this vendor fails, so check memory for existing exposure across evaluations). Exit (real switching cost and time, tested against the contract, not assumed). Fourth-party (their critical dependencies). Regulatory posture (a vendor the user's regulators or examiners will ask about needs answers the user can give). Viability (funding, roadmap credibility, acquisition risk).
 
@@ -39,11 +39,11 @@ Doctrine is `parvis-core/references/ipe-knowledge-base.md` section 2, anchor and
 
 **Reuse gate.** Before any purchase, ask whether a platform the organization already runs covers the need. A buy recommendation that skipped this gate is incomplete.
 
-**Lock-in register** ("how locked in are we on X"). Enumerate the switching barriers, contractual, skills, ecosystem dependencies, tooling compatibility and data portability, and rate each with an exit-cost estimate and a confidence. Record the mitigation strategy. The register lives in the vendor's claims-register file under its own heading, is updated rather than rewritten at each renewal, and opens every renewal prep beside the claims table. Doors are named out loud (T2).
+**Lock-in register** ("how locked in are we on X"). Enumerate the switching barriers, contractual, skills, ecosystem dependencies, tooling compatibility and data portability, and rate each with an exit-cost band in words, never a currency figure, and a confidence. Record the mitigation strategy. The register lives in the vendor's claims-register file under its own heading, is updated rather than rewritten at each renewal, and opens every renewal prep beside the claims table. Doors are named out loud (T2).
 
 **Claims not verifiable today** get a designed proof-of-concept test and a row in the claims register, so the outcome is checkable at renewal.
 
-**Filing and commitments.** Evaluations and comparisons are filed to the workspace with a manifest row (T11), anchor and technology assessments under `tech-plans/` and renewal preps under `project-plans/`. Any commitment the user makes to or about a vendor in a sent artifact becomes a row in the commitments ledger, `sections/portfolio-planning/commitments-ledger.md`, which parvis-reviews tracks (T12).
+**Filing and commitments.** Evaluations and comparisons are filed to the workspace with a manifest row (T11), anchor and technology assessments under `tech-plans/` and renewal preps under `project-plans/`. Any commitment the user makes to or about a vendor in a sent artifact becomes a commitments-ledger row (T12 ledger).
 
 ## Negotiation and renewal prep
 
@@ -55,7 +55,7 @@ Every evaluation writes, once the user confirms (T4), the decision with confiden
 
 ## The claims register, per vendor, across years
 
-Each material vendor gets a file at `sections/vendor-management/vendors/<vendor-slug>.md`, holding a claims table (claim → evidence provided → verified date → status: held / broken / unverified) plus commitments they made to the user, with dates. Every evaluation and every incident involving the vendor updates it, and every renewal prep opens with it ("of nine claims from the 2025 evaluation, two broke"). T2 industrialized, vendors are argued with their own record.
+Each material vendor gets a file at `sections/vendor-management/vendors/<vendor-slug>.md`, holding a claims table (claim → evidence provided → verified date → status: held / broken / unverified) plus commitments they made to the user, with dates. Every evaluation and every incident involving the vendor updates it, and every renewal prep opens with it ("of nine claims from the 2025 evaluation, two broke").
 
 **Renewal triggers.** Every signed decision logs its renewal/expiry date as a dated revisit trigger in the ledger, so review and field-brief modes surface upcoming negotiations with runway. This calendar is the single source for what renews when, and parvis-itam and parvis-finops cite it rather than keeping their own. Leverage is built in the six months before the renewal, not the week of.
 
@@ -63,7 +63,7 @@ Each material vendor gets a file at `sections/vendor-management/vendors/<vendor-
 
 ## Guardrails
 
-No fabricated vendor facts. Claims the user hasn't provided or that can't be verified get placeholders or "unverified" tags, never plausible invention. Pricing specifics of the user's actual contracts are internal detail, so placeholders unless the user supplies sanitized figures. Contract law, terms drafting and procurement mechanics belong to the user's sourcing and legal partners, and this skill preps the substance rather than the paper. The deliverable document (decision doc, comparison one-pager) routes through the writer's anatomies.
+No fabricated vendor facts (T2 truth), so claims the user hasn't provided or that can't be verified get placeholders or "unverified" tags. Pricing specifics of the user's actual contracts are internal detail, so placeholders unless the user supplies sanitized figures. Contract law, terms drafting and procurement mechanics belong to the user's sourcing and legal partners, and this skill preps the substance rather than the paper. The deliverable document (decision doc, comparison one-pager) routes through the writer's anatomies.
 
 ## Convening an evaluation or negotiation panel (parvis-core panel pattern)
 

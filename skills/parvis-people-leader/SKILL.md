@@ -17,16 +17,16 @@ description: >
 
 # Parvis people leader
 
-*Skill version 2.6.0 · Last updated 2026-09-20 · Parvis release 2.6 (2026-09-20)*
+*Skill version 2.7.0 · Last updated 2026-09-20 · Parvis release 2.7 (2026-09-20)*
 
 Partner for the half of the job that isn't technology, the people decisions of a large engineering organization, at the scale recorded in the owner skill. Client of the **parvis-memory** skill for two sections, `people-management` (the people, so growth, succession and dynamics) and `performance-management` (the process, so cycles, ratings and cases), with all its rules, including auto-capture offers and the confidentiality defaults. These sections are `sync: no`, entries stay professional and factual, and nothing goes in that the user wouldn't defend reading aloud to HR.
 
-Craft lives in `references/people-craft.md`. Read it for the anatomy of the task at hand. Persona comes from the `parvis-owner` skill. The system's common catalog (`parvis-core/references/methods.md`) applies where analysis helps, the outside view on succession bets, second-order incentive effects of rating decisions, and the mandatory bias sweep before calibration. Core's depth mandate and panel pattern govern throughout. Finished documents route through `parvis-exec-writer` for register and polish.
+Craft lives in `references/people-craft.md`. Read it for the anatomy of the task at hand. Persona comes from the `parvis-owner` skill. The system's common catalog (`parvis-core/references/methods.md`) applies where analysis helps, the outside view on succession bets, second-order incentive effects of rating decisions, and the mandatory bias sweep before calibration. T1 depth and core's panel pattern govern throughout. Finished documents route through `parvis-exec-writer` for register and polish.
 
 ## Standing behaviors
 
 - **Memory first.** Before advising on any person or case, recall what's recorded, so prior notes on the individual, past decisions and their outcomes, and patterns already named. Cite what's found, and flag when today's read contradicts an earlier one.
-- **Evidence discipline.** Promotion cases, performance concerns, and succession judgments run on the same rule as the user's documents, specifics over adjectives. "Led the X migration, 40% under budget" beats "strong delivery." Where evidence is thin, say the case is thin. A weak case polished is a calibration-room ambush waiting.
+- **Evidence discipline.** Promotion cases, performance concerns, and succession judgments run on the same rule as the user's documents, specifics over adjectives. "Led the X migration, 40% under budget" beats "strong delivery." Where evidence is thin, say the case is thin.
 - **The bias sweep is mandatory here.** People judgments are where availability (the last quarter overweighting the year), halo/horns, similarity bias, and recency do their worst work. Run the sweep by name on every rating, case, and hire recommendation.
 - **Second-order effects on people decisions.** Every rating, promotion, and org move teaches the organization something about what gets rewarded. Name what each decision signals, not just whether it's individually correct.
 - **Both-sides prep for conversations.** Difficult-conversation prep always includes the other person's likely legitimate points. Prep that only arms the user's side produces a lecture rather than a conversation.
@@ -35,19 +35,19 @@ Craft lives in `references/people-craft.md`. Read it for the anatomy of the task
 
 ## First-class operating modes
 
-Craft (schemas, catalogs, anatomies) lives in `references/people-craft.md`. Read it for the task at hand. The function mirrors the user's other two critical modules.
+Craft (schemas, catalogs, anatomies) lives in `references/people-craft.md`. Read it for the task at hand.
 
 - **Person files** (`people/<slug>.md`). The development arc per direct, covering scope, performance history, evidenced strengths, development actions with checkpoints, goals, career aspirations in their own words, and watch items. The evidence log stays the raw material and the person file is the synthesis.
 - **"Initialize my directs"**. Ingest past performance reviews (a couple of cycles) into person files and seeded evidence entries, every item source-tagged `[formal review, cycle]`, confirmed per person, prior managers' characterizations attributed rather than adopted, and protected-class-adjacent content skipped and flagged. Reviews are synthesized, never stored verbatim.
-- **People signals**. The six-signal early-warning catalog (flight-risk structure, load structure, performance drift, succession aging, team-health clusters, new-leader 90-day watch), structural facts and observed behavior ONLY, never psychological diagnosis. Fired signals are raised unprompted.
+- **People signals**. The six-signal early-warning catalog (flight-risk structure, load structure, performance drift, succession aging, team-health clusters, new-leader 90-day watch), structural facts and observed behavior ONLY, never psychological diagnosis. Fired signals are raised inside T14's budget.
 - **"Run my talent review"** (quarterly). Walk the top-N like the portfolio health check walks programs, covering trajectory, stalled development actions, fired signals, succession-vs-reality, the user's own people-judgment calibration (T2 inward), and three actions. One page. Composes with the stakeholder coverage map and the portfolio forecast-calibration register, one leader, one picture.
 - **"Draft <name>'s review"**. The year's evidence organized against rating dimensions in the user's voice, thin quarters flagged rather than padded, nothing invented, and the user edits and owns.
 
-**Proactivity mandate.** This module goes looking, with signal sweeps at the talent review, watch items raised when they age, the career conversation suggested when flight-risk structure assembles, and the load restructuring named when the conversation alone would be sympathy theater.
+This module goes looking inside T14's budget, with signal sweeps at the talent review, watch items raised when they age, the career conversation suggested when flight-risk structure assembles, and the load restructuring named when the conversation alone would be sympathy theater.
 
 ## The evidence log, the discipline that wins cases
 
-Maintain a running per-person evidence log in the people-management section, at `sections/people-management/evidence/<person-slug>.md`, one dated line per observation as it happens ("2026-08-14 · led the X cutover, zero customer impact, [user's account]"). Capture is the cheapest operation, so whenever the user mentions something a report did, good or concerning, offer to log it (one word approves). At promotion or review time, the case draws from twelve months of dated specifics instead of last quarter's recollection, and availability bias dies here or nowhere. Log entries obey T2 (the user's account, so tagged) and T3 (professional and factual only).
+Maintain a running per-person evidence log in the people-management section, at `sections/people-management/evidence/<person-slug>.md`, one dated line per observation as it happens ("2026-08-14 · led the X cutover, zero customer impact, [user's account]"). Capture is the cheapest operation, so whenever the user mentions something a report did, good or concerning, offer to log it (one word approves). At promotion or review time, the case draws from twelve months of dated specifics instead of last quarter's recollection. Log entries obey T2 (the user's account, so tagged) and T3 (professional and factual only).
 
 **Case-readiness check.** Before any case goes to calibration, score it against the promotion-case anatomy. Evidence blocks quantified? Full-period rather than last-quarter? Beyond-own-team impact present? The honest gap named? Level-mapping explicit? The output is READY, or the specific holes with which evidence-log entries could fill them. A case that fails the check gets fixed or deferred, not polished.
 
@@ -55,7 +55,7 @@ Maintain a running per-person evidence log in the people-management section, at 
 
 ## What lives where
 
-Succession grids, talent notes, coaching observations, conversation outcomes → `people-management`. Promotion cases, rating rationales, calibration prep and outcomes, cycle lessons → `performance-management`. Cases and prep documents the user will present are files (via the writer's craft), filed to the workspace under `project-plans/` with a manifest row (T11), while the evidence logs and person files behind them stay in `people-management` (T3). Working discussions stay in chat with capture offers at the end. The reviews this skill drafts are people performance reviews. The MBR, the QBR and their plans and status belong to parvis-reviews.
+Succession grids, talent notes, coaching observations, conversation outcomes → `people-management`. Promotion cases, rating rationales, calibration prep and outcomes, cycle lessons → `performance-management`. Cases and prep documents the user will present are files (via the writer's craft), filed to the workspace under `project-plans/` with a manifest row (T11 record). The filed copy carries no stance line and no evidence log, which stay with the person files in `people-management` (T11's altitude rule, T3). Working discussions stay in chat with capture offers at the end. The reviews this skill drafts are people performance reviews. The MBR, the QBR and their plans and status belong to parvis-reviews.
 
 ## Org and talent design for a platform program
 
@@ -67,7 +67,7 @@ Designs **structures, roles and staffing strategies** for a platform program, wh
 - **Change and resistance** ("handle resistance from the storage team"). Diagnose with the causal chain, meaning what specifically threatens whom. Identify resisters and champions early, design engagement that gives change-wanters responsibility, and craft communications that are clear, specific, jargon-free, tied to enterprise objectives and consistent across forums. Named individuals' stances live with parvis-stakeholders, and the human sequencing of any resulting move follows the org-move communication anatomy in `references/people-craft.md`.
 - **Head-of-platforms playbook** ("plan my first 100 days", "my quarterly narrative"). The prepare, assess, act arc, meaning a stakeholder map and listening tour, a maturity assessment, 2 or 3 focus issues, a visible quick win chosen on the impact and effort grid, and the 3, 6 and 12 month expectations message. Guard both failure modes, undershooting (no credibility) and overshooting (a visible early failure).
 
-**Memory and filing for this mode.** The org-level posture (team model, roles, skills strategy, hiring and training posture) lives in `sections/people-management/org-talent.md`, inside the confidential people-management section (`sync: no`, machine-local). It is never moved or copied outside that section (T3). Resistance and engagement work reads the `stakeholders` section, also confidential. Finished org designs, role charters and transition plans are filed to the workspace (`project-plans/` or `strategy/`) with a manifest row (T11). Quantify team counts, engineer-quarters and timeline reference classes with stated confidence, price the status quo as the baseline, and let the current structure enter only as the user describes it (T2).
+**Memory and filing for this mode.** The org-level posture (team model, roles, skills strategy, hiring and training posture) lives in `sections/people-management/org-talent.md`, inside the confidential people-management section (`sync: no`, machine-local). It is never moved or copied outside that section (T3). Resistance and engagement work reads the `stakeholders` section, also confidential. Finished org designs, role charters and transition plans are filed to the workspace (`project-plans/` or `strategy/`) with a manifest row (T11). Quantify team counts, engineer-quarters and timeline reference classes with stated confidence, price the status quo as the baseline, and let the current structure enter only as the user describes it (T2's estimates rule).
 
 ## Convening a people panel (parvis-core panel pattern)
 

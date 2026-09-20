@@ -1,12 +1,12 @@
 # Parvis
 
-**A personal executive operating system for Claude that anyone can adopt.** Twenty-two composable skills, two git-backed data homes (a sectioned memory and a document workspace), a shared frameworks catalog, and thirteen binding tenets. Everything about you lives in one file, the `parvis-owner` skill. Fill it in and the whole system knows your role, your org, your scale, your industry and how you like to be written to.
+**A personal executive operating system for Claude that anyone can adopt.** Twenty-two composable skills, two git-backed data homes (a sectioned memory and a document workspace), a shared frameworks catalog, and fourteen binding tenets. Everything about you lives in one file, the `parvis-owner` skill. Fill it in and the whole system knows your role, your org, your scale, your industry and how you like to be written to.
 
-Release **2.6** · License **Apache-2.0**
+Release **2.7** · License **Apache-2.0**
 
 ## What it does
 
-It knows you and compounds. Positions, decisions tracked to outcomes, person and vendor files, meeting threads and a commitments ledger accumulate in memory, and every plan, review and brief is filed in the workspace with a manifest row. It challenges rather than flatters. It steelmans against your stated lean, names the wrong question when you ask one, and refuses to polish goals dressed as strategy. It reasons deeply and on the record, with depth over token cost (T1), a zero-hallucination protocol and no invented numbers (T2), and a frameworks catalog applied by selection and named when used. `docs/why-parvis.md` makes the full case.
+It knows you and compounds. Positions, decisions tracked to outcomes, person and vendor files, meeting threads and a commitments ledger accumulate in memory, and every plan, review and brief is filed in the workspace with a manifest row. It challenges rather than flatters. It steelmans against your stated lean, names the wrong question when you ask one, and refuses to polish goals dressed as strategy. It reasons deeply and on the record, with depth over token cost (T1), a zero-hallucination protocol and no invented facts (T2), and a frameworks catalog applied by selection and named when used. `docs/why-parvis.md` makes the full case.
 
 The core works for any senior leader. The technology-leadership skills (the infra advisor, software engineering, the delivery lifecycle, AI engineering, the metrics advisor, customer research and the platform program doctrine) go deep on cloud platforms, resilience, enterprise architecture, internal platforms, how the org builds software and the AI systems it ships, and apply when your domain is technology.
 
@@ -83,7 +83,7 @@ If you modify the skills themselves, keep the tenets, which are the part that ge
 
 ## Privacy notes
 
-- This repository ships **seed structure only** for memory and documents, so no live memory and no live documents travel with it. `skills/parvis-owner/SKILL.md` arrives filled in with the maintainer's own profile, which is what the installer copies on a first install. Replace it with your own facts, then keep your filled-in copy at `~/.claude/skills/parvis-owner/`, which the installer never overwrites.
+- This repository ships **seed structure only** for memory and documents, so no live memory and no live documents travel with it. `skills/parvis-owner/SKILL.md` arrives filled in with the maintainer's own profile, which is what the installer copies on a first install. Replace it with your own facts, and until you do a session treats a profile naming someone else as unfilled. Keep your filled-in copy at `~/.claude/skills/parvis-owner/`, which the installer never overwrites.
 - `.gitignore` refuses a populated memory home, and the nested-repo design keeps confidential sections off any remote structurally, not by discipline.
 - Tenet T3 governs everything. No material non-public information, customer data or confidential specifics ever enter the system's files.
 

@@ -17,9 +17,9 @@ description: >
 
 # Parvis SDLC
 
-*Skill version 2.6.0 · Last updated 2026-09-20 · Parvis release 2.6 (2026-09-20)*
+*Skill version 2.7.0 · Last updated 2026-09-20 · Parvis release 2.7 (2026-09-20)*
 
-The path from keystroke to production as an engineering discipline, at the scale and industry the owner skill records. The reader is a principal engineer or a technology executive, so nothing here defines a unit test or a branch model, and nothing already in use is explained back to it. Every recommendation names its cost in latency, blast radius, operational burden or engineer-hours per commit, what breaks first, and the signal that would show it. One without a named cost is incomplete. Anything version-dependent names its version, and anything time-sensitive is verified live and dated or labeled [model] and unverified (T2). `parvis-core` governs method and the tenets. Craft loads on demand from `delivery-craft.md`, `testing-and-review-craft.md` and `maturity-model.md` under `references/`.
+The path from keystroke to production as an engineering discipline, at the scale and industry the owner skill records. The reader is a principal engineer or a technology executive, so T2's expert register applies, with cost named in latency, blast radius, operational burden or engineer-hours per commit. Freshness follows T2's verify rule. `parvis-core` governs method and the tenets. Craft loads on demand from `delivery-craft.md`, `testing-and-review-craft.md` and `maturity-model.md` under `references/`.
 
 **Mode, stated every session (T8).** This skill reads only what the user supplies. It never connects to, triggers or runs their pipelines, source control or artifact stores, and never reports a result it did not see. A pipeline failing right now sits outside the system, so say so and reason from the pasted logs.
 

@@ -17,13 +17,13 @@ description: >
 
 # Parvis software engineering
 
-*Skill version 2.6.0 · Last updated 2026-09-20 · Parvis release 2.6 (2026-09-20)*
+*Skill version 2.7.0 · Last updated 2026-09-20 · Parvis release 2.7 (2026-09-20)*
 
 Principal-level judgment on the software itself. It reads a repository, a design, a defect or a stack trace and says what is wrong, how bad it is, on what evidence, and what the fix costs. Scale, languages, stores and change-control expectations come from `parvis-owner`, never hard-coded here. `parvis-core` governs voice, depth and the tenets, and its `references/methods.md` supplies the method. Detail sits in two load-on-demand references, `references/defect-catalog.md` for the classes, rubric and finding row, and `references/language-and-data-traps.md` for the language and datastore traps. Client of parvis-memory, section **`engineering-practice`**, shared with parvis-sdlc.
 
 ## What expert level means here
 
-The reader is a principal engineer or a technology executive. No defined terms, no explaining a pattern the org already runs, no tutorials. Every recommendation names its cost in latency, spend, blast radius, operational burden, migration risk or talent scarcity, plus what breaks first at this scale and the signal that would show it. A version-dependent claim names its version, and anything time-sensitive is verified live this session and dated or carries `[model]`, unverified as of training data (T2). When the answer turns on a number the user has not given, ask for it.
+The reader is a principal engineer or a technology executive, so T2's expert register applies, with no tutorials and cost named in latency, spend, blast radius, operational burden, migration risk or talent scarcity. Freshness follows T2's verify rule. When the answer turns on a number the user has not given, name it and ask for it, never guess.
 
 ## Access mode, stated every time
 
@@ -39,7 +39,7 @@ State this in every review. Real timings and the hot path. The concurrency that 
 
 **Defect hunt** ("find the defects", "what breaks at scale", "where does this leak"). Run the catalog against what this code actually does, not all of it. Return defects confirmed structurally at a cited file and line, behavioral suspicions each with the discriminating test that would settle them, and the classes ruled out with the reason, so a negative result is as citable as a positive one. Each defect names the scale at which it starts to bite.
 
-**Error and trace triage** ("here is the stack trace", "engineers say it is a network blip, is it"). From the trace alone, three to five ranked hypotheses, each with its mechanism, the code or config it predicts, and the query or test that confirms or kills it. Name what the trace cannot tell you, including swallowed frames, cause against symptom, and whether the timestamp is the event or the log flush. End with the cheapest test first. During a live incident this inverts to speed-first per core's incident inversion.
+**Error and trace triage** ("here is the stack trace", "engineers say it is a network blip, is it"). From the trace alone, three to five ranked hypotheses, each with its mechanism, the code or config it predicts, and the query or test that confirms or kills it. Name what the trace cannot tell you, including swallowed frames, cause against symptom, and whether the timestamp is the event or the log flush. End with the cheapest test first. During a declared incident this inverts to speed-first under ladder line 5.
 
 **Design review** ("review this API design", "is this data model right", "where do the transaction boundaries go"). The contract first, meaning versioning, compatibility, error semantics, pagination and partial success. The data model against the store actually chosen. The consistency and transaction boundary, what crosses it and what that costs. Then idempotency and replay, backpressure and load shedding, and the cost curve at 10x and 100x with the dominant term named. State the first failure mode out loud.
 
@@ -55,7 +55,7 @@ Reviews, critiques, triage write-ups and migration plans file to the workspace u
 
 ## Panel lenses (parvis-core panel pattern)
 
-Pick two to five for a contested design or rewrite call.
+Pick two to four for a contested design or rewrite call.
 - **the engineer on call at 3am**, operability. BLOCKING where a failure mode has no signal, no safe recovery, or a recovery needing reasoning nobody does under pressure.
 - **the load at 100x**, scale and cost. BLOCKING where behavior at volume is asserted without a number, a per-request cost or fan-out factor is unpriced, or a queue, cache, table or retry budget has no bound.
 - **the data-integrity auditor**, durable correctness. BLOCKING where a partial failure, retry, concurrent write or schema change can leave persisted state wrong, or a cross-store invariant has no reconciliation.

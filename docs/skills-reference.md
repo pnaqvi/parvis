@@ -1,8 +1,8 @@
 # Skills reference, Parvis
 
-*Document 5 of 6 · release 2.6, September 2026 · Every skill at a glance, what it does and how to invoke it. This is the one home of each skill's purpose and its trigger phrases. For each skill in depth, with its behavior and its boundaries, read `system-guide.md`. For rhythms read `how-to-use.md`. Say "help" in any session for the interactive version.*
+*Document 5 of 6 · release 2.7, September 2026 · Every skill at a glance, what it does and how to invoke it. This is the one home of each skill's purpose and its trigger phrases. For each skill in depth, with its behavior and its boundaries, read `system-guide.md`. For rhythms read `how-to-use.md`. Say "help" in any session for the interactive version.*
 
-Twenty-two skills, two data homes, thirteen tenets. Everything about you lives in one file, the `parvis-owner` skill. Memory lives at `<base>/parvis-memory/` in seventeen seeded topic sections plus one section per org group, created at initialization. Working documents live at `<base>/parvis-workspace/`. The base is the location chosen at install and remembered from then on (see `install-guide.md`). Skills 4 to 9 and the platform program material form the technology-leadership set, which applies when the owner skill names technology as your domain. The rest work in any domain.
+Twenty-two skills, two data homes, fourteen tenets. Everything about you lives in one file, the `parvis-owner` skill. Memory lives at `<base>/parvis-memory/` in seventeen seeded topic sections plus one section per org group, created at initialization. Working documents live at `<base>/parvis-workspace/`. The base is the location chosen at install and remembered from then on (see `install-guide.md`). Skills 4 to 9 and the platform program material form the technology-leadership set, which applies when the owner skill names technology as your domain. The rest work in any domain.
 
 ---
 
@@ -15,7 +15,7 @@ Who you are, in the one file you fill in. Profile (name, pronouns, role, employe
 **Invoke.** `/parvis-owner`, or loads on its own whenever identity matters, or "use my profile", "update my profile", "you know who I am".
 
 ## 2. parvis-core · operating framework and help desk
-The spine every skill inherits. The Prime Directive, which outranks everything else, the thirteen tenets (T1 depth-over-cost through T13 prose scrub), the zero-hallucination protocol (T2), the frameworks catalog in `references/methods.md` with selection logic by problem type, the perspective-panel pattern for multi-agent work in any domain, the always-on pair rule, and help mode, which answers questions about the system from these six documents. Two load-on-demand references sit beside the catalog. `ipe-knowledge-base.md` is the platform program's doctrine library, and `shakedown-drill.md` is the eleven-step T9 validation drill.
+The spine every skill inherits. The Prime Directive, the six-line precedence ladder (protect, truth, owner, attention, depth, core), which orders the directive's own rules when they collide and so reads the directive instead of sitting below it, the fourteen tenets (T1 depth through T14 attention), each ending in its "Broken when" test, the zero-hallucination protocol (T2), the frameworks catalog in `references/methods.md` with selection logic by problem type, the perspective-panel pattern for multi-agent work in any domain, the duty to load `parvis-owner` first, and help mode, which answers questions about the system from these six documents. Two load-on-demand references sit beside the catalog. `ipe-knowledge-base.md` is the platform program's doctrine library, and `shakedown-drill.md` is the scripted T9 validation drill.
 **Invoke.** "help", "what can this system do", "which skill handles X", "what version am I running", "how do I install this on another machine", "what frameworks apply here", "convene a panel", "think deeper", "run the shakedown".
 
 ## 3. parvis-memory · the owner of both homes
@@ -87,7 +87,7 @@ Your lens on everything examiners, internal audit and the second line inspect in
 **Invoke.** "log this audit finding", "we got an MRA on X", "run my risk pulse", "prep me for the exam", "prep me for the exam on resilience", "internal audit is coming for DR", "will this remediation pass validation", "draft the risk acceptance", "cyber posture for the board", "prep the tabletop", "add this agent to the inventory", "prove our agents are safe".
 
 ## 20. parvis-incident-command · the sev-1 executive layer
-What you owe upward, outward and afterward during major incidents. A comms cadence with a kept clock, fill-in templates at T+15, T+60 and resolution per audience track, timestamped incident logs, the regulator-notification consideration checklist, decision support under pressure (the system's one speed-over-depth inversion), executive readouts, blameless post-incident review panels, and drill mode. Never technical troubleshooting, your engineers own diagnosis.
+What you owe upward, outward and afterward during major incidents. A comms cadence with a kept clock, fill-in templates at T+15, T+60 and resolution per audience track, timestamped incident logs, the regulator-notification consideration checklist, decision support under pressure (speed over depth while an incident is declared, ladder line 5), executive readouts, blameless post-incident review panels, and drill mode. Never technical troubleshooting, your engineers own diagnosis.
 **Invoke.** "we have a sev-1", "major incident in progress", "draft the exec update", "the incident is resolved, help with the readout", "run the post-incident review", "run a tabletop".
 
 ## 21. be-human · prose hygiene

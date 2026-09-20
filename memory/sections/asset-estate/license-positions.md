@@ -1,6 +1,6 @@
 # asset-estate license positions
 
-*One block per material publisher, written by parvis-itam. Direction and state only. No entitlement counts, no consumption counts, no rates and no currency, in this file or anywhere else in memory (T3). The reconciliation itself is a workspace artifact, and this is what survives it. Schema in parvis-memory section-templates.*
+*One block per material publisher, written by parvis-itam. Direction and state only. No entitlement counts, no consumption counts, no rates and no currency, in this file or anywhere else in the `asset-estate` section (T3). Other sections keep their own content rules. The reconciliation itself is a workspace artifact, and this is what survives it. Schema in parvis-memory section-templates.*
 
 ## <Publisher>
 - **Metric family in force:** <the counting basis that governs, in one phrase>

@@ -16,7 +16,7 @@ description: >
 
 # Be human
 
-*Skill version 2.6.0 · Last updated 2026-09-20 · Parvis release 2.6 (2026-09-20)*
+*Skill version 2.7.0 · Last updated 2026-09-20 · Parvis release 2.7 (2026-09-20)*
 
 A field guide, adapted from Wikipedia's *Signs of AI writing*, for prose that doesn't announce itself as machine-made. Each entry names a tell, explains why it reads as artificial, and gives the move a human writer makes instead.
 
@@ -193,7 +193,7 @@ Watch for and delete:
 - Sign-offs and offers: *I hope this helps! Let me know if you'd like… Would you like me to… Feel free to ask…*
 - Self-reference: *As an AI language model… As a large language model… I'm just an AI…*
 - Knowledge-cutoff hedging: *As of my last update… As of my knowledge cutoff…* (when it's irrelevant to the point).
-- Unfilled placeholders left in: *[insert company name], [Your Name here], [add detail].*
+- Unfilled template fill-ins left in: *[insert company name], [Your Name here], [add detail].* A deliberate `[X]` or source label is not residue and stays.
 - Restating the request back before answering: *Sure, here is a summary of the article you asked me to summarize…*
 
 Finished prose is addressed to the reader, not to the person who prompted it. Strip every trace of the conversation that produced it.
@@ -205,7 +205,7 @@ Finished prose is addressed to the reader, not to the person who prompted it. St
 Before calling a draft done, reread it once specifically hunting these. In practice the highest-yield checks are:
 
 1. Cut every "it's worth noting / important to note" and see if the sentence survives (it will).
-2. Find every em dash and every trailing "-ing, …" clause and rewrite each. Then count colons and semicolons, and thin them if they cluster.
+2. Search for every mark rule 13 bars and every trailing "-ing, …" clause, and rewrite each.
 3. Count your triples and your "however / moreover / furthermore." If they cluster, thin them.
 4. Kill any "It's not X, it's Y" and any "In conclusion / Overall" that caps something short.
 5. Ask of your opening line and any generic sentence: could this sit in an article on any other subject? If yes, make it specific or delete it.

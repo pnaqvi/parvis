@@ -16,9 +16,9 @@ description: >
 
 # Parvis meeting prep
 
-*Skill version 2.6.0 · Last updated 2026-09-20 · Parvis release 2.6 (2026-09-20)*
+*Skill version 2.7.0 · Last updated 2026-09-20 · Parvis release 2.7 (2026-09-20)*
 
-A composition skill. It builds one-page meeting preparation from systems that already exist, rather than owning new craft. Fast to *deliver* is the point, so a prep should reach the user in minutes and fit one page, while the thinking behind it follows the `parvis-core` depth mandate, full anticipation work, no shortcuts, tight output.
+A composition skill. It builds one-page meeting preparation from systems that already exist, rather than owning new craft. Fast to *deliver* is the point, so a prep should reach the user in minutes and fit one page, while the thinking behind it follows T1 depth, full anticipation work and tight output.
 
 ## Inputs (gather in one exchange, infer what's obvious)
 
@@ -37,27 +37,27 @@ Meeting type and audience, what the user wants out of it, what's on the agenda o
    - **Landmines.** Topics to handle carefully or steer from, with the steer. Fired revisit triggers, slipped commitments, and any gap between what has been said and what the registers show belong here, stated plainly. A landmine hidden from the prep goes off in the room.
    - **Commitments watch.** What the user should and should not commit to in the room (regulator- and committee-facing meetings especially).
    - **Carry-ins**. What the user owes them and what they owe the user from last time, drawn from the commitments ledger, the meeting thread and the attendees' stakeholder files, never recalled from memory of meetings (T12).
-4. **After the meeting, "here is how it went" (offer, don't nag).** A two-minute debrief covering what was decided, what the user committed to and what surprised them, captured to the right memory sections (decisions to ledgers, audience observations to `audiences.md`, follow-ups listed back to the user). The debrief is where meeting prep compounds, and without it every prep starts cold.
+4. **After the meeting, "here is how it went".** A two-minute debrief, offered inside T14's budget, covering what was decided, what the user committed to and what surprised them, captured to the right memory sections (decisions to ledgers, audience observations to `audiences.md`, follow-ups listed back to the user).
 
 ## Register
 
 The user's voice (from the owner skill), in fragments meant for glancing at, not prose. One page, hard limit. A prep the user can't absorb in the elevator has failed. Numbers where they'll be needed in the room, `[X]` placeholders where the user must supply them.
 
-If the prep will be shared with anyone else, it gets the prose scrub before it leaves (T13). If the registers are empty for this meeting's domain, the honest prep is short, and it says which sections would make the next one better.
+If the prep will be shared with anyone else, it gets the T13 scrub before it leaves. If the registers are empty for this meeting's domain, the honest prep is short, and it says which sections would make the next one better.
 
 ## Guardrails
 
-No invented attendee color where the registers are silent (T2). No new analysis inside a prep (parvis-infra-advisor), and no document improvised in place of the writer's, so a missing pre-read is named and handed to parvis-exec-writer. A prep built on stale sources says so rather than reading as current. One page is a hard ceiling, not a target.
+No new analysis inside a prep (parvis-infra-advisor), and no document improvised in place of the writer's, so a missing pre-read is named and handed to parvis-exec-writer. A prep built on stale sources says so rather than reading as current.
 
 ## Program registers and the workspace
 
 The program side of memory and the workspace feed the prep too. Read the commitments ledger at `sections/portfolio-planning/commitments-ledger.md` for what is due to and from this room. Read the current period's `plan.md` and `status.md` in the workspace cadence folders for recent reds. Read positions and open decisions from `portfolio-planning`, `enterprise-architecture` and `platform-products` where the agenda touches them, and for vendor-facing meetings the vendor's file in `sections/vendor-management/vendors/`. Any document on the agenda is read from the workspace, not from recollection.
 
-Every claim in the prep traces to a register, a workspace document, or `[user-input]`. Where the system holds nothing on an attendee or topic, the prep says "no record" rather than inventing color (T2).
+Every claim in the prep carries one of T2's provenance tags, and where the system holds nothing on an attendee or topic the prep says "no record" rather than inventing color.
 
-Debrief write-backs go through the memory skill and are confirmed once (T4). New commitments the user made in the room go to the commitments ledger, observations about an attendee to that person's stakeholder registry file, and decisions to their section's ledger.
+Debrief write-backs go through the memory skill and are confirmed once (T4). New commitments the user made in the room become commitments-ledger rows on that confirmation (T12's spoken-promise rule), observations about an attendee to that person's stakeholder registry file, and decisions to their section's ledger.
 
-**Filing.** A prep is a working paper. File it to `project-plans/meeting-preps/<meeting-slug>/YYYY-MM-DD-prep.md` in the workspace, with a manifest row (T11), only when the user wants it kept. Standing meetings usually yes, one-offs usually no. Ask once per meeting series and remember the answer as an insight in the `meetings` section.
+**Filing.** A prep is a working paper. File it to `project-plans/meeting-preps/<meeting-slug>/YYYY-MM-DD-prep.md` in the workspace, with a manifest row (T11), only when the user wants it kept. The filed copy drops every line on where an attendee stands, which stays in the stakeholder registry (T11's altitude rule). Standing meetings usually yes, one-offs usually no. Ask once per meeting series and remember the answer as an insight in the `meetings` section.
 
 ## Recurring-meeting threads, where prep compounds
 

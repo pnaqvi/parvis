@@ -18,9 +18,9 @@ description: >
 
 # Parvis portfolio planning and program oversight
 
-*Skill version 2.6.0 · Last updated 2026-09-20 · Parvis release 2.6 (2026-09-20)*
+*Skill version 2.7.0 · Last updated 2026-09-20 · Parvis release 2.7 (2026-09-20)*
 
-Planning as a rhythm, not an annual scramble. The analysis machinery lives in the system's common catalog, the `parvis-core` skill's `references/methods.md`. Read it for the strategy kernel, portfolio balance, scenario thinking, outside view, expected-value framing and theory of constraints. Core's depth mandate and panel pattern govern throughout. This skill adds the cadence, the cycle-specific frames, and the memory that makes every cycle start from what was actually committed and delivered rather than from a blank page. Client of parvis-memory, section **`portfolio-planning`**.
+Planning as a rhythm, not an annual scramble. The analysis machinery lives in the system's common catalog, the `parvis-core` skill's `references/methods.md`. Read it for the strategy kernel, portfolio balance, scenario thinking, outside view, expected-value framing and theory of constraints. T1 depth and core's panel pattern govern throughout. This skill adds the cadence, the cycle-specific frames, and the memory that makes every cycle start from what was actually committed and delivered rather than from a blank page. Client of parvis-memory, section **`portfolio-planning`**.
 
 ## Analysis here, sent artifacts in parvis-reviews
 
@@ -51,11 +51,11 @@ Craft lives in `references/program-craft.md`. Read it for any oversight work. It
 - **"Run the benefits check on <program>"** (auto-due at +2 quarters post-completion). Score the intake promise honestly as realized / partial with the number / not / not-measurable-as-promised, into the thread and the annual plan's evidence base.
 - **Program threads and calibration**. Flagship and major programs carry thread files, the dated record of transitions, forecast changes, review promises and recoveries. Milestone outcomes score into the per-owner forecast-calibration register that estimate-realism and QBR listening run on. Both per program-craft.
 
-**Proactivity mandate.** This module goes looking. Fired signals get raised unprompted in weeklies and monthlies. A mentioned slip, new risk or aging decision in ANY conversation gets the capture offer. Integration-phase programs get flagged as entering the danger window before they arrive. When a status contradicts its own evidence, that is said plainly (T2), because the module's loyalty is to the true state of the portfolio, not the reported one.
+This module goes looking, inside T14's budget. Fired signals get raised in weeklies and monthlies. A mentioned slip, new risk or aging decision gets the capture offer. Integration-phase programs get flagged as entering the danger window before they arrive. When a status contradicts its own evidence, that is said plainly (T2 truth), because the module's loyalty is to the true state of the portfolio, not the reported one.
 
 ## The connective rule (all cadences)
 
-Every cycle opens with last cycle's scorecard, commitments from memory against what happened, honestly scored, misses classified (estimation, execution or environment) before any new planning. Plans that don't reconcile against prior plans are wishes with dates. Every cycle closes by writing to memory the commitments made, the confidence, and the triggers that would force a mid-cycle revisit. Those commitments live in `sections/portfolio-planning/commitments-ledger.md`, the one ledger parvis-reviews also reads and writes (T12).
+Every cycle opens with last cycle's scorecard, commitments from memory against what happened, honestly scored, misses classified (estimation, execution or environment) before any new planning. Every cycle closes by capturing the commits chosen, the confidence, and the triggers that would force a mid-cycle revisit. The commits become rows in `sections/portfolio-planning/commitments-ledger.md`, the one ledger parvis-reviews also reads and writes, when the plan carrying them is declared sent, never at cycle close (T12 ledger).
 
 ## Weekly, the operating rhythm (~15 minutes)
 
@@ -79,7 +79,7 @@ Weeklies steer, monthlies detect, quarterlies correct, annuals redirect. **Mid-c
 
 ## Guardrails
 
-All dollar figures are placeholders or sanitized inputs from the user, never invented (the user's budget envelope, from the owner skill and org-context, frames proportions, not line items). Quantification discipline applies to every commitment and bet. The honesty rules have teeth here specifically, capacity at 80%, run-costs from actuals, and ambition against demonstrated delivery rate. Planning is where organizations lie to themselves most fluently, and this skill's job is to be the one voice in the room that doesn't.
+All dollar figures are placeholders or sanitized inputs from the user, never invented (the user's budget envelope, from the owner skill and org-context, frames proportions, not line items). Quantification discipline applies to every commitment and bet. The honesty rules have teeth here specifically, capacity at 80%, run-costs from actuals, and ambition against demonstrated delivery rate.
 
 ## Convening a planning panel (parvis-core panel pattern)
 

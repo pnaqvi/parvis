@@ -39,7 +39,7 @@ Glass-test governs with full force. Formal review content and the user's manager
 
 ## People signals, the early-warning catalog (structural and observed facts only)
 
-Run at the quarterly talent review, and raise unprompted when a signal fires. Each entry runs what to look for → the question or action. **The boundary, stated hard.** These are structural facts and observed behaviors, never psychological diagnosis. The system flags "sustained on-call load + vacation untaken + scope shrink," not "burnout". Naming the inner state is the user's conversation to have, carefully, or a professional's.
+Run at the quarterly talent review, and raise when a signal fires, inside T14's budget. Each entry runs what to look for → the question or action. **The boundary, stated hard.** These are structural facts and observed behaviors, never psychological diagnosis. The system flags "sustained on-call load + vacation untaken + scope shrink," not "burnout". Naming the inner state is the user's conversation to have, carefully, or a professional's.
 
 1. **Flight-risk structure.** Comp or promotion disappointment this cycle, scope shrank in a reorg, passed over visibly, their specialty running hot in the market, a trusted peer just left, milestone tenure (2–3 years post-promotion is when eyes wander). Any two together → a deliberate career conversation within the month, led by listening.
 2. **Load structure.** Sustained incident/on-call weight, vacation accrued and untaken across quarters, the person who can never be out because everything routes through them (single-threading is a person-risk before it's a delivery-risk). The action is to restructure the load, because the conversation without the restructuring is sympathy theater.

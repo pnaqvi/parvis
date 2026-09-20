@@ -1,0 +1,19 @@
+# ratchet-baseline, the T6 ratchet's record. tools/check-release.sh reads it as check 10.
+#
+# One row per release, oldest first, measured with wc -w once the release is final.
+#
+#   release <X.Y> <words in skills/parvis-core/SKILL.md> <words in all skills/*/SKILL.md together>
+#
+# The last row is the baseline. The gate fails while either count stands above it, and it fails
+# while a row is unfilled. At a release the maintainer appends the new row. A row that rises
+# above the row before it also fails, so the file cannot be edited past the ratchet.
+#
+# Only the owner lifts the ratchet, with one line copied from the decisions-ledger row that says
+# what the words bought. It names the release that may rise, and it stays here for good.
+#
+#   override <X.Y> <YYYY-MM-DD> <what the words bought, four words or more>
+#
+# This is not the VERSION file, which install.sh reads as the bare release string.
+#
+# The first baseline is measured after the tenets amendment batch lands. Replace each UNSET.
+release 2.7 3203 41960

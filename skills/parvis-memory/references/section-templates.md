@@ -46,7 +46,7 @@ A position without a would-change-my-mind line is a dogma, not a position. The f
 ```markdown
 # <section> insights
 
-## YYYY-MM-DD — <slug>
+## YYYY-MM-DD - <slug>
 <short entry, the observation, pattern or lesson>
 *Source: <session / meeting / event>*
 ```
@@ -112,7 +112,7 @@ Per-owner delivery multipliers: | Owner | Milestones scored | Median multiplier 
 
 ## commitments-ledger.md (portfolio-planning section)
 
-The T12 backing store: | Commitment | Owner | Artifact it was made in | Made | Due | State | Cause & correction |. One promise made in a sent artifact is one row, written the moment that artifact is declared sent. State is computed from evidence rather than recalled, and its values are open, kept, missed, moved. A missed row carries its cause and its correction, a moved row carries the new due date and who agreed to it. Every review cycle opens from this table.
+The T12 backing store: | Commitment | Owner | Artifact it was made in | Made | Due | State | Cause & correction |. One promise is one row, written when T12 ledger says so. Remediation dates and regulator commitments never come here (T12's confidential-ledger rule). State is computed from evidence rather than recalled, and its values are open, kept, missed, moved. A missed row carries its cause and its correction, a moved row carries the new due date and who agreed to it. Every review cycle opens from this table.
 
 ## risk-register.md (workspace project-plans/, the standing register)
 
@@ -127,7 +127,7 @@ A row unreviewed for more than 90 days is flagged at the pulse and at maintenanc
 
 ## org-context.md (portfolio-planning section)
 
-The what-is fact sheet, read first by every skill: role and remit, the groups and their leaders, org shape, flagship and major programs, products or services offered, this period's commitments, honest capacity per group, top constraints, standing forums, key stakeholders, standing context. Facts only, since positions hold the beliefs. `[X]` marks what the user genuinely cannot state today, never a guess. Carries a `Last confirmed` date, refreshed at maintenance and confirmed quarterly.
+The what-is fact sheet, read first by every skill: role and remit, the groups and their leaders, org shape, flagship and major programs, products or services offered, this period's commitments, honest capacity per group, top constraints, standing forums, key stakeholders, standing context. Facts only, since positions hold the beliefs. `[X]` marks what the user genuinely cannot state today, never a guess. Carries a `Last confirmed` date, re-confirmed and stamped at monthly memory maintenance, and flagged at session start and by the pulse once it is older than about a quarter.
 
 ## delivery-practice.md (engineering-practice section)
 
@@ -174,7 +174,7 @@ One block per material publisher, written by parvis-itam.
 - **Routed:** <issue raised in risk-regulatory by ID> / <negotiation open in vendor-eval> / none
 ```
 
-Direction and state only. No entitlement counts, consumption counts, rates or currency anywhere in memory, since the set of at-risk rows across publishers is what a compliance team would want (T3). The reconciliation behind a state files to `tech-plans/` with a manifest row, and only the position comes back here. A shortfall that meets the issue-raising bar gets one row in `risk-regulatory`, never a second here.
+Direction and state only. No entitlement counts, consumption counts, rates or currency anywhere in this section, since the set of at-risk rows across publishers is what a compliance team would want (T3). The reconciliation behind a state files to `tech-plans/` with a manifest row, and only the position comes back here. The rule binds `asset-estate` only, and other sections keep their own content rules. A shortfall that meets the issue-raising bar gets one row in `risk-regulatory`, never a second here.
 
 ## obligations.md (asset-estate section)
 
@@ -198,4 +198,4 @@ The estate view, written by parvis-itam and read by parvis-finops and parvis-ven
 
 ## session-log.md (system section)
 
-One line per substantive session, appended without confirmation: `YYYY-MM-DD | skill(s) | topic | outcome-in-five-words`. Telemetry rather than memory content, so it is skipped for trivial Q&A and read by system maintenance for real usage data.
+One line per substantive session, one of T4's two exceptions, the unconfirmed writes: `YYYY-MM-DD | skill(s) | topic | outcome-in-five-words`. A line never names a person or carries anything T3 bars. It is skipped for trivial Q&A and read by system maintenance for real usage data.

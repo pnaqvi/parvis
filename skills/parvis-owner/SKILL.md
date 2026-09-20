@@ -16,7 +16,7 @@ description: >
 
 # Who the user is
 
-*Skill version 2.6.0 · Last updated 2026-09-20 · Parvis release 2.6 (2026-09-20)*
+*Skill version 2.7.0 · Last updated 2026-09-20 · Parvis release 2.7 (2026-09-20)*
 
 **Profile version: 2026-08-08 · Last confirmed: 2026-08-08.** This profile is load-bearing for all of Parvis, because every skill defers to it for identity, scale, org and preferences. At each quarterly system maintenance, re-confirm the Profile, Org and Signature accomplishments sections with him and refresh both dates. If more than about six months have passed since Last confirmed, mention it once when the profile is used for something consequential.
 
@@ -90,7 +90,7 @@ This is the personalized copy, installed at `~/.claude/skills/parvis-owner/SKILL
 
 ## Sensitive context (optional)
 
-- His father passed away suddenly (around 2021, in India) and he and his family had a serious bout of COVID afterward. He shared this publicly, but treat it with care. Relevant only if he brings up that period himself.
+- None recorded.
 
 ## How to use this
 

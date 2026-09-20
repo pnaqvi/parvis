@@ -1,6 +1,6 @@
 # How to use Parvis
 
-*Document 4 of 6 · release 2.6, September 2026 · Commands and rhythms. Say "help" anytime and core's help mode answers from these documents.*
+*Document 4 of 6 · release 2.7, September 2026 · Commands and rhythms. Say "help" anytime and core's help mode answers from these documents.*
 
 ## The map, say the thing and the right skill fires
 
@@ -16,7 +16,7 @@ You don't invoke skills by name, though you can. You say what you need and the d
 | "Prep me for <meeting>" / "here's how it went" | One-pager going in, debrief coming out | meeting-prep |
 | "We have a sev-1" / "run a tabletop" | Comms cadence and templates, or a practice drill | incident-command |
 | "Remember this" / "what do I think about X" / "run memory maintenance" / "initialize my system" | Capture, cited recall, housekeeping, first-run setup | memory |
-| "Run my pulse" | The two-minute anticipation pass across every section and both homes, reporting only what fires among the eight checks parvis-memory defines | memory |
+| "Run my pulse" | The two-minute anticipation pass across every section and both homes, reporting only what fires among the nine checks parvis-memory defines | memory |
 | "File this as a tech plan" / "file my workspace inbox" / "where is the Q3 review" | Document filing with a manifest row, and retrieval by quotation | memory |
 | "What frameworks apply here" / "convene a panel" / "run the shakedown" / "help" | Catalog with selection logic, a panel in any domain, the T9 drill, this help | core |
 
@@ -30,14 +30,14 @@ Where two phrases sound alike, `system-guide.md` section 4 names the one skill e
 
 ## The rhythms, where the value compounds
 
-**Daily, minutes.** "run my pulse" whenever you want the standing brief, and accept it when it is offered at the week's first session or as a plan, status or review opens. Quick takes on live questions. Say "remember this" when something clicks, or approve the two or three capture candidates the system offers at session end. Mention something a report did and one word logs it to their evidence log. Mention a stakeholder interaction and one confirmation updates their registry. Drop source documents into the workspace `inbox/` and say "file my workspace inbox".
+**Daily, minutes.** "run my pulse" whenever you want the standing brief, and accept it when it is offered at the week's first session or as a plan, status or review opens. Quick takes on live questions. Say "remember this" when something clicks, or approve the capture candidates the system batches into one closing line. Mention something a report did and one word logs it to their evidence log. Mention a stakeholder interaction and one confirmation updates their registry. Drop source documents into the workspace `inbox/` and say "file my workspace inbox".
 
 **Weekly, 15 minutes.** "run my weekly", three priorities against the quarter, blockers, and what you owe. The cheapest habit with the highest steering value.
 
 **Per meeting.** "prep me for X" going in, and the two-minute debrief coming out ("here's how it went"). The debrief is what makes the next prep smarter.
 
 **Monthly.** The cadence cycle, in order.
-- "draft the <month> plan", objectives, milestones ledgered when you commit, carry-forwards, capacity and risks.
+- "draft the <month> plan", objectives, milestones ledgered when you say the plan is sent, carry-forwards, capacity and risks.
 - "update monthly status", the plan scorecard, metric actuals to the snapshot, unplanned work and learnings, updatable through the month.
 - "start the <month> MBR", composed from the plan, status, snapshot and ledger, rendered as markdown, deck or Word document, with new commitments ledgered when you say it is sent.
 - Alongside it, "run my monthly" for trajectory and early warning, "run my stakeholder review" for cadence drift and commitments due, and "run memory maintenance" for both inboxes, integrity checks, archives, position aging and the workspace manifest audit.
@@ -51,11 +51,11 @@ Where two phrases sound alike, `system-guide.md` section 4 names the one skill e
 
 **Annually.** "build next year's budget", strategy refresh and portfolio construction, with a panel by default.
 
-**When something feels off about the system itself**, a wrong skill fired, an answer felt thin, a mode grated, say "log this friction". One line goes into the `system` section and becomes the next maintenance cycle's input. The system improves from real Tuesdays rather than from more design.
+**When something feels off about the system itself**, a wrong skill fired, an answer felt thin, a mode grated, say "log this friction". The system offers the same line when it notices, and writes it on your yes. One line goes into the `system` section and becomes the next maintenance cycle's input. The system improves from real Tuesdays rather than from more design.
 
 ## The rules you can rely on
 
-Depth over speed everywhere (T1) except live incidents. Say "fast answer" to override on trivia. No invented numbers, ever. `[X]` placeholders are yours to fill, and provenance tags mark what is your input, memory, a filed workspace document, verified or model knowledge (T2). Nothing is sent or stored without your confirmation (T4). Disagreement is delivered, not smoothed (T5). Confidential sections never sync (T3). Every document that matters is filed with a manifest row (T11), every promise in a sent artifact becomes a ledger row (T12), and nothing leaves final without the prose scrub (T13). The system tells you which mode it is in when degraded (T8).
+When two rules collide, the six-line ladder in `parvis-core` decides and the reply names the line. Its short form is protect, truth, owner, attention, depth, core. Below protect and truth your plain instruction wins, and Parvis names the rule set aside, complies and records the rule and the date, never the content (ladder line 3). Depth is proportional to the stakes (T1), and speed wins only in a declared incident or on your words "fast answer" (ladder line 5). No fact about your world is invented. `[X]` placeholders are yours to fill, an estimate carries its basis and confidence, and provenance tags mark what is your input, memory, a filed workspace document, verified or model knowledge (T2). Nothing is sent or stored without your confirmation, except two lines that name no person, the session-log line and a waiver's rule and date (T4). Disagreement is delivered, not smoothed (T5). Confidential sections never sync, by parvis-memory's design. Every document that matters is filed with a manifest row (T11), every promise in a sent artifact becomes a ledger row, a spoken one on your confirmation (T12), and nothing leaves final without the prose scrub (T13). After the answer at most two unasked items follow, and "what did you hold back" brings the rest in that session. Nothing held is stored, so the pulse recomputes it from the registers (T14). The system tells you which mode it is in when degraded (T8).
 
 ## First fortnight
 

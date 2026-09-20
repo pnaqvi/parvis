@@ -1,6 +1,6 @@
 # Installing Parvis
 
-*Document 2 of 6 · release 2.6, September 2026 · New machine, new account, update, and removal, all through one script, `install.sh`.*
+*Document 2 of 6 · release 2.7, September 2026 · New machine, new account, update, and removal, all through one script, `install.sh`.*
 
 *Where Claude Code loads skills from, and how claude.ai keeps them per account under admin control, were checked on 2026-09-20 against docs.claude.com/en/docs/claude-code/skills and support.claude.com, and `~/.claude/skills` was confirmed on a Windows 11 machine that day [verified 2026-09-20]. Every other product detail here is [model], so confirm it before relying on it.*
 
@@ -50,7 +50,7 @@ Then restart Claude Code and run `/skills`. Twenty-two skills should list.
 
 ### The owner skill, your one file
 
-`skills/parvis-owner/SKILL.md` in the bundle arrives filled in with the maintainer's profile, and its template form carries `[placeholder]` fields with a one-line guide for each. Replace the contents with your own facts, since a first install copies whatever the bundle holds. The installed copy at `~/.claude/skills/parvis-owner/SKILL.md` is the one that counts. Fill it in by hand, or let initialization step 3 draft it from a resume or LinkedIn export you drop in the seed pack. Every other skill reads it for your name, role, org, scale, industry, frameworks and communication preferences, so nothing personal lives anywhere else. Keep your filled-in copy out of any public fork of the bundle.
+`skills/parvis-owner/SKILL.md` in the bundle arrives filled in with the maintainer's profile, and its template form carries `[placeholder]` fields with a one-line guide for each. Replace the contents with your own facts, since a first install copies whatever the bundle holds. Until you do, a session treats a profile naming someone you are not as unfilled, and initialization step 3 redrafts it. The installed copy at `~/.claude/skills/parvis-owner/SKILL.md` is the one that counts. Fill it in by hand, or let initialization step 3 draft it from a resume or LinkedIn export you drop in the seed pack. Every other skill reads it for your name, role, org, scale, industry, frameworks and communication preferences, so nothing personal lives anywhere else. Keep your filled-in copy out of any public fork of the bundle.
 
 ### Choosing where the homes live
 
@@ -196,7 +196,7 @@ Pull before sessions and push after. The system commits around every write, so h
 
 ## §5. Shakedown, then initialize
 
-The installer ends by naming these steps, and a `/parvis` session keeps offering them until initialization is complete. Run §6's five-minute verify first. Then say **"run the shakedown"**, the eleven-step drill on test data that is deleted afterwards, so the machine is proven before real data goes into it. Then gather the seed pack and say **"initialize my system"**.
+The installer ends by naming these steps, and a `/parvis` session keeps offering them until initialization is complete. Run §6's five-minute verify first. Then say **"run the shakedown"**, the scripted drill on test data that is deleted afterwards, so the machine is proven before real data goes into it. Then gather the seed pack and say **"initialize my system"**.
 
 Initialization is document-first, guided and resumable. The seed pack, the clearance gate, the paths and their timings, and all seventeen steps are in `initialization.md`.
 

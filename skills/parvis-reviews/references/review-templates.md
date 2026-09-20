@@ -1,11 +1,11 @@
 # Cadence templates, plan, status, MBR and QBR anatomy
 
-*The document shapes. This file owns the MBR and QBR structure and ceilings for the whole system, and other skills point here rather than restating them. Every number is [user-input] or [X]. Trends are shown against target AND against last period, and joint metric readings follow parvis-metrics-advisor's rules. Standard filenames inside the period folder are `plan.md`, `status.md`, `mbr.*` or `qbr.*`, and `metrics-snapshot.md`. These are operating cadence documents. People performance reviews use parvis-people-leader's craft, never these shapes.*
+*The document shapes. This file owns the MBR and QBR structure and ceilings for the whole system, and other skills point here rather than restating them. Every number carries one of T2's provenance tags or is [X]. Trends are shown against target AND against last period, and joint metric readings follow parvis-metrics-advisor's rules. Standard filenames inside the period folder are `plan.md`, `status.md`, `mbr.*` or `qbr.*`, and `metrics-snapshot.md`. These are operating cadence documents. People performance reviews use parvis-people-leader's craft, never these shapes.*
 
 ## Monthly or quarterly plan (`plan.md`), 1 to 2 pages
 
 1. **Period objectives.** 3 to 5, each with its success evidence named up front.
-2. **Milestones and deliverables.** Item, owner, due, depends-on. These become ledger rows when the plan is committed.
+2. **Milestones and deliverables.** Item, owner, due, depends-on. These become ledger rows when the user declares the plan sent (T12 ledger).
 3. **Carry-forwards.** Ledger-derived items moving into this period, with why.
 4. **Capacity and constraints.** Team availability, freezes, the known bottleneck (a theory-of-constraints note).
 5. **Risks entering the period.** Top 3 to 5 with mitigations.
@@ -43,7 +43,7 @@ Quarterly plans add the phase-model position, the where-to-play moves this quart
 6. **Org and talent.** Teams stood up, skills progress, hiring reality against plan. Org level only, never an individual's performance.
 7. **Risks and dependencies.** The quarter's material risks with mitigations, and the regulatory and audit posture.
 8. **Financials.** Spend against budget, chargeback and recovery posture, unit-cost trend. All `[user-input]` or `[X]`.
-9. **Next-quarter commitments.** Explicit and owner-attached. These become ledger rows on close.
+9. **Next-quarter commitments.** Explicit and owner-attached. These become ledger rows when the review is declared sent (T12 ledger).
 10. **Decisions needed and asks.**
 11. *(Appendix.)* Supporting detail.
 
@@ -51,5 +51,5 @@ Quarterly plans add the phase-model position, the where-to-play moves this quart
 
 - Markdown is the canonical workspace record, and pptx and docx are renderings of it.
 - Deck rendering uses one section per numbered item above, with the headline slide first, metrics as tables or charts from the user's actuals only, and no decorative filler.
-- Status colors, if used, are earned. Green means on plan with evidence, amber means a recoverable slip with a correction, and red means a miss or a blocked decision. Never color-average a red into an amber.
+- Status colors, if used, are earned. Green means on plan with evidence, amber means a recoverable slip with a correction, and red means a miss or a blocked decision. Never color-average a red into an amber (ladder line 2).
 - Filing goes to `cadence/monthly/YYYY-MM/` and `cadence/quarterly/YYYY-QN/` under the standard names, with renderings as `mbr.pptx` or `mbr.docx` (or `qbr.*`) beside the canonical `.md`, and a manifest row on every filing (T11).
