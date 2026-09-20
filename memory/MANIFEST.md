@@ -1,0 +1,30 @@
+# Memory manifest
+*The routing table. Every section is registered here, and captures route by scope and keywords. Managed by the parvis-memory skill. Add sections with "create a memory section for <topic>".*
+
+| Section | Scope (one line) | Routing keywords | Sync |
+|---|---|---|---|
+| infra-advisor | Cloud infrastructure, platforms, SRE, resilience, EA, agentic ops (positions, decisions, brainstorm briefs) | cloud, platform, SRE, resilience, architecture, incident, vendor, agentic | yes |
+| exec-writing | How the user writes and who they write for (style patterns learned from sent-version diffs, audience notes) | memo, deck, board, style, audience, one-pager, pre-read, talking points | yes |
+| performance-management | The performance process for the user's org (goals, OKRs, reviews, ratings, promotion cases, comp cycles) | goals, OKR, review, rating, promotion, comp, calibration | no |
+| people-management | The people themselves (talent development, coaching, succession, team health, conflicts, hiring), plus the org-level team model, role design and skills strategy | talent, coaching, succession, hiring, conflict, team health, 1:1, team model, role design, skills strategy, training | no |
+| vendor-management | Vendor evaluations, build-vs-buy decisions, negotiation history, concentration exposure | vendor, build vs buy, renewal, negotiation, contract, concentration, SaaS, RFP, evaluation, pricing, lock-in | yes |
+| enterprise-architecture | Architecture as a function, covering anchor decisions, reference architectures, standards, target state, current cloud posture | EA, architecture review, standards, target state, tech strategy, anchor decision, reference architecture, build vs buy, lock-in | yes |
+| stakeholders | Stakeholder registry, one file per person with stance, interests, history and engagement cadence (peers, upward, external) | stakeholder, CIO, CRO, CISO, CFO, board member, regulator relationship, sponsor, customer team, commitment owed | no |
+| meetings | Standing-meeting threads (decisions, open items owed each way, carry-forwards per recurring meeting) | staff meeting, committee, 1:1, QBR, recurring | yes |
+| system | The system's own friction log (mis-triggers, heavy/thin moments, fix-ups) that feeds quarterly maintenance | mis-trigger, friction, skill bug, system note, session log, init status | yes |
+| portfolio-planning | Planning cycles (monthly reviews, quarterly commitments, annual portfolio and budget), strategy and roadmap material, the commitments ledger, the org fact sheet | plan, planning, budget, OKR commitments, portfolio, allocation, QBR cycle, strategy, roadmap, charter, phase gate, MBR, monthly review, quarterly review, commitment | yes |
+| platform-products | Per-product state across the platform portfolio, owner, current state, roadmap posture, adoption | product, platform catalog, compute, kubernetes, network, storage, DBaaS, adoption, offering | yes |
+| metrics-value | Metric definitions, baselines, targets, and the trend observations behind any value claim | metric, KPI, baseline, target, adoption rate, DORA, CSAT, NPS, unit cost, uptime | yes |
+| risk-regulatory | Regulatory exam, internal audit and self-identified findings to validated closure, the operational, technology and cyber risk register, the exam calendar, the AI agent inventory | risk, audit, exam, finding, MRA, issue, remediation, validation, control, cyber, risk acceptance, KRI, appetite, AI governance, agent inventory | no |
+
+Routing notes. The performance-management section is the *process* (cycles, ratings, cases). The people-management section is the *people* (growth, dynamics, moves), and it also carries the org-level talent posture, so it stays confidential. A capture touching both stores at its center of gravity with a one-line pointer in the other. `Sync: no` sections are confidential and stay machine-local, excluded from any remote.
+
+The technology set is `infra-advisor`, `enterprise-architecture`, `platform-products` and `metrics-value`. Their keywords (incident, vendor, product, adoption) are broad enough to pull captures from other domains. All thirteen sections ship in the seed. Initialization offers to retire the set to `sections/_retired/` when the owner's domain is not technology, and a retired section leaves routing without being deleted.
+
+Group sections are not seeded. Initialization reads the user's org groups from the owner skill and the fact sheet and creates one section per group from the group section template (key projects on schema v2, `programs/`, and the three standard registers), each with its own row here. A group section holds that group's key projects, milestones, stakeholders and group positions. If the org has an architecture group, its project files are added to `enterprise-architecture` rather than creating a second architecture section.
+
+More routing notes. `enterprise-architecture` is *how it is built* (anchor decisions, reference architectures, standards). `platform-products` is *what is offered and how it is doing* (owner, state, adoption). `metrics-value` holds the definition and the baseline behind a number, never the number's narrative, which belongs to the cycle that used it. Strategy, roadmap and review-cadence material routes to `portfolio-planning`. Vendor material routes to `vendor-management`.
+
+`risk-regulatory` is the risk the org carries in running live systems, plus findings and exams. Program delivery risk stays in the workspace's `project-plans/risk-register.md`. It is confidential because findings touch regulatory matters, and it holds IDs and the user's own paraphrase only, never regulator wording or cyber exposure detail.
+
+Memory is not the workspace. This manifest routes curated durable facts in the memory home. Working documents live in the other home, the workspace home, and are routed by its own manifest. The Parvis managed block in `~/.claude/CLAUDE.md` states where both homes live. A fact that must survive and be cited belongs here. A document being drafted, reviewed or filed belongs there. The two are never flattened together.

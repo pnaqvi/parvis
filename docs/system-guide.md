@@ -1,0 +1,125 @@
+# System guide, Parvis
+
+*Document 6 of 6 · release 2.3, September 2026 · The complete reference. Every skill in detail, what to expect from it, and where its territory ends. The canonical copy ships with the core skill at `skills/parvis-core/references/system-guide.md` and is what help mode reads. An identical copy lives in `docs/`.*
+
+## 1. What this system is
+
+A seventeen-skill operating layer for a senior leader's work, personalized through one file, the `parvis-owner` skill, which holds the user's role, org, scale, industry and preferences. A technology-leadership set (the infra advisor, the metrics advisor, research and the platform program doctrine) goes deep on cloud platforms, resilience, enterprise architecture and a multi-year infrastructure platform program, and applies when the owner skill names technology as the domain. Advisors that know your recorded thinking, memory that compounds across sessions, a document workspace that is the system of record, and the plan, status and review cadence that runs the program.
+
+**Two data homes**, both git repositories, never flattened together. They sit under a base chosen at install and remembered from then on, and the managed block in `~/.claude/CLAUDE.md` names both paths (see `install-guide.md`).
+- **Memory** at `<base>/parvis-memory/`. Thirteen seeded topic sections plus one section per org group, created at initialization from the owner skill, each holding positions (what you believe, with confidence and a would-change-my-mind line), a decisions ledger with revisit triggers, and insights. The routing table is `MANIFEST.md`. The four confidential sections, `people-management`, `performance-management`, `stakeholders` and `risk-regulatory`, are nested local-only repositories that no remote can carry.
+- **Workspace** at `<base>/parvis-workspace/`. `strategy/`, `tech-plans/`, `project-plans/` (with the standing `risk-register.md`), `cadence/monthly/YYYY-MM/` and `cadence/quarterly/YYYY-QN/` where each period's plan, status, review and metrics snapshot live together, `reference/` for source material indexed in `reference/INDEX.md`, `inbox/` and `archive/`. The registry is `MANIFEST.md`, and a document not registered there is lost to future sessions (T11).
+
+One question separates the homes. A fact that must survive and be cited belongs in memory. A document being drafted, reviewed or filed belongs in the workspace. A sent review is a document, and the promises inside it are rows in the commitments ledger at `memory/sections/portfolio-planning/commitments-ledger.md`.
+
+**Identity and voice** come from two always-on skills. `parvis-owner` carries your professional profile so every skill knows who it serves. `be-human` carries the prose-hygiene catalog and applies the punctuation preferences stated in the owner skill, defaulting to no em dashes and rare colons and semicolons, and T13 requires that anything you send passes that scrub before it is final.
+
+**Thirteen tenets** govern everything. Quality over cost (T1), zero fabrication with provenance tags (T2), data classification (T3), a human confirms every consequential step (T4), honest disagreement is a deliverable (T5), the instruction budget is defended (T6), the system improves from friction with versioning (T7), degradation is announced (T8), empiricism via the shakedown (T9), win by positioning rather than fighting (T10), the workspace is the system of record (T11), commitments are ledgered and never remembered (T12), and shareable prose is scrubbed before final (T13). In `parvis-core` the file order runs T1 to T8, then T10, then T9, then T11 to T13. The full text lives there.
+
+**Frameworks** live in one file, `parvis-core/references/methods.md`, with a selection table by problem type. Advisors read it before substantive analysis and name the methods they apply. The platform program's doctrine lives in `parvis-core/references/ipe-knowledge-base.md`.
+
+## 2. The seventeen skills
+
+Each skill's purpose and the phrases that invoke it live in `skills-reference.md`. Each entry below gives the behavior to expect and the boundary, meaning the neighboring skill that owns the adjacent ground.
+
+### parvis, the session command
+**Behavior.** Loads the owner skill, parvis-core and be-human, reads both manifests, and greets you by name with one interesting thing, preferring a real item from memory and never inventing one. It never fires on its own. After that every message routes to its owning skill, and a question about who it is gets a short answer in its own voice.
+**Boundary.** It holds only the greeting, the identity and the session behavior. The Prime Directive and its rules live in parvis-core, and the managed block keeps the directive on even in sessions that never type `/parvis`.
+
+### parvis-owner, identity
+**Behavior.** Every other skill reads it instead of carrying a copy. Resumes, LinkedIn, bios and career questions start here. The bundle ships it as a template marked `<!-- parvis:owner-template -->`. Initialization step 3 drafts it from a resume or LinkedIn export, or you edit it by hand at `~/.claude/skills/parvis-owner/SKILL.md`, and the installer never overwrites a filled-in copy.
+**Boundary.** It holds who you are, never what you think about a topic. Positions live in memory, and live operational facts live in `portfolio-planning/org-context.md`.
+
+### parvis-core, the operating framework and help desk
+**Behavior.** You rarely address it directly, since every other skill inherits from it. Help mode answers from the six help documents, says which one it drew from, and says plainly when the documents do not cover a question. The shakedown is an eleven-step drill on marked test data that turns designed-only capabilities into designed-and-tested ones on this machine.
+**Boundary.** Where a skill conflicts with core on depth, frameworks or panel mechanics, core wins, except for declared inversions such as incident-command's speed-first phase. Persona comes from `parvis-owner` and memory mechanics from `parvis-memory`.
+
+### parvis-memory, the owner of both homes
+**Behavior.** Recall is quotation with file and date, and an empty recall reads "not in memory". A capture needs one sentence, which the skill structures for you to confirm once. Every write is checked for near-duplicates and contradictions first and read back afterward. Filed documents get a manifest row and a draft, final or superseded status, and a final document is never overwritten. Both inboxes are merged at session start and at maintenance. The org fact sheet, `portfolio-planning/org-context.md`, is read first in every session so you never re-explain your org. Maintenance runs monthly. The pulse is the anticipation pass across every section and both homes. It reports only what fires among seven checks, commitments due or overdue, fired revisit triggers, positions past about 12 months, cadence artifact state such as an MBR not started with a week left, a stale fact sheet, risks unreviewed for more than 90 days, and upcoming meetings with no filed prep. It is offered in one line at the first session of each week and whenever a cadence artifact opens, and it never writes without confirmation. Initialization is a guided, resumable sequence, described in `initialization.md`.
+**Boundary.** It owns where things live and how they are kept. It never produces the content itself, which comes from the client skill that asked. A memory question is never answered from the workspace manifest alone, or the reverse.
+
+### parvis-infra-advisor, the standing thought partner
+**Behavior.** It reads your positions first and argues when a recommendation contradicts one. It steelmans against your stated lean. Quick take is the default tier, sparring is one critique round, and full is three rounds for decisions you will socialize upward. Five standing lenses, plus a platform-adoption advocate when adoption is the issue, and team sessions stop at a mandatory checkpoint for your answers. Three doctrine checks ride every tier, anchor discipline, reuse before buy, and adoption over mandate. The field brief reports only what intersects your recorded thinking. Convert mode keeps the content and hands the craft to the writer.
+**Boundary.** The advisor owns the decision. It does not own metrics design, which is parvis-metrics-advisor. It does not own org and talent design, which is parvis-people-leader. It does not produce the monthly and quarterly reviews, which is parvis-reviews. A request to decide, anchor, sequence or pressure-test is an advisor request. A request to define a metric, set a baseline or target, or judge whether a number is gameable is a metrics request. A request about promotion cases, succession, team shape or a difficult conversation is a people-leader request. A request to produce a cycle review is a reviews request. When the advisor cites a metric or a ledgered commitment as evidence, it cites the filed framework or the ledger row rather than deriving the number.
+
+### parvis-metrics-advisor, measurement and the value story
+**Behavior.** Starts minimal, four or five essential metrics. Each metric carries a definition, formula, data source, owner, cadence, measured baseline, defensible target and its Goodhart pairing. Metrics are read jointly, never singly. Benchmarks are labeled as reference-class values rather than your results, and an unsourced figure stays `[X]`. Owns the `metrics-value` section, files frameworks to `strategy/` and instrumentation plans to `project-plans/`.
+**Boundary.** It owns the number, meaning its definition, formula, baseline, target, owner, Goodhart pairing, and what a movement in it means. The writer owns the document the number travels in. A request to decide what to measure, or to read what a movement means, is a metrics request. A request to write the CFO one-pager or the QBR narrative is a writer request, and the writer pulls its numbers from `metrics-value` and the filed framework rather than deriving them. "How do I show value to the CFO" starts here, which builds the value story and prices the status quo, then hands the content to the writer. Neither skill invents a number.
+
+### parvis-research, the customers' story coming in
+**Behavior.** Four modes, interview-guide prep, wave synthesis, barrier readout, and the cross-wave view. The evidence rule is T2 hardened, two independent sources per claimed theme or it is reported as a single observation, and a theme with no source does not exist. Writes findings to `platform-products`, reads `metrics-value` and `stakeholders`, and files each wave to `strategy/research/<wave-slug>/`.
+**Boundary.** Research owns the evidence, meaning what users said, how often, and how badly it hurts. The advisor owns the decision about what to do. Research frames its output as what the evidence argues and routes the call to the advisor. When the advisor cites a wave, it cites the wave and its N. A friction finding routes to the advisor, an awareness finding to the writer's adoption communications mode, and a measurement gap to the metrics advisor. Work also arrives from the writer, whose funnel diagnosis routes here when it cannot name the block without user evidence.
+
+### parvis-exec-writer, documents, decks and adoption comms
+**Behavior.** It never originates analysis or numbers. Confidence levels and preserved disagreements survive translation. Before an adoption campaign it diagnoses the funnel, and if the bottleneck is friction rather than awareness it says so and routes to the advisor instead of shouting louder, and where the diagnosis needs user evidence, to parvis-research. "This is what I sent" diffs your sent version against the draft and proposes style-note entries. Finished documents file to the workspace with a manifest row, adoption pieces to `strategy/comms/<slug>/`, and everything passes the T13 scrub before final.
+**Boundary.** The writer owns the artifact, its anatomy, register, voice and length ceiling. Against parvis-stakeholders, stakeholders owns the people, who they are, where they stand, when you last touched them, and whether an ask is ready. A request about what to say to a named person is a writer request, and the writer reads that person's stakeholder entry first. A request about whether and when to approach them at all is a stakeholders request, and it answers first. Against be-human, be-human owns the prose-hygiene catalog and the punctuation rule, and the writer applies it, with the owner skill's punctuation preferences, without restating it. Where the writer's bundled copy and be-human differ, be-human wins.
+
+### parvis-reviews, the operating cadence
+**Behavior.** Every cycle opens pre-populated from the commitments ledger and closes by writing every new commitment into it, so the QBR commitment scorecard is computed rather than recalled. Every figure is your input or `[X]`. The risk section derives from `project-plans/risk-register.md`. A red carries its cause and its correction. Nothing is final until you say sent, and sent artifacts are immutable. Rendering to pptx or docx goes through the writer's craft pass and the T13 scrub.
+**Boundary.** The word review has three meanings here. parvis-reviews owns the artifacts, the monthly plan, monthly status, MBR, quarterly plan, quarterly status and QBR. parvis-portfolio-planning owns the analysis behind them, so "run my monthly" or "run my quarterly" is a portfolio-planning request while "build the MBR", "draft the QBR" or "update monthly status" is a reviews request, and the review cites portfolio-planning's filed analyses by workspace path. parvis-people-leader owns people performance reviews, ratings, calibration and promotion cases. "Draft <name>'s review" is a people-leader request, and "draft the review" with no person and no cadence context is ambiguous, so parvis-reviews asks. One commitments ledger serves both cadence skills.
+
+### parvis-portfolio-planning, portfolio analysis and program oversight
+**Behavior.** Each frame opens from last cycle's scorecard in the commitments ledger. Allocation takes a top-down envelope, a bottom-up aggregation, or both, with a where-NOT list and co-investment asks. Rebalancing prices each move and classifies it by reversibility. The stress test names the plan's spine and prices the hedges, and the status quo is always a priced option. Capacity claims obey small-N honesty. Oversight runs schema v2 with immutable baselines, the twelve-signal early-warning catalog, health checks, deep dives, the recovery playbook, intake, benefits realization and per-owner forecast calibration. The risk register is read in place, never re-typed, and analyses file to `project-plans/planning/<cycle-slug>/`.
+**Boundary.** It owns the analysis, never the sent artifacts, which belong to parvis-reviews. It does not own the groups' technical content, which is the advisor, or people performance, which is people-leader.
+
+### parvis-meeting-prep, one-page meeting readiness
+**Behavior.** The page carries the meeting in one line, your goal with a fallback, up to three asks each with a fallback, openers, what they will raise with your one-line answers, landmines including fired revisit triggers and slipped commitments, a commitments watch, and carry-ins derived from the ledger (T12). Where the registers hold nothing, the prep says "no record" rather than inventing color. Standing meetings keep a thread in the `meetings` section, and the debrief writes decisions, commitments and audience observations back through parvis-memory. Preps file to `project-plans/meeting-preps/` only when you want them kept.
+**Boundary.** It assembles, never analyzes. Documents for the meeting go to the writer, cadence artifacts to parvis-reviews, evaluations to parvis-vendor-eval, and new analysis to the advisor. A 1:1 with one of your own directs goes to people-leader's 1:1 micro-mode, which composes with this skill.
+
+### parvis-people-leader, people leadership and org design
+**Behavior.** Person files over append-only evidence logs, prior managers' characterizations attributed rather than adopted. The six-signal early-warning catalog uses structural facts only, never psychological diagnosis. The bias sweep is mandatory, and there is a hard HR and legal escalation line. Org design works in five modes, team design around the owner, architect and engineer roles, role definition with your org's grade language as `[X]`, skills strategy, change and resistance, and the head-of-platforms playbook. Its sections are confidential and never synced.
+**Boundary.** The reviews it drafts are people performance reviews. The MBR, QBR, plans and status belong to parvis-reviews, and a cadence artifact carries org and talent material at org level only. Structures, roles and staffing live here, while platform technical strategy stays with the advisor.
+
+### parvis-stakeholders, stakeholder management
+**Behavior.** Per-person files on a rich schema bounded by the glass-registry test, tiering with cadence targets and drift flags, reciprocity awareness, influence paths through the network graph, ask-readiness gates, perception tracking, and regulator files under institutional rules. The section is confidential and never synced.
+**Boundary.** It owns the people and where they stand. The writer owns what gets written to them, and people-leader owns your own reports.
+
+### parvis-vendor-eval, vendors and build versus buy
+**Behavior.** Starts from the evolution map and prices both directions with the full TCO checklist and the status quo. The anchor test checks roughly 80 percent coverage against requirements you supply, and a reuse gate asks whether an owned platform already covers the need. Each material vendor keeps one file in `vendor-management/vendors/` with the claims register, the vendor's commitments and the lock-in register. Unverifiable claims get a designed proof-of-concept test, and renewal dates become revisit triggers so leverage is built months ahead.
+**Boundary.** It produces the evaluation. The anchor decision is the advisor's call and the decision document is the writer's. Renewal postures feed meeting-prep for the meeting itself, and commitments you make about a vendor go to the ledger.
+
+### parvis-risk-regulatory, risk, audit, regulatory and cyber
+**Behavior.** Four registers in the confidential `risk-regulatory` section, the issues ledger, the risk register, the exam calendar and the AI inventory, mirrored from the org's system of record by ID, using the frameworks, regulators and rating scale recorded in the owner skill at initialization. Three rules come first. The org's GRC record stays authoritative, confidential supervisory information never enters, and cyber risk is held at the altitude of controls. The risk pulse feeds check 8 of the memory pulse. Exam prep leads with what the org found in itself, remediation review names what the validator will reject, and an acceptance without an expiry is refused.
+**Boundary.** Live incidents belong to incident-command, program delivery risk to the workspace register under portfolio-planning, vendor selection to vendor-eval, regulators as people to stakeholders, and the sent documents to the writer. Interpreting regulation belongs to your legal and compliance partners.
+
+### parvis-incident-command, the sev-1 executive layer
+**Behavior.** A comms cadence with a kept clock, fill-in templates at T+15, T+60 and resolution, timestamped logs, the regulator-notification consideration checklist, decision support under pressure, readouts and blameless reviews. This is the one place the system runs speed over depth.
+**Boundary.** Never technical troubleshooting, since your engineers own diagnosis. The incident summary anatomy comes from the writer and lessons are captured through memory.
+
+### be-human, prose hygiene
+**Behavior.** Applies to every draft. The writer carries a bundled copy so documents stay clean when be-human is not installed.
+**Boundary.** It owns the catalog. Every other skill applies it and none restates it.
+
+## 3. How the skills compose
+
+The skills work as chains. A **vendor renewal** runs vendor-eval for the posture, meeting-prep for the room, and reviews for the commitment made. An **anchor decision** takes vendor-eval's evaluation into the advisor's team, lands in the `enterprise-architecture` ledger, and its milestones surface in portfolio planning. A **QBR** composes reviews for the artifact, portfolio-planning for the allocation analysis by citation, metrics-advisor for the numbers, and the risk register, then passes through the writer for the craft. A **listening tour** runs research for the synthesis, the advisor for the strategy response, and the writer's adoption comms for the story out. A **value case to the CFO** starts in metrics-advisor, which builds the value story, and ends in the writer, which builds the document. An **adoption campaign** starts with the writer's funnel diagnosis, which sends friction to the advisor and, when it needs user evidence, a listening tour to research before any message is written. And "run my pulse" is the anticipation pass over all of it.
+
+The rhythms these chains run on, daily through annual, are in `how-to-use.md`.
+
+## 4. When words overlap
+
+A few phrases sound alike and route to different skills. Each phrase below routes to exactly one skill.
+
+| Phrase | Skill |
+|---|---|
+| "run my monthly", "run my quarterly" | parvis-portfolio-planning, the analysis |
+| "build the MBR", "draft the QBR", "update monthly status", "draft the September plan" | parvis-reviews, the artifact |
+| "draft <name>'s review" | parvis-people-leader, a person's performance |
+| "prep me for <meeting>" | parvis-meeting-prep |
+| "prep me for the <program> review" | parvis-portfolio-planning, the program deep dive |
+| "what will they ask", "murder-board this", with a document in hand | parvis-exec-writer |
+| "prep my 1:1 with the CIO" | parvis-meeting-prep |
+| "prep my 1:1 with <direct>" | parvis-people-leader, 1:1 micro-mode |
+| "how do I show value to the CFO" | parvis-metrics-advisor, the value story |
+| "make the case to the CFO" | parvis-exec-writer, the document |
+| "review my open decisions" | parvis-memory, every section |
+| "run my pulse" | parvis-memory, the state check across every section |
+| "run my weekly" | parvis-portfolio-planning, the analysis of the week against the quarter |
+| "review my open infra decisions", "review my open platform decisions" | parvis-infra-advisor, its own ledger |
+| "polish this MBR rendering" | parvis-exec-writer, craft on an existing rendering |
+| "draft a board memo" | parvis-exec-writer, from any material |
+| "make this a board memo", "make this a CIO one-pager" | parvis-infra-advisor convert mode, from an advisor brief, craft handed to the writer |
+
+## 5. Getting unstuck
+
+"Help" or "which skill handles X" answers from the six help documents, `why-parvis.md`, `install-guide.md`, `initialization.md`, `how-to-use.md`, `skills-reference.md` and this guide. When the system mis-fires or feels heavy, say "log this friction". The `system` section feeds quarterly maintenance, which is how the system earns its next version. For the version, read the bundle's `VERSION` file and each skill's header line, or ask "what version am I running".

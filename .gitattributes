@@ -1,0 +1,5 @@
+# Shell scripts must keep LF line endings on every checkout, whatever core.autocrlf says.
+# A CRLF install.sh breaks bash on Linux and WSL, and even under Git Bash a trailing CR can end up
+# inside an assignment such as MARK="..." and silently break managed-block matching. This also
+# protects a rollback, since git reset --hard re-checks-out every file.
+*.sh text eol=lf

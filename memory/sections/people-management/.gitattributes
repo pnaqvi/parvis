@@ -1,0 +1,3 @@
+# Register and document files stay LF on every checkout, so a machine with core.autocrlf=true
+# never prints an LF-to-CRLF warning on each write. Nested local-only repos carry their own copy.
+* text=auto eol=lf

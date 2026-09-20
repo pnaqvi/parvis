@@ -1,0 +1,26 @@
+# --- OS junk ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Editors / IDEs ---
+.vscode/
+.idea/
+*.swp
+*~
+
+# --- Build artifacts. Packaged skills are build outputs, so attach them to GitHub Releases ---
+*.skill
+dist/
+build/
+
+# --- NEVER commit a live memory or workspace home into this repo ---
+# This repo ships only the empty seeds under memory/ and workspace-seed/. A live memory
+# home holds personal positions, decisions and confidential sections, and a live workspace
+# home holds working documents and licensed reference material (tenet T3). Wherever the
+# homes live, they sit outside this repo. The patterns below catch one dropped into it.
+# A filled-in owner skill lives only in ~/.claude/skills/parvis-owner/, and
+# skills/parvis-owner/SKILL.md here stays the template.
+/parvis-memory/
+/parvis-workspace/
+*.local.md
