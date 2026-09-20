@@ -1,6 +1,6 @@
 # Section templates
 
-*Standard file formats for every memory section. Section-specific files (brainstorm briefs, style notes) are defined by their client skills. These three are universal.*
+*Standard file formats for every memory section. `MANIFEST.md` is the routing table, and `positions.md`, `decisions-ledger.md` and `insights.md` are the universal registers every section carries. Section-specific files (brainstorm briefs, style notes) are defined by their client skills.*
 
 ## MANIFEST.md
 
@@ -41,6 +41,18 @@ A position without a would-change-my-mind line is a dogma, not a position. The f
 *(updated at each review. No pattern claims under ~10 closed decisions per confidence band, directional language only)*
 ```
 
+## insights.md
+
+```markdown
+# <section> insights
+
+## YYYY-MM-DD — <slug>
+<short entry, the observation, pattern or lesson>
+*Source: <session / meeting / event>*
+```
+
+Insights are the holding pen. Review mode promotes matured ones to positions and rolls stale ones (>~6 months) into `archive/insights-YYYY.md`.
+
 ## Group section template
 
 A group section is created at initialization, or later with "create a memory section for <group>", for each org group listed in the owner skill and the fact sheet. It gets the three universal registers plus the project files:
@@ -67,18 +79,20 @@ A new `projects.md` opens with this header line before any project is added:
 
 ## projects.md (group sections), schema v2
 
+The one copy of the field list. The portfolio skill's program-craft reads it here and holds the baseline and status rules behind it.
+
 ```markdown
 # <group-slug> key projects
 
 ## <Project / Program name>
 - **Class:** program / project · Tier: flagship / major / standard · Investment: core / adjacent / transformational
-- **One-liner:** <what it delivers, for whom, why it matters>
-- **Status:** Green / Yellow / Red (<date>) — <one honest line>
+- **One-liner:** <what it delivers, for whom, and why it matters>
+- **Status:** Green / Yellow / Red (<date>) · <one honest line>
 - **Milestones:** <name · BASELINE date · current forecast · done/at-risk/missed/slipped-N-times>
-- **Dependencies:** <needs what, from whom, by when · their status>
-- **Risks:** <risk · L(H/M/L) · I(H/M/L) · owner · mitigation · trigger-to-act · last reviewed>
-- **Decisions pending:** <decision · from whom · requested date · blocking what>
-- **Owner:** <accountable leader> · **Key people:** <critical individuals; single-threading flagged>
+- **Dependencies:** <what this needs, from whom, by when · their status>
+- **Risks:** <risk · likelihood H/M/L · impact H/M/L · owner · mitigation · trigger-to-act · last reviewed>
+- **Decisions pending:** <decision · needed from whom · requested date · blocking what>
+- **Owner:** <accountable leader> · **Key people:** <critical individuals, single-threading flagged>
 - **Last honest update:** <date · source>
 ```
 
@@ -102,7 +116,7 @@ The T12 backing store: | Commitment | Owner | Artifact it was made in | Made | D
 
 ## risk-register.md (workspace project-plans/, the standing register)
 
-The single source for program risks: | ID | Risk (one line) | Category | Likelihood | Impact | Owner | Mitigation | Status | Opened | Last reviewed |. It lives in the workspace, not in memory, and reviews read it in place rather than re-typing risks into an MBR. Status takes exactly one of four values.
+The single source for program risks: | ID | Risk (one line) | Category | Likelihood | Impact | Owner | Mitigation | Status | Opened | Last reviewed |. It lives in the workspace, not in memory, and reviews read it in place rather than re-typing risks into an MBR. The `risk-regulatory` memory section holds a different register of the same name, for the risk the org carries in running live systems, on the schema in parvis-risk-regulatory's `references/risk-craft.md`. Status takes exactly one of four values.
 
 - `open`, identified and owned, with no mitigation under way yet.
 - `mitigating`, a mitigation is in flight, named in the Mitigation column.
@@ -185,15 +199,3 @@ The estate view, written by parvis-itam and read by parvis-finops and parvis-ven
 ## session-log.md (system section)
 
 One line per substantive session, appended without confirmation: `YYYY-MM-DD | skill(s) | topic | outcome-in-five-words`. Telemetry rather than memory content, so it is skipped for trivial Q&A and read by system maintenance for real usage data.
-
-## insights.md
-
-```markdown
-# <section> insights
-
-## YYYY-MM-DD — <slug>
-<short entry, the observation, pattern or lesson>
-*Source: <session / meeting / event>*
-```
-
-Insights are the holding pen. Review mode promotes matured ones to positions and rolls stale ones (>~6 months) into `archive/insights-YYYY.md`.

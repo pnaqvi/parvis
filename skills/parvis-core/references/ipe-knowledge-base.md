@@ -1,6 +1,6 @@
 # IPE knowledge base, working platform doctrine
 
-*A synthesis, in the system's own words, of infrastructure platform engineering practice. It belongs to the technology leadership set and applies where the owner skill's domain is technology and lists a platform program. Doctrine is a reference class, not a law, so advisors argue against it where first principles or evidence disagree.*
+*A synthesis, in the system's own words, of infrastructure platform engineering practice. Doctrine is a reference class, not a law, so advisors argue against it where first principles or evidence disagree.*
 
 ## 1. What the program is building
 
@@ -10,7 +10,7 @@ The reference architecture runs as layers: access layer (portal, catalog, API, c
 
 ## 2. Architecture doctrine: anchor and complement
 
-- **Anchor each platform domain on one primary technology** (ideally exactly one) providing ~80%+ of that platform's intended functionality. Fragmentation across parallel stacks multiplies integration complexity, IaC divergence, and skills spread. An anchored estate also costs materially less to run than a fragmented one, because parallel stacks duplicate licensing, integration work and scarce skills, and that saving is the main financial argument for the discipline.
+- **Anchor each platform domain on one primary technology** (ideally exactly one) providing most of that platform's intended functionality. ~80% is the starting heuristic and the default, a bar the user can reset per program [model]. Fragmentation across parallel stacks multiplies integration complexity, IaC divergence, and skills spread. An anchored estate also costs materially less to run than a fragmented one, because those stacks duplicate licensing, integration work and scarce skills, and that saving is the main financial argument for the discipline.
 - **Complement before you buy.** Required functionality not covered by the anchor is first sourced by **reusing capabilities from platforms the organization already runs** (security, application, data/analytics, AI platforms) before any supplemental purchase. Reuse is enforced, not encouraged: capability inventory published, justification required to build or buy new, platform representatives on architecture governance, reference architectures maintained with EA.
 - **Right-size engineering.** Curate vendor solutions first, and custom-build only true differentiators (integrations, governance layers, UX that removes real user pain). Over-customization is the technical-debt trap, so a written charter defines what the program builds against what it integrates and configures.
 - **Manage anchor lock-in deliberately.** Identify switching barriers (contracts, skills, ecosystem dependencies, data portability), document the dependency risks, keep a written mitigation strategy, and state in the platform strategy when a platform must accommodate an anchor change. Anchor choices are one-way-door decisions, so classify and process them as such.
@@ -19,7 +19,7 @@ The reference architecture runs as layers: access layer (portal, catalog, API, c
 ## 3. Organization doctrine: the IPE team model
 
 - Traditional I&O silo structure (network / server / storage / cloud teams, many handoffs) cannot deliver end-to-end platform capabilities. The unit of delivery is the **IPE team**, a dedicated, agile product team accountable as a group for delivery *and* operations of its platform products.
-- **Three core roles.** The **platform owner** is a product-owner role covering strategy and vision, roadmap communication, backlog, and customer engagement, demonstrating success through satisfaction, usage, ease and reliability metrics, and is best filled by someone with a software product-management background plus people skills and business acumen. The **platform architect** connects the team to customers, owns architecture and tooling standards, and leads strategic planning and roadmaps, and may initially be fulfilled by the owner or federated, then dedicated as scale demands. **Platform engineers** run delivery and operations, applying software-engineering practice (version control, code review, CI/CD, automated testing) to infrastructure automation, self-service, and API access, plus documentation (solution docs, user manuals, runbooks). Teams start small (~3 engineers) with all skills needed, and scale by adding teams.
+- **Three core roles.** The **platform owner** is a product-owner role covering strategy and vision, roadmap communication, backlog, and customer engagement. The role shows its success through satisfaction, usage, ease and reliability metrics, and is best filled by someone with a software product-management background plus people skills and business acumen. The **platform architect** connects the team to customers, owns architecture and tooling standards, and leads strategic planning and roadmaps, and may initially be fulfilled by the owner or federated, then dedicated as scale demands. **Platform engineers** run delivery and operations, applying software-engineering practice (version control, code review, CI/CD, automated testing) to infrastructure automation, self-service, and API access, plus documentation (solution docs, user manuals, runbooks). Teams start small (~3 engineers) with all skills needed, and scale by adding teams.
 - **Two skill buckets to build.** Product management (demand-driven platforms, thinnest viable platform first, evolve on feedback and adoption) and software engineering (APIs, IaC, cloud-native, composable architecture). These skills are hard to hire at market, so the strategy combines hiring SWEs with a passion for platform engineering, partnering with external providers for accelerated adoption, partnering with application-development teams, staff augmentation, continual training, and higher-education outreach.
 - **Head-of-platforms success pattern.** Prepare before the role (stakeholder map, culture read). Assess (maturity assessment, listening tour, budget and headcount reality). Act (measurable time-bound goals, clarify roles, execute a visible quick win, communicate on a 3/6/12-month arc). Prioritize with the impact-vs-effort grid, and avoid both undershooting (no credibility) and overshooting (visible early failure).
 
@@ -40,13 +40,13 @@ The reference architecture runs as layers: access layer (portal, catalog, API, c
 
 ## 6. Measurement doctrine: the four pillars
 
-Measurement runs on four pillars. `parvis-metrics-advisor/references/metrics-catalog.md` is the full catalog and owns every benchmark figure, so cite it rather than carry a number here. Targets are directional, each program sets its own, and directional improvement matters more than a static target.
+`parvis-metrics-advisor/references/metrics-catalog.md` is the full catalog and owns every benchmark figure and metric definition, so cite it rather than carry one here. Targets are directional, each program sets its own, and improvement matters more than a static target.
 
 | Pillar | Core metrics | Cadence |
 |---|---|---|
 | **Experience** | CES (effort/friction), CSAT (1–5 post-change), NPS | CES continuous · CSAT after major changes · NPS quarterly |
-| **Adoption & engagement** | Adoption rate (onboarded/eligible), consumption rate (active/onboarded), API consumption, feature utilization & abandonment | Monthly; API quarterly |
-| **Operations** | Uptime/SLA, provisioning speed vs. baseline, MTTD, MTTR, DORA set | Monthly (DORA monthly/quarterly) |
+| **Adoption & engagement** | Adoption rate (onboarded/eligible), consumption rate (active/onboarded), API consumption, feature utilization & abandonment | Monthly, API quarterly |
+| **Operations** | Uptime/SLA, provisioning speed vs. baseline, MTTD, MTTR, the five-metric DORA set [verified 2026-09-20, dora.dev] | Monthly (DORA monthly/quarterly) |
 | **Business outcomes** | Self-service rate, technical-debt reduction vs. baseline, cost per workload / chargeback / budget variance, value-enhancement linkage to KPIs, compliance-audit readiness | Monthly–quarterly |
 
 - **Ownership.** Every metric category has a named owner. Finance owns cost metrics and Security owns risk and compliance KPIs. Regulated-industry reporting aligns with audit requirements.

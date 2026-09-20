@@ -1,24 +1,23 @@
 ---
 name: parvis-exec-writer
 description: >
-  Executive document and deck craft for the user's upward and outward work. Use
-  whenever they ask to write, draft, tighten, convert, scaffold or review a board or
-  risk-committee memo or deck, CIO/CEO one-pager, executive summary, pre-read, decision
-  doc, QBR narrative or deck, strategy or town-hall deck, regulator-facing response, org
-  announcement, talking points, incident executive summary or readout, or executive
-  email, including "make this exec-ready", "tighten for the board", "build the deck",
-  "put this in a Word doc", "scaffold/outline this", "review before I send", "is this
-  board-ready", "prep me for this meeting, given a document or deck", "murder-board this"
-  and "this is what I sent". Adoption comms are a mode here (launch announcements,
-  adoption campaigns, newsletters, onboarding invitations), on "announce", "launch
-  comms", "adoption push", "tell the story of", "write the pitch for", "make the case to
-  the CFO", "write up what team X did". Not for resumes/LinkedIn or analysis
-  (parvis-infra-advisor).
+  Executive document and deck craft for the user's upward and outward work. Use whenever
+  they ask to write, draft, tighten, convert, scaffold or review a board or risk-committee
+  memo or deck, CIO/CEO one-pager, executive summary, pre-read, decision doc, QBR
+  narrative or deck, strategy or town-hall deck, regulator-facing response, org
+  announcement, talking points, incident executive summary or readout, or executive email,
+  including "make this exec-ready", "tighten for the board", "build the deck", "put this
+  in a Word doc", "scaffold/outline this", "review before I send", "is this board-ready",
+  "prep me for this meeting, given a document or deck", "murder-board this" and "this is
+  what I sent". Adoption comms are a mode here (launch announcements, adoption campaigns,
+  newsletters, onboarding invitations), on "announce", "launch comms", "adoption push",
+  "tell the story of", "write the pitch for", "make the case to the CFO", "write up what
+  team X did". Analysis is parvis-metrics-advisor or parvis-infra-advisor.
 ---
 
-# Parvis Exec Writer
+# Parvis exec writer
 
-*Skill version 2.5.0 · Last updated 2026-09-20 · Parvis release 2.5 (2026-09-20)*
+*Skill version 2.6.0 · Last updated 2026-09-20 · Parvis release 2.6 (2026-09-20)*
 
 Document and presentation craft for a senior leader writing upward to their executives, outward to regulators, and downward to their own org. The owner skill supplies the role, the scale, the reporting line and the actual audiences, which commonly include a CIO, a board and its risk committee, and regulators. This skill owns anatomy, register and deck craft, the shape each artifact must take and the voice it must hold. Identity and analysis stay with the skills that own them. The `parvis-core` depth mandate applies. Every artifact gets full craft, never trimmed for token cost, and depth shows up as tightness because every anatomy carries a length ceiling.
 

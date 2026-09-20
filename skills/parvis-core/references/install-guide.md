@@ -1,6 +1,8 @@
 # Installing Parvis
 
-*Document 2 of 6 · release 2.5, September 2026 · New machine, new account, update, and removal, all through one script, `install.sh`.*
+*Document 2 of 6 · release 2.6, September 2026 · New machine, new account, update, and removal, all through one script, `install.sh`.*
+
+*Where Claude Code loads skills from, and how claude.ai keeps them per account under admin control, were checked on 2026-09-20 against docs.claude.com/en/docs/claude-code/skills and support.claude.com, and `~/.claude/skills` was confirmed on a Windows 11 machine that day [verified 2026-09-20]. Every other product detail here is [model], so confirm it before relying on it.*
 
 The system has four portable parts that move differently. **Skills** are files and account-independent. **The owner skill** at `~/.claude/skills/parvis-owner/SKILL.md` holds who you are, and once you fill it in, it is yours and never overwritten. **Memory**, the memory home at `<base>/parvis-memory/`, holds your curated thinking. **The workspace**, the workspace home at `<base>/parvis-workspace/`, holds your working documents. One fact makes any new account workable. Claude Code loads skills from disk at `~/.claude/skills/`, so whichever account is signed in, the files work. Skills saved in claude.ai are the opposite, per account and never per machine.
 
@@ -28,7 +30,7 @@ git clone https://github.com/pnaqvi/parvis parvis
 cd parvis && bash install.sh
 ```
 
-The script runs on macOS, Linux and WSL. It needs bash 3.2 or later, standard POSIX tools and git, and nothing else. There is no jq, python or node dependency. Where the homes live, and how to move them, is in the two subsections after the run steps. Because `--purge` deletes whatever homes are in use, every home path is checked first, from the receipt or from `PARVIS_BASE`. It must be absolute, with no `.` or `..` segment, end in `parvis-memory` or `parvis-workspace` as appropriate, and it must neither be nor contain the home directory, `/`, `~/.claude` or `~/.claude/skills`. It also must not sit anywhere inside `~/.claude`, which holds the skills directory and the `synced` channel, and this is tested through links and junctions too. The two homes must differ. A receipt that fails the check is ignored with a warning, and `--purge` refuses outright with nothing changed. Homes from `PARVIS_BASE` that fail it stop an install before anything changes. `bash install.sh --help` prints the modes.
+The script runs on macOS, Linux, WSL, and Windows under Git Bash. It needs bash 3.2 or later, standard POSIX tools and git, and nothing else. There is no jq, python or node dependency. Where the homes live, and how to move them, is in the two subsections after the run steps. Because `--purge` deletes whatever homes are in use, every home path is checked first, from the receipt or from `PARVIS_BASE`. It must be absolute, with no `.` or `..` segment, end in `parvis-memory` or `parvis-workspace` as appropriate, and it must neither be nor contain the home directory, `/`, `~/.claude` or `~/.claude/skills`. It also must not sit anywhere inside `~/.claude`, which holds the skills directory and the `synced` channel, and this is tested through links and junctions too. The two homes must differ. A receipt that fails the check is ignored with a warning, and `--purge` refuses outright with nothing changed. Homes from `PARVIS_BASE` that fail it stop an install before anything changes. `bash install.sh --help` prints the modes.
 
 **It detects whether this is a fresh install or an update.** It reads the install receipt first, then the version on the managed block in `~/.claude/CLAUDE.md`, then the version header of an installed `parvis-core/SKILL.md`, and prints which one it found. With no receipt, the previous roster is unknown, and only the hardcoded retired list below applies.
 
@@ -87,7 +89,7 @@ The Windows facts above were checked on a Windows 11 machine during release 2.0.
 
 ### Manual steps, when the script cannot run
 
-Initialization's preflight sends any failure here. These steps do by hand what a fresh `install.sh` run does, in the same order. They are for a machine where the script fails or cannot run. Prefer the script whenever it works, because a hand install writes no receipt, so a later `--uninstall` cannot claim these skills and removes only the twelve retired names. Run the steps from the bundle directory, with `BASE` standing for `PARVIS_BASE` or its default. `own_repo` asks git whether a directory is the top level of its own repository, the same test the script uses.
+Initialization's preflight sends any failure here. These steps do by hand what a fresh `install.sh` run does, in the same order, for a machine where the script fails or cannot run. Prefer the script, because a hand install writes no receipt, so a later `--uninstall` cannot claim these skills and removes only the twelve retired names. Run them from the bundle directory, with `BASE` standing for `PARVIS_BASE` or its default. Because the steps restate what the script does, re-read them against `install.sh` at each release (T7).
 
 ```bash
 BASE="${PARVIS_BASE:-$HOME/ai_working_Directory}"
@@ -96,7 +98,7 @@ own_repo() { [ "$(git -C "$1" rev-parse --show-toplevel 2>/dev/null)" -ef "$1" ]
 has_commit() { git -C "$1" rev-parse -q --verify HEAD >/dev/null 2>&1; }
 ```
 
-1. **Skills, all twenty-two.** First make sure `~/.claude/skills` is not a link to this bundle's own `skills/`, because the `rm -rf` below would then delete the source. Copy each skill directory in, replacing an old copy of the same name, and never touch `synced`. The loop skips `parvis-owner` when a filled-in copy is already installed.
+1. **Skills, all twenty-two.** First make sure `~/.claude/skills` is not a link to this bundle's own `skills/`, because the `rm -rf` below would then delete the source. The loop copies each skill directory in, replaces an old copy of the same name, never touches `synced`, and skips a filled-in `parvis-owner`.
    ```bash
    mkdir -p ~/.claude/skills
    for d in skills/*/; do
@@ -108,10 +110,10 @@ has_commit() { git -C "$1" rev-parse -q --verify HEAD >/dev/null 2>&1; }
      rm -rf ~/.claude/skills/"$n"; cp -R "skills/$n" ~/.claude/skills/"$n"
    done
    ```
-   Then remove by hand any of the twelve retired `infra-platform-*` skill directories still present in `~/.claude/skills/`. If an earlier identity profile skill, such as `user`, is still installed, copy its `SKILL.md` somewhere safe, carry its facts into the owner skill, and only then remove it.
-2. **Managed block.** If `~/.claude/CLAUDE.md` carries no line starting with `# --- parvis managed block`, append this block exactly, after one blank line if the file's last line is not blank. If an older block is there, delete it from its start line through the nearest `# --- end parvis managed block ---` line first, and leave everything else in the file alone. If a start line has no end line of its own, stop and repair the file by hand. The version in the first line is the bundle's `VERSION`. The two home lines name the homes' actual paths, so with a `BASE` other than the default, write its paths there.
+   Then remove by hand any of the twelve retired `infra-platform-*` directories still in `~/.claude/skills/`. If an earlier identity skill such as `user` is installed, copy its `SKILL.md` somewhere safe, carry its facts into the owner skill, and only then remove it.
+2. **Managed block.** If `~/.claude/CLAUDE.md` carries no line starting with `# --- parvis managed block`, append this block exactly, after one blank line if the file does not end in one. Replace an older block by deleting it from its start line through the nearest `# --- end parvis managed block ---` line and leaving the rest of the file alone. A start line with no end line of its own is repaired by hand before you continue. Write the bundle's `VERSION` into the first line and this install's actual home paths into the two home lines.
    ```
-   # --- parvis managed block (v2.3) - do not edit inside, reinstall updates it ---
+   # --- parvis managed block (v2.5) - do not edit inside, reinstall updates it ---
    - Load the parvis-owner skill before any substantive work. It is the identity source for who the user is.
    - You are Parvis, the user's trusted companion. Prime Directive: make the user better at everything they choose to do, and never let them walk into something blind. Its rules live in parvis-core.
    - Apply the be-human skill to ALL generated prose, including the punctuation preferences in the parvis-owner skill. When it states none, use no em dashes and keep colons and semicolons to a minimum.
@@ -141,7 +143,7 @@ has_commit() { git -C "$1" rev-parse -q --verify HEAD >/dev/null 2>&1; }
        "sections/risk-regulatory/" "sections/asset-estate/" >> "$M/.gitignore"
    fi
    ```
-   On a repository that already existed, add any of the five `sections/<name>/` lines that `.gitignore` lacks, each on a line of its own, and give the file a final newline first if it has none. Then make the seed commit if the repository has no commit yet.
+   On a repository that already existed, add any of the five `sections/<name>/` lines that `.gitignore` lacks, each on its own line, giving the file a final newline first if it has none. Then make the seed commit if the repository has none yet.
    ```bash
    has_commit "$M" || { git -C "$M" add -A && git -C "$M" commit -qm "seed memory (Parvis)"; }
    ```
@@ -155,13 +157,13 @@ has_commit() { git -C "$1" rev-parse -q --verify HEAD >/dev/null 2>&1; }
      has_commit "$S" || { git -C "$S" add -A && git -C "$S" commit -qm "seed $s (local-only)" --allow-empty; }
    done
    ```
-7. **Verify.** Each of the twenty-two roster skills has a `SKILL.md` under `~/.claude/skills/`, none of the twelve retired `infra-platform-*` names remains there, both homes hold a `MANIFEST.md`, and `own_repo` and `has_commit` both succeed for each home. Then restart Claude Code and run `/skills`.
+7. **Verify.** Each of the twenty-two roster skills has a `SKILL.md` under `~/.claude/skills/`, no retired `infra-platform-*` name remains there, both homes hold a `MANIFEST.md`, and `own_repo` and `has_commit` succeed for each home. Then restart Claude Code and run `/skills`.
 
-The commits need a git identity, a name and an email both, as the target repository resolves them. If it lacks either, set them, or run each commit as `git -c user.name="Parvis User" -c user.email="user@parvis.local" ...`, which is what the script does. Neither the manual path nor the script migrates legacy `infra-platform-*` data homes, see §8. Re-run the script once it works, and it will write the receipt.
+The commits need a git identity, name and email both, as the target repository resolves them. If it lacks either, set them or run each commit as `git -c user.name="Parvis User" -c user.email="user@parvis.local" ...`, which is what the script does. Neither path migrates legacy `infra-platform-*` homes, see §8. Re-run the script once it works and it writes the receipt.
 
 ### The install receipt
 
-`~/.claude/.parvis-install.json` is plain JSON written by bash, one value per line. It records the release, the install time, the managed-block marker version, the base, both data-home paths, and the exact list of skill directories installed. It is written as soon as the skills are copied and kept current through the run, so a run that fails partway still claims every skill it installed. Update, `--relocate`, `--uninstall` and `--purge` read the base and data-home paths from it. Legacy infra homes are never recorded in it. The receipt is what makes update and uninstall safe, because `~/.claude/skills/` can hold unrelated skill families, and **the uninstaller never removes a skill directory the receipt does not claim**, apart from the twelve named retired infra skills.
+`~/.claude/.parvis-install.json` is plain JSON written by bash, one value per line. It records the release, the install time, the managed-block marker version, the base, both data-home paths, and the exact list of skill directories installed. It is written as soon as the skills are copied and kept current through the run, so a run that fails partway still claims every skill it installed. Update, `--relocate`, `--uninstall` and `--purge` read the base and data-home paths from it. Legacy infra homes are never recorded in it. Beside it, `~/.claude/.parvis-home` holds the base on one line. An uninstall deletes the receipt but leaves that pointer on purpose, so a later install with no receipt and no `PARVIS_BASE` finds the recorded base rather than seeding fresh homes at the default one. The receipt is what makes update and uninstall safe, because `~/.claude/skills/` can hold unrelated skill families, and **the uninstaller never removes a skill directory the receipt does not claim**, apart from the twelve named retired infra skills.
 
 ### What the script cannot do
 
@@ -176,7 +178,7 @@ bash install.sh --uninstall           # remove skills and the managed block, kee
 bash install.sh --uninstall --purge   # also remove both data homes, typed confirmation required
 ```
 
-**`--uninstall`** removes the skill directories the receipt claims plus the twelve retired infra names. With no receipt it removes only the retired names and says that nothing else is claimed. Every removal is checked. If a directory cannot be removed, for example because a file in it is held open, the run reports it, exits non-zero and keeps the receipt, so running it again can still claim that skill. A claimed skill directory that is also a data home, the receipt's or the one in use, is never removed. It is reported as refused, the run exits non-zero and the receipt is kept. It then strips the managed block from `~/.claude/CLAUDE.md` with the same rewrite through a temporary file, touching nothing else in that file, and leaves a malformed block unchanged with a warning. The block is reported as removed only once the file reads back without it. A read-only `CLAUDE.md` is left unchanged and reported as an error, and the run exits non-zero. Both data homes are retained, and any legacy infra home is listed as left untouched. Otherwise the receipt is deleted last, so an interrupted uninstall can simply be run again. Copy your filled-in `~/.claude/skills/parvis-owner/SKILL.md` somewhere safe before uninstalling if you want to keep it.
+**`--uninstall`** removes the skill directories the receipt claims plus the twelve retired infra names. With no receipt it removes only the retired names and says that nothing else is claimed. Every removal is checked. If a directory cannot be removed, for example because a file in it is held open, the run reports it, exits non-zero and keeps the receipt, so running it again can still claim that skill. A claimed skill directory that is also a data home, the receipt's or the one in use, is never removed. It is reported as refused, the run exits non-zero and the receipt is kept. It then strips the managed block from `~/.claude/CLAUDE.md` with the same rewrite through a temporary file, touching nothing else in that file, and leaves a malformed block unchanged with a warning. The block is reported as removed only once the file reads back without it. A read-only `CLAUDE.md` is left unchanged and reported as an error, and the run exits non-zero. Both data homes are retained, and any legacy infra home is listed as left untouched. Otherwise the receipt is deleted last, so an interrupted uninstall can simply be run again. The `.parvis-home` pointer stays behind with the base in it, and the run says so. Copy your filled-in `~/.claude/skills/parvis-owner/SKILL.md` somewhere safe before uninstalling if you want to keep it.
 
 **`--uninstall --purge`** also deletes the `parvis-memory` and `parvis-workspace` homes the receipt records. It refuses to run unless stdin is an interactive terminal, so a pipe or a script can never trigger it, and in that case nothing is changed. It also refuses, with nothing changed, when either home is a symlink or junction, and names the real directory behind it, because deleting a link removes only the link while the data survives. Before touching anything it prints each home with its file count, names any confidential local-only section repository, which has no copy anywhere else, and requires the word `purge` typed in full. Anything else cancels with nothing changed. A home is reported as purged only once it is actually gone. Legacy `infra-platform-*` homes are never purged, and every one found under the default base, the chosen base or the recorded homes' directory is listed for removal by hand. `--purge` without `--uninstall` is rejected.
 

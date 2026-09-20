@@ -27,6 +27,10 @@
 # Under WSL, node comes before powershell, and powershell.exe is given Windows paths through
 # wslpath. The WSL path is simulated, not tested on a WSL machine.
 #
+# Each skill is checked before it is packed. Its frontmatter description must be present and no
+# longer than the 1024-character cap claude.ai enforces, because a description over the cap
+# routes nothing.
+#
 # Every bundle is verified before the script reports success. Its raw entry names are listed and
 # checked for forward slashes and the single top-level directory, then it is extracted and compared
 # byte for byte against the LF-normalized skill directory. A bundle that fails is deleted, and so is
@@ -34,6 +38,9 @@
 #
 # Output goes to dist/, which .gitignore excludes along with *.skill. Built bundles are never
 # committed. install.sh does not use this script and does not depend on anything it needs.
+#
+# The wider release checks, the documentation mirrors and the system guide against the skills, live
+# in tools/check-release.sh, and tools/install-sandbox-tests.sh drives install.sh in a sandbox HOME.
 
 set -euo pipefail
 
@@ -49,7 +56,7 @@ while [ $# -gt 0 ]; do
   case "$1" in
     --out)  [ $# -ge 2 ] || die "--out needs a directory"; OUT_DIR="$2"; shift 2 ;;
     --tool) [ $# -ge 2 ] || die "--tool needs zip, powershell or node"; TOOL="$2"; shift 2 ;;
-    -h|--help) sed -n '2,36p' "${BASH_SOURCE[0]}" | sed 's/^# \{0,1\}//'; exit 0 ;;
+    -h|--help) sed -n '2,43p' "${BASH_SOURCE[0]}" | sed 's/^# \{0,1\}//'; exit 0 ;;
     -*) die "unknown option $1" ;;
     *)  NAMES+=("$1"); shift ;;
   esac
@@ -225,6 +232,73 @@ JS
 
 run_ps() { "$POWERSHELL" -NoProfile -NonInteractive -ExecutionPolicy Bypass -File "$(ps_path "$1")" "${@:2}"; }
 
+# The frontmatter description is the whole routing surface of a skill, and claude.ai refuses one
+# longer than DESC_CAP characters, so the cap is checked here rather than discovered on upload.
+DESC_CAP=1024
+
+# skill_description FILE prints the description from FILE's YAML frontmatter as one line, folded
+# the way a reader of the frontmatter sees it. A folded block scalar, written with a greater-than
+# sign, joins its lines with single spaces, a literal block, written with a bar, keeps its line
+# breaks, and a plain or quoted scalar continued over several lines folds like the first.
+# Surrounding quotes are dropped and trailing spaces are cut, so what comes out is exactly the text
+# the cap applies to. Carriage returns are stripped first, so a Windows checkout measures the same
+# as any other. tools/check-release.sh loads this function from this file, so keep it self-contained.
+skill_description() {
+  tr -d '\r' < "$1" | awk '
+    NR == 1 && $0 !~ /^---/ { exit }
+    NR > 1 && /^---[[:space:]]*$/ { exit }
+    NR == 1 { next }
+    !ind && /^description:[[:space:]]*/ {
+      ind = 1
+      v = $0
+      sub(/^description:[[:space:]]*/, "", v)
+      if (v == ">" || v == ">-" || v == ">+") { mode = "fold"; v = "" }
+      else if (v == "|" || v == "|-" || v == "|+") { mode = "keep"; v = "" }
+      else { mode = "fold" }
+      out = v
+      next
+    }
+    ind && /^[[:space:]]/ {
+      t = $0
+      gsub(/^[[:space:]]+|[[:space:]]+$/, "", t)
+      if (t == "") { out = out "\n"; next }
+      if (out == "") { out = t }
+      else if (mode == "keep") { out = out "\n" t }
+      else { out = out " " t }
+      next
+    }
+    ind { exit }
+    END {
+      gsub(/^[[:space:]]+|[[:space:]]+$/, "", out)
+      if (out ~ /^".*"$/ || out ~ /^\x27.*\x27$/) { out = substr(out, 2, length(out) - 2) }
+      if (out != "") print out
+    }
+  '
+}
+
+# description_length FILE prints how long FILE's description is. An awk that reads the locale counts
+# characters, and one that does not counts bytes, which can only ever come out high, so a count near
+# the cap is worth reading before it is believed.
+description_length() {
+  skill_description "$1" | awk '{ n += length($0) } END { print n + 0 }'
+}
+
+# check_description NAME fails the bundle when the skill has no description or its description has
+# crossed the cap. A skill that ships over the cap routes nothing, so it is caught before upload.
+check_description() {
+  local name="$1" n
+  n="$(description_length "$SKILLS_DIR/$name/SKILL.md")"
+  if [ "$n" -eq 0 ]; then
+    echo "  FAIL $name: its frontmatter carries no description, so nothing routes to it"
+    return 1
+  fi
+  if [ "$n" -gt "$DESC_CAP" ]; then
+    echo "  FAIL $name: its description is $n characters, over the $DESC_CAP cap. Cut it first."
+    return 1
+  fi
+  return 0
+}
+
 # Stage one skill as NAME/..., tracked files only, text files LF-normalized, OS junk left out.
 # Writes the list of entry names, relative to the stage root, to NAME.list. Returns non-zero on
 # any failure. It runs under "if", where errexit is off, so every step is checked here.
@@ -314,6 +388,8 @@ for name in "${NAMES[@]}"; do
   CURRENT_OUT="$OUT_DIR/$name.skill"
   if ! stage_skill "$name"; then
     echo "  FAIL $name: could not stage its tracked files"
+    rm -f "$CURRENT_OUT"; failed=$((failed + 1))
+  elif ! check_description "$name"; then
     rm -f "$CURRENT_OUT"; failed=$((failed + 1))
   elif ! build_bundle "$name"; then
     echo "  FAIL $name: the $TOOL archiver failed"

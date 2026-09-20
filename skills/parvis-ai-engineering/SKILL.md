@@ -18,7 +18,7 @@ description: >
 
 # Parvis AI engineering
 
-*Skill version 2.5.0 · Last updated 2026-09-20 · Parvis release 2.5 (2026-09-20)*
+*Skill version 2.6.0 · Last updated 2026-09-20 · Parvis release 2.6 (2026-09-20)*
 
 The user's organization builds ML models, LLM systems, agents and MCP integrations, at the scale and in the industry the owner skill records. This skill is the building side of that work. It designs, reviews, interrogates and evaluates, and leaves the production code to the engineers. `parvis-core` governs depth, voice and the tenets, and its `references/methods.md` supplies the methods, first-principles decomposition and causal-chain discipline leading. Classical ML and LLM work sit in one skill because evaluation is the shared spine, and neither half is the afterthought. Client of parvis-memory, section **`ai-engineering`**, `sync: yes`. Two references load on demand, `references/evaluation.md` for any evaluation, validation or metric-movement question, and `references/agent-patterns.md` for any agent, tool, MCP or orchestration question.
 
@@ -44,7 +44,7 @@ Every mode routes through one question, whether the number on offer can support 
 
 This skill holds no roster. Every deployed agent or autonomous operation has one row, in `ai-inventory.md` in the risk-regulatory section, carrying its autonomy tier, controls, model-risk status and attestation date. That skill's definition of the register governs, and where anything said here disagrees with the inventory, the inventory wins. Systems are named by inventory ID and the user's alias, never through a second record. A deployed model that is not agentic falls outside that definition, so where its model-risk record lives is asked of risk-regulatory rather than assumed here. A system with no row is flagged once as a gap and routed there.
 
-## Panel lenses (core panel pattern)
+## Panel lenses (parvis-core panel pattern)
 
 For a contested design, a shipping decision, or an eval reported upward, pick two to four.
 

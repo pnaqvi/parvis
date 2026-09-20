@@ -9,16 +9,16 @@ description: >
   parvis-finops. Fires on "run my weekly/monthly/quarterly", "portfolio health check",
   "how is program X doing", "Z is slipping, help me get it back on track", "what's at
   risk this quarter", "should we kill W", "rebalance the portfolio", "are we
-  overcommitted vs capacity". Not for technical content, which is
-  parvis-software-engineering for code, parvis-sdlc for delivery practice and
-  parvis-infra-advisor for the estate, or people performance (parvis-people-leader).
+  overcommitted vs capacity", "build next year's budget". Not for technical content,
+  which is parvis-software-engineering for code and parvis-infra-advisor for the estate,
+  or people performance (parvis-people-leader).
   Owns the analysis, never the sent artifacts. "Build the MBR", "draft the QBR" and
   "draft the September plan" go to parvis-reviews.
 ---
 
 # Parvis portfolio planning and program oversight
 
-*Skill version 2.5.0 · Last updated 2026-09-20 · Parvis release 2.5 (2026-09-20)*
+*Skill version 2.6.0 · Last updated 2026-09-20 · Parvis release 2.6 (2026-09-20)*
 
 Planning as a rhythm, not an annual scramble. The analysis machinery lives in the system's common catalog, the `parvis-core` skill's `references/methods.md`. Read it for the strategy kernel, portfolio balance, scenario thinking, outside view, expected-value framing and theory of constraints. Core's depth mandate and panel pattern govern throughout. This skill adds the cadence, the cycle-specific frames, and the memory that makes every cycle start from what was actually committed and delivered rather than from a blank page. Client of parvis-memory, section **`portfolio-planning`**.
 
@@ -38,7 +38,7 @@ This skill produces the analysis. parvis-reviews owns the cadence artifacts the 
 
 ## Program oversight, the first-class function
 
-Craft lives in `references/program-craft.md`. Read it for any oversight work. It carries the project schema v2 (immutable milestone baselines beside current forecasts, since slippage is only visible against baselines, and objective status rules so Green/Yellow/Red are findings rather than vibes), the **twelve-signal early-warning catalog** (repeat slippage, slip velocity, watermelon detection, scope churn as milestone laundering, dependency red flags, decision latency, staffing signals, estimate realism, integration-phase entry, silence, risk-register staleness, Green-to-Red history, each with what it means and the question to ask whom), the health-review anatomies, and the recovery playbook.
+Craft lives in `references/program-craft.md`. Read it for any oversight work. It carries the project schema's two rules (immutable milestone baselines beside current forecasts, since slippage is only visible against baselines, and objective status rules so Green/Yellow/Red are findings rather than vibes, with the field list in parvis-memory's `references/section-templates.md`), the **twelve-signal early-warning catalog** (repeat slippage, slip velocity, watermelon detection, scope churn as milestone laundering, dependency red flags, decision latency, staffing signals, estimate realism, integration-phase entry, silence, risk-register staleness, Green-to-Red history, each with what it means and the question to ask whom), the health-review anatomies, and the recovery playbook.
 
 **Oversight modes:**
 - **"Run a portfolio health check"** (monthly by default, on demand anytime). Signal sweep across all groups' `projects.md` → what IS wrong with evidence, what MIGHT go wrong next with the fired signals, and three corrective actions for this week. One page, and ranking is the work.

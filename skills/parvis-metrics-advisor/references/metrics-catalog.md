@@ -1,6 +1,10 @@
 # Metrics catalog, four pillars in full detail
 
-*Working catalog synthesized from the program's measurement research. Benchmarks are reference-class values, not the program's numbers. Owners, audiences and SLA floors are defaults to adjust to the user's org, industry and availability target as stated in the owner skill.*
+*Working catalog synthesized from the program's measurement research. Owners, audiences and SLA floors are defaults to adjust to the user's org, industry and availability target as stated in the owner skill.*
+
+## 0. Provenance and vintage, read first
+
+Benchmarks here are reference-class values, not the program's numbers, and none is a sourced statistic. Treat the whole set as `[model]`, unverified as of training data, a starting reference class the user adjusts. No figure enters a board, CFO or regulator-facing readout without a live check this session, its source and date named beside it. The 99.5 percent floor in pillar 3 is the one most likely to be quoted upward as sourced.
 
 ## Pillar 1, experience (is it easy and liked?)
 
@@ -26,7 +30,7 @@
 | Uptime / SLA compliance | % uptime per month | Monthly | The program's SLA (the user's availability target) is the target. In regulated industries a common reference floor is ≥99.5%, e.g. for financial services. |
 | Provisioning speed | Request → provisioned, vs. baseline | Monthly | The headline "hours not weeks" claim, always vs. measured baseline. |
 | MTTD / MTTR | Detect / recover times | Monthly | MTTR trending down is the success shape. |
-| DORA set | Deployment frequency, lead time, change-failure rate, MTTR | Monthly / quarterly | Pipeline health of the platform itself. |
+| DORA set | Throughput is change lead time, deployment frequency and failed deployment recovery time. Instability is change fail rate and deployment rework rate `[verified 2026-09-20, dora.dev, DORA's software delivery performance metrics, page dated 2026-01-05]` | Monthly / quarterly | Five metrics, not the superseded four. MTTR is the separate operational metric above, not a DORA one. Pipeline health of the platform itself. |
 
 ## Pillar 4, business outcomes (is it moving the business?)
 

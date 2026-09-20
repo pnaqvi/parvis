@@ -1,39 +1,26 @@
 # How to use Parvis
 
-*Document 4 of 6 · release 2.5, September 2026 · Commands and rhythms. Say "help" anytime and core's help mode answers from these documents.*
+*Document 4 of 6 · release 2.6, September 2026 · Commands and rhythms. Say "help" anytime and core's help mode answers from these documents.*
 
 ## The map, say the thing and the right skill fires
 
-You don't invoke skills by name, though you can. You say what you need and the descriptions route it. For every phrase each skill answers to, read `skills-reference.md`. For each skill's behavior and boundaries, read `system-guide.md`.
+You don't invoke skills by name, though you can. You say what you need and the descriptions route it. The table below is the daily spine rather than the full map. For every phrase each skill answers to, read `skills-reference.md`. For each skill's behavior and boundaries, read `system-guide.md`.
 
 | You say | What happens | Skill |
 |---|---|---|
 | `/parvis` (optionally with a first request) | Starts a session. Parvis greets you by the name in your owner skill with one interesting thing, then handles everything after it | parvis |
-| "Use my profile" / "update my profile" / "you know who I am" | Loads or updates the owner skill, the one file that holds who you are | parvis-owner |
-| "Quick take on X" / "help me think through X" / "should we anchor on X" | Direct deep-thinking session, full method, about 10 minutes | infra-advisor |
-| "Spin up the team on X" / "spin up the platform team" (add "in the background") | Five-lens brainstorm, or six with the adoption advocate, ending in a decision-ready brief | infra-advisor |
-| "Review this repo" / "find the defects" / "here is the stack trace" / "review this API design" / "should we rewrite this" | Findings ranked by severity with file and line evidence, trace hypotheses with their discriminating tests, design critique priced at your scale, migration judgment | software-engineering |
-| "Design our branching strategy" / "our build takes 40 minutes" / "is this quality gate theater" / "plan the canary rollout" / "grade our delivery maturity" | Lifecycle design, pipeline and gate review, release and rollback mechanics, an honest maturity grade with the two highest-return changes | sdlc |
-| "Should this be an agent or a pipeline" / "design the retrieval layer" / "how do we evaluate this" / "the model is drifting" / "our inference bill tripled" | Model, agent and MCP design, evaluation design, failure triage, serving economics and cost per request | ai-engineering |
-| "Design our platform metrics" / "what is our baseline" / "is this metric gameable" / "how do I show value to the CFO" | Four-pillar metrics with Goodhart pairings, targets, joint readings, the value story | metrics-advisor |
-| "Synthesize these interviews" / "build the pain map from the listening tour" / "what's blocking adoption per the research" | Verbatim-grounded themes, pain maps, ranked barriers | research |
-| "Draft a board memo" / "build the deck" / "scaffold this" / "make this exec-ready" | Anatomy-driven document or deck in your voice | exec-writer |
-| "Review before I send" / "final check" / "murder-board this" / "what will they ask" | Ranked findings, pre-send pass, hardest-questions prep | exec-writer |
-| "Announce X" / "push adoption of X" / "make the case to the CFO" / "write up what team X did" | Adoption comms, funnel diagnosed before anything is written | exec-writer |
+| "Quick take on X" / "help me think through X" / "spin up the team on X" | Direct deep-thinking session of about 10 minutes, or a five-lens brainstorm ending in a decision-ready brief | infra-advisor |
+| "Draft a board memo" / "make this exec-ready" / "review before I send" / "announce X" | Anatomy-driven document or deck in your voice, the pre-send pass, adoption comms | exec-writer |
 | "Draft the <month> plan" / "update monthly status" / "start the <month> MBR" / "prep the <quarter> QBR" | The cadence artifacts, opened from the commitments ledger | reviews |
 | "Run my weekly / monthly / quarterly" / "portfolio health check" / "get <program> back on track" / "build next year's budget" | Planning analysis and program oversight, baselines, early-warning signals, recovery | portfolio-planning |
 | "Prep me for <meeting>" / "here's how it went" | One-pager going in, debrief coming out | meeting-prep |
-| "Initialize my directs" / "run my talent review" / "draft <name>'s review" / "how should I structure the platform teams" | People files, talent reviews, review drafting, org and talent design | people-leader |
-| "Brief me on <name>" / "run my stakeholder review" / "am I ready to ask <name> for Y" | Person briefs, cadence tracking, influence paths, ask-readiness gates | stakeholders |
-| "Should we buy X or build it" / "assess X as our anchor" / "how locked in are we on X" / "the Y renewal is coming up" | Evolution map, TCO, anchor test, lock-in register, renewal prep | vendor-eval |
-| "Our cloud bill jumped" / "where is the waste" / "build the showback model" / "are we overcommitted on a cloud commitment" / "forecast next year's cloud spend" | Allocation and showback design, unit economics, coverage from the demand trough, waste, forecast and variance, each recommendation naming its loser | finops |
-| "How many seats are we actually using" / "we got an audit letter from a publisher" / "our CMDB is wrong" / "can we run this BYOL" / "where is that copyleft library deployed" | Entitlement against consumption, license positions, audit defense, seat economics, open-source obligations, lifecycle through disposal | itam |
-| "Log this audit finding" / "run my risk pulse" / "prep me for the exam" / "will this remediation pass validation" / "prove our agents are safe" | Findings ledger, risk register, exam prep, remediation review, AI inventory | risk-regulatory |
 | "We have a sev-1" / "run a tabletop" | Comms cadence and templates, or a practice drill | incident-command |
 | "Remember this" / "what do I think about X" / "run memory maintenance" / "initialize my system" | Capture, cited recall, housekeeping, first-run setup | memory |
-| "Run my pulse" | The two-minute anticipation pass across every section, commitments due, fired revisit triggers, aging positions, cadence state, a stale fact sheet, stale risks, unprepped meetings and risk and regulatory signals, reporting only what fires | memory |
-| "File this as a tech plan" / "file this in reference" / "file my workspace inbox" / "where is the Q3 review" / "list my tech plans" | Document filing with a manifest row, and retrieval by quotation | memory |
+| "Run my pulse" | The two-minute anticipation pass across every section and both homes, reporting only what fires among the eight checks parvis-memory defines | memory |
+| "File this as a tech plan" / "file my workspace inbox" / "where is the Q3 review" | Document filing with a manifest row, and retrieval by quotation | memory |
 | "What frameworks apply here" / "convene a panel" / "run the shakedown" / "help" | Catalog with selection logic, a panel in any domain, the T9 drill, this help | core |
+
+Every other skill answers to phrases of the same shape. Say what you need about code, delivery, AI systems, metrics, research, your people, your stakeholders, a vendor, cloud spend, licenses or a risk finding, and it routes. `skills-reference.md` lists every phrase.
 
 The technology-leadership skills (infra-advisor, software-engineering, sdlc, ai-engineering, metrics-advisor, research and the platform program material) apply when your owner skill names technology as your domain. Everything else works in any domain.
 

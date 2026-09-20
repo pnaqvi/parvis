@@ -4,18 +4,7 @@
 
 ## Project schema v2, `sections/<group>/projects.md`
 
-```markdown
-## <Project / Program name>
-- **Class:** program / project · Tier: flagship / major / standard · Investment: core / adjacent / transformational
-- **One-liner:** <what it delivers, for whom, and why it matters>
-- **Status:** Green / Yellow / Red (<date>) · <one honest line>
-- **Milestones:** <name · BASELINE date · current forecast · done/at-risk/missed/slipped-N-times>
-- **Dependencies:** <what this needs, from whom, by when · their status>
-- **Risks:** <risk · likelihood H/M/L · impact H/M/L · owner · mitigation · trigger-to-act · last reviewed>
-- **Decisions pending:** <decision · needed from whom · requested date · blocking what>
-- **Owner:** <accountable leader> · **Key people:** <critical individuals, single-threading flagged>
-- **Last honest update:** <date · source>
-```
+The field list lives in parvis-memory's `references/section-templates.md`, under the schema v2 heading, which is also what writes the header into a new `projects.md`. Read it there rather than from a copy. The two rules behind it are this skill's.
 
 **Baseline discipline (non-negotiable).** Every milestone keeps its ORIGINAL committed date forever, beside the current forecast. Slippage is only visible against baselines, and a plan that quietly re-dates its milestones has erased its own warning system. Re-baselining is a formal event (recovery section), never a Tuesday edit.
 

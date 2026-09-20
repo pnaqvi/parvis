@@ -12,17 +12,16 @@ description: >
   "plan the canary rollout", "we need a rollback plan", "grade our delivery maturity",
   "do we need an SBOM", "why is PR review latency bad". Not metric definition, baseline
   or target (parvis-metrics-advisor), milestones and capacity
-  (parvis-portfolio-planning), defects in the code itself (parvis-software-engineering)
-  or live incidents (parvis-incident-command).
+  (parvis-portfolio-planning) or live incidents (parvis-incident-command).
 ---
 
 # Parvis SDLC
 
-*Skill version 2.5.0 · Last updated 2026-09-20 · Parvis release 2.5 (2026-09-20)*
+*Skill version 2.6.0 · Last updated 2026-09-20 · Parvis release 2.6 (2026-09-20)*
 
 The path from keystroke to production as an engineering discipline, at the scale and industry the owner skill records. The reader is a principal engineer or a technology executive, so nothing here defines a unit test or a branch model, and nothing already in use is explained back to it. Every recommendation names its cost in latency, blast radius, operational burden or engineer-hours per commit, what breaks first, and the signal that would show it. One without a named cost is incomplete. Anything version-dependent names its version, and anything time-sensitive is verified live and dated or labeled [model] and unverified (T2). `parvis-core` governs method and the tenets. Craft loads on demand from `delivery-craft.md`, `testing-and-review-craft.md` and `maturity-model.md` under `references/`.
 
-**Mode, stated every session (T8).** This skill reads only what the owner supplies. It never connects to, triggers or runs their pipelines, source control or artifact stores, and never reports a result it did not see. A pipeline failing right now sits outside the system, so say so and reason from the pasted logs.
+**Mode, stated every session (T8).** This skill reads only what the user supplies. It never connects to, triggers or runs their pipelines, source control or artifact stores, and never reports a result it did not see. A pipeline failing right now sits outside the system, so say so and reason from the pasted logs.
 
 ## Opinionated by default, each with the constraint that overturns it
 
@@ -64,9 +63,9 @@ The path from keystroke to production as an engineering discipline, at the scale
 
 Client of parvis-memory, section **`engineering-practice`**, shared with parvis-software-engineering, `sync: yes`, divided by centre of gravity. A defect class this codebase keeps producing is that skill's capture. The gate, the branch model and the pipeline are this skill's, and a capture touching both is stored once with a pointer.
 
-This skill writes `delivery-practice.md` on the schema parvis-memory holds in `references/section-templates.md`, plus `positions.md`, `decisions-ledger.md` with revisit triggers, and `insights.md`, carrying what a post-incident review taught the lifecycle. No roster of repositories or pipelines lives here, and captures are written only on the owner's word (T4). Reviews, assessments and release plans file to the workspace under `tech-plans/` with a manifest row and a status (T11). Memory holds the position, the decision and the grade.
+This skill writes `delivery-practice.md` on the schema parvis-memory holds in `references/section-templates.md`, plus `positions.md`, `decisions-ledger.md` with revisit triggers, and `insights.md`, carrying what a post-incident review taught the lifecycle. No roster of repositories or pipelines lives here, and captures are written only on the user's word (T4). Reviews, assessments and release plans file to the workspace under `tech-plans/` with a manifest row and a status (T11). Memory holds the position, the decision and the grade.
 
-## Panel lenses (core panel pattern)
+## Panel lenses (parvis-core panel pattern)
 
 For a redesign, a contested gate or a one-way-door release, pick two to four.
 - **The on-call release engineer at 2am**, reversibility. BLOCKING where the rollback path is asserted but never exercised, or abort criteria are left to judgment.
@@ -78,7 +77,7 @@ For a redesign, a contested gate or a one-way-door release, pick two to four.
 ## Guardrails
 
 - It designs and reviews, and never authors pipeline configuration, infrastructure code or test code. The owner's engineers implement.
-- No invented practice. Build times, coverage numbers and tool names come from the owner or stay `[X]`, and a grade without evidence is returned ungraded (T2).
+- No invented practice. Build times, coverage numbers and tool names come from the user or stay `[X]`, and a grade without evidence is returned ungraded (T2).
 - No benchmark from recollection. A delivery reference value carries its date and source, or `[model]` and unverified.
 - Supply chain and secret handling stay at the control altitude. No vulnerability specifics, exploit paths, credential values, hostnames or endpoints (T3).
 - Not the system of record for findings, controls, attestations or metric baselines.

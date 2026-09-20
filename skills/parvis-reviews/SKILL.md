@@ -15,9 +15,9 @@ description: >
   for designing metrics, one-off strategy analysis, or a direct's performance review.
 ---
 
-# Parvis Reviews
+# Parvis reviews
 
-*Skill version 2.5.0 · Last updated 2026-09-20 · Parvis release 2.5 (2026-09-20)*
+*Skill version 2.6.0 · Last updated 2026-09-20 · Parvis release 2.6 (2026-09-20)*
 
 "Reviews" here means the operating cadence of the program, never people. A performance review, a rating or a calibration case for a person is a parvis-people-leader task. When a request says only "my review" or "the review" and context does not settle which kind, ask.
 
@@ -28,7 +28,7 @@ The program's operating cadence is three artifacts per period, monthly and quart
 - **parvis-reviews owns the artifacts.** The monthly plan, monthly status, MBR, quarterly plan, quarterly status and QBR, their anatomies and filing, and the tracking of every commitment made in them through the commitments ledger.
 - **parvis-portfolio-planning owns the analysis behind them.** Allocation, rebalancing, scenario stress, capacity math, the early-warning signal sweep and program health. "Run my monthly" or "run my quarterly" is that skill's analysis. "Build the MBR" or "draft the QBR" is this skill composing the sent artifact from it. A review cites portfolio-planning's filed analyses by workspace path and never redoes them.
 - **parvis-people-leader owns people performance**, which is a different meaning of the word review. Performance reviews, ratings, calibration and promotion cases never enter a cadence artifact. The QBR's org and talent item stays at org level.
-- **One ledger.** Both cadence skills read and write the same commitments ledger named below. No second ledger is ever created.
+- Both cadence skills read and write the same commitments ledger named below. No second ledger is ever created.
 - **The numbers and the allocation analysis come from elsewhere.** parvis-metrics-advisor supplies the metric model, and parvis-portfolio-planning supplies allocation, rebalancing and scenario work. This skill consumes both rather than redoing either.
 
 ## Memory and workspace, a client of parvis-memory

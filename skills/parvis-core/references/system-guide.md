@@ -1,6 +1,6 @@
 # System guide, Parvis
 
-*Document 6 of 6 · release 2.5, September 2026 · The complete reference. Every skill in detail, what to expect from it, and where its territory ends. The canonical copy ships with the core skill at `skills/parvis-core/references/system-guide.md` and is what help mode reads. An identical copy lives in `docs/`.*
+*Document 6 of 6 · release 2.6, September 2026 · The complete reference. Every skill in detail, what to expect from it, and where its territory ends. The canonical copy ships with the core skill at `skills/parvis-core/references/system-guide.md` and is what help mode reads. An identical copy lives in `docs/`.*
 
 ## 1. What this system is
 
@@ -8,7 +8,7 @@ A twenty-two-skill operating layer for a senior leader's work, personalized thro
 
 **Two data homes**, both git repositories, never flattened together. They sit under a base chosen at install and remembered from then on, and the managed block in `~/.claude/CLAUDE.md` names both paths (see `install-guide.md`).
 - **Memory** at `<base>/parvis-memory/`. Seventeen seeded topic sections plus one section per org group, created at initialization from the owner skill, each holding positions (what you believe, with confidence and a would-change-my-mind line), a decisions ledger with revisit triggers, and insights. The routing table is `MANIFEST.md`. The five confidential sections, `people-management`, `performance-management`, `stakeholders`, `risk-regulatory` and `asset-estate`, are nested local-only repositories that no remote can carry.
-- **Workspace** at `<base>/parvis-workspace/`. `strategy/`, `tech-plans/`, `project-plans/` (with the standing `risk-register.md`), `cadence/monthly/YYYY-MM/` and `cadence/quarterly/YYYY-QN/` where each period's plan, status, review and metrics snapshot live together, `reference/` for source material indexed in `reference/INDEX.md`, `inbox/` and `archive/`. The registry is `MANIFEST.md`, and a document not registered there is lost to future sessions (T11).
+- **Workspace** at `<base>/parvis-workspace/`. `strategy/`, `tech-plans/`, `project-plans/` (with the standing `risk-register.md`), `risk/` for exam and audit preps, evidence indexes, acceptance memos and board risk briefs at paraphrase altitude only, `cadence/monthly/YYYY-MM/` and `cadence/quarterly/YYYY-QN/` where each period's plan, status, review and metrics snapshot live together, `reference/` for source material indexed in `reference/INDEX.md`, `inbox/` and `archive/`. The registry is `MANIFEST.md`, and a document not registered there is lost to future sessions (T11).
 
 One question separates the homes. A fact that must survive and be cited belongs in memory. A document being drafted, reviewed or filed belongs in the workspace. A sent review is a document, and the promises inside it are rows in the commitments ledger at `memory/sections/portfolio-planning/commitments-ledger.md`.
 
@@ -20,14 +20,14 @@ One question separates the homes. A fact that must survive and be cited belongs 
 
 ## 2. The twenty-two skills
 
-Each skill's purpose and the phrases that invoke it live in `skills-reference.md`. Each entry below gives the behavior to expect and the boundary, meaning the neighboring skill that owns the adjacent ground.
+Each skill's purpose and the phrases that invoke it live in `skills-reference.md`. Each entry below gives the behavior to expect and the boundary, meaning the neighboring skill that owns the adjacent ground. The split is deliberate and a later consolidation should keep it, since that file owns purpose and triggers while this one owns behavior and boundary.
 
 ### parvis, the session command
 **Behavior.** Loads the owner skill, parvis-core and be-human, reads both manifests, and greets you by name with one interesting thing, preferring a real item from memory and never inventing one. It never fires on its own. After that every message routes to its owning skill, and a question about who it is gets a short answer in its own voice.
 **Boundary.** It holds only the greeting, the identity and the session behavior. The Prime Directive and its rules live in parvis-core, and the managed block keeps the directive on even in sessions that never type `/parvis`.
 
 ### parvis-owner, identity
-**Behavior.** Every other skill reads it instead of carrying a copy. Resumes, LinkedIn, bios and career questions start here. The bundle ships it as a template marked `<!-- parvis:owner-template -->`. Initialization step 3 drafts it from a resume or LinkedIn export, or you edit it by hand at `~/.claude/skills/parvis-owner/SKILL.md`, and the installer never overwrites a filled-in copy.
+**Behavior.** Every other skill reads it instead of carrying a copy. Resumes, LinkedIn, bios and career questions start here. The bundle ships it filled in with the maintainer's profile, which a first install copies, so replace its contents with your own. The `<!-- parvis:owner-template -->` marker only distinguishes an unfilled copy from a filled one, and the bundled file does not carry it. Initialization step 3 drafts it from a resume or LinkedIn export, or you edit it by hand at `~/.claude/skills/parvis-owner/SKILL.md`, and the installer never overwrites a filled-in copy.
 **Boundary.** It holds who you are, never what you think about a topic. Positions live in memory, and live operational facts live in `portfolio-planning/org-context.md`.
 
 ### parvis-core, the operating framework and help desk
@@ -35,7 +35,7 @@ Each skill's purpose and the phrases that invoke it live in `skills-reference.md
 **Boundary.** Where a skill conflicts with core on depth, frameworks or panel mechanics, core wins, except for declared inversions such as incident-command's speed-first phase. Persona comes from `parvis-owner` and memory mechanics from `parvis-memory`.
 
 ### parvis-memory, the owner of both homes
-**Behavior.** Recall is quotation with file and date, and an empty recall reads "not in memory". A capture needs one sentence, which the skill structures for you to confirm once. Every write is checked for near-duplicates and contradictions first and read back afterward. Filed documents get a manifest row and a draft, final or superseded status, and a final document is never overwritten. Both inboxes are merged at session start and at maintenance. The org fact sheet, `portfolio-planning/org-context.md`, is read first in every session so you never re-explain your org. Maintenance runs monthly. The pulse is the anticipation pass across every section and both homes. It reports only what fires among seven checks, commitments due or overdue, fired revisit triggers, positions past about 12 months, cadence artifact state such as an MBR not started with a week left, a stale fact sheet, risks unreviewed for more than 90 days, and upcoming meetings with no filed prep. It is offered in one line at the first session of each week and whenever a cadence artifact opens, and it never writes without confirmation. Initialization is a guided, resumable sequence, described in `initialization.md`.
+**Behavior.** Recall is quotation with file and date, and an empty recall reads "not in memory". A capture needs one sentence, which the skill structures for you to confirm once. Every write is checked for near-duplicates and contradictions first and read back afterward. Filed documents get a manifest row and a draft, final or superseded status, and a final document is never overwritten. Both inboxes are merged at session start and at maintenance. The org fact sheet, `portfolio-planning/org-context.md`, is read first in every session so you never re-explain your org. Maintenance runs monthly. The pulse is the anticipation pass across every section and both homes. It reports only what fires among the eight checks parvis-memory defines, which run from commitments due or overdue through risk and regulatory signals. It is offered in one line at the first session of each week and whenever a cadence artifact opens, and it never writes without confirmation. Initialization is a guided, resumable sequence, described in `initialization.md`.
 **Boundary.** It owns where things live and how they are kept. It never produces the content itself, which comes from the client skill that asked. A memory question is never answered from the workspace manifest alone, or the reverse.
 
 ### parvis-infra-advisor, the standing thought partner

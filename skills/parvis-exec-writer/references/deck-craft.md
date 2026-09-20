@@ -20,7 +20,7 @@
 
 ## Deck anatomies
 
-**Board / risk-committee deck (≤ 10 slides).** Slide 1: the ask and the risk position, the whole meeting on one slide. Then: exposure today (quantified) → recommendation with price → options compared including status quo (one slide, one table) → evidence of safety/control → delivery plan with owner and dates → what's being asked of the committee (note vs. approve, explicitly). Appendix: one slide per hard question. Register: every claim survives the sharpest member, and confidence levels are stated rather than implied.
+**Board / risk-committee deck (≤ 10 slides).** Slide 1 carries the ask and the risk position, the whole meeting on one slide. After it, exposure today (quantified) → recommendation with price → options compared including status quo (one slide, one table) → evidence of safety/control → delivery plan with owner and dates → what's being asked of the committee (note vs. approve, explicitly). Appendix: one slide per hard question. Register: every claim survives the sharpest member, and confidence levels are stated rather than implied.
 
 **Strategy deck (≤ 12 slides).** Follows the strategy kernel in order: honest diagnosis (2–3 slides, and the uncomfortable slide goes here, because its presence is what buys credibility for everything after) → guiding policy (1 slide, one sentence large) → where-to-play / where-NOT-to-play (1 slide, both columns) → coherent actions with prices and sequencing → scenario robustness (which bets hold across futures) → portfolio balance → the decision requested. Failure mode: a strategy deck with no where-NOT slide is a budget request wearing a strategy costume.
 

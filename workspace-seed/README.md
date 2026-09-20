@@ -9,4 +9,4 @@ The Parvis managed block in `~/.claude/CLAUDE.md` states where each home lives. 
 
 A fact that must survive and be cited belongs in memory. A document being drafted, reviewed, or filed belongs here.
 
-`install.sh` seeds this home under the same policy it applies to memory, which is to seed only when the destination is absent and never overwrite a populated home.
+`install.sh` seeds this home in full only when it is absent. A populated home keeps every file it already has, and the installer adds just the seed paths it lacks, so a folder or seed file a release introduces still arrives.

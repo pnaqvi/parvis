@@ -1,24 +1,22 @@
 ---
 name: parvis-meeting-prep
 description: >
-  One-page meeting preparation for the user. Use whenever they prepare for any
-  meeting or conversation, "prep me for my 1:1 with my CIO", "I have the risk
-  committee Thursday", "get me ready for the vendor QBR", "what should I walk into
-  this staff meeting with", or when they name an upcoming meeting and want to be
-  ready. Composes from the rest of the system, positions and open decisions from
-  parvis-memory, audience notes from the exec-writing section, murder-board craft from
-  parvis-exec-writer. Produces a one-page prep with the user's goal, their asks, what
-  the room will raise, their one-line answers, and the landmines. Not for
-  producing the meeting's documents themselves (parvis-exec-writer) or doing new
-  analysis (parvis-infra-advisor), since this skill assembles what exists into
-  meeting-ready form. Also for program forums, "I have the architecture review board
-  Thursday", "what should I walk into the steering committee with". Cadence artifacts
-  belong to parvis-reviews, evaluations to parvis-vendor-eval.
+  One-page meeting preparation for the user. Use whenever they prepare for any meeting or
+  conversation, "prep me for my 1:1 with my CIO", "I have the risk committee Thursday",
+  "get me ready for the vendor QBR", "what should I walk into this staff meeting with",
+  "here is how it went", or when they name an upcoming meeting and want to be ready.
+  Produces a one-page prep with the user's goal, their asks, what the room will raise,
+  their one-line answers, and the landmines. Not for producing or murder-boarding the
+  meeting's documents (parvis-exec-writer) or doing new analysis (parvis-infra-advisor),
+  since this skill assembles what exists into meeting-ready form. Also for program forums, "I have
+  the architecture review board Thursday", "what should I walk into the steering committee
+  with". Cadence artifacts belong to parvis-reviews, evaluations to parvis-vendor-eval.
+  Composes with parvis-memory.
 ---
 
 # Parvis meeting prep
 
-*Skill version 2.5.0 · Last updated 2026-09-20 · Parvis release 2.5 (2026-09-20)*
+*Skill version 2.6.0 · Last updated 2026-09-20 · Parvis release 2.6 (2026-09-20)*
 
 A composition skill. It builds one-page meeting preparation from systems that already exist, rather than owning new craft. Fast to *deliver* is the point, so a prep should reach the user in minutes and fit one page, while the thinking behind it follows the `parvis-core` depth mandate, full anticipation work, no shortcuts, tight output.
 
@@ -26,7 +24,7 @@ A composition skill. It builds one-page meeting preparation from systems that al
 
 Meeting type and audience, what the user wants out of it, what's on the agenda or likely to be, and any document going in (if one exists in the memory home's `sections/infra-advisor/brainstorm/` or was drafted by the writer, use it as the content anchor).
 
-## Assembly
+## Assembly, triggered by "prep me for <meeting>" or a named upcoming forum
 
 1. **Pull from memory (via parvis-memory rules).** Positions relevant to the topics. Open decisions touching the attendees or agenda, flagging any whose revisit triggers have fired ("you told the committee X in May, trigger Y has since occurred"). The audience's entry from `sections/exec-writing/audiences.md` (what this reader or room always asks, wants, pushed back on). Each attendee's file from `sections/stakeholders/registry/` where one exists (their stance on the meeting's topics, open commitments either way).
 2. **Anticipate.** The likely questions and challenges from *this* audience on *this* topic. Apply the writer's murder-board craft in miniature, with likelihood × pain ordering, one-line answers, and where the evidence lives. Include the one question the user should hope nobody asks, plainly.
@@ -39,13 +37,17 @@ Meeting type and audience, what the user wants out of it, what's on the agenda o
    - **Landmines.** Topics to handle carefully or steer from, with the steer. Fired revisit triggers, slipped commitments, and any gap between what has been said and what the registers show belong here, stated plainly. A landmine hidden from the prep goes off in the room.
    - **Commitments watch.** What the user should and should not commit to in the room (regulator- and committee-facing meetings especially).
    - **Carry-ins**. What the user owes them and what they owe the user from last time, drawn from the commitments ledger, the meeting thread and the attendees' stakeholder files, never recalled from memory of meetings (T12).
-4. **After the meeting (offer, don't nag).** A two-minute debrief covering what was decided, what the user committed to and what surprised them, captured to the right memory sections (decisions to ledgers, audience observations to `audiences.md`, follow-ups listed back to the user). The debrief is where meeting prep compounds, and without it every prep starts cold.
+4. **After the meeting, "here is how it went" (offer, don't nag).** A two-minute debrief covering what was decided, what the user committed to and what surprised them, captured to the right memory sections (decisions to ledgers, audience observations to `audiences.md`, follow-ups listed back to the user). The debrief is where meeting prep compounds, and without it every prep starts cold.
 
 ## Register
 
-The user's voice (from the owner skill), in fragments meant for glancing at, not prose. One page, hard limit. A prep the user can't absorb in the elevator has failed. Numbers where they'll be needed in the room, `[X]` placeholders where the user must supply them. If a needed document doesn't exist ("the committee expects a pre-read"), say so and hand off to the writer rather than improvising one inside the prep.
+The user's voice (from the owner skill), in fragments meant for glancing at, not prose. One page, hard limit. A prep the user can't absorb in the elevator has failed. Numbers where they'll be needed in the room, `[X]` placeholders where the user must supply them.
 
 If the prep will be shared with anyone else, it gets the prose scrub before it leaves (T13). If the registers are empty for this meeting's domain, the honest prep is short, and it says which sections would make the next one better.
+
+## Guardrails
+
+No invented attendee color where the registers are silent (T2). No new analysis inside a prep (parvis-infra-advisor), and no document improvised in place of the writer's, so a missing pre-read is named and handed to parvis-exec-writer. A prep built on stale sources says so rather than reading as current. One page is a hard ceiling, not a target.
 
 ## Program registers and the workspace
 

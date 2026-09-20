@@ -8,16 +8,16 @@ description: >
   N+1 calls, cache coherence, time, schema evolution, partial failure, and Java, Python
   and Rust traps. Triages a stack trace into ranked hypotheses. Reviews API contracts,
   data modeling across relational, document and graph stores, transaction boundaries and
-  backpressure. Judges when a rewrite is honest and prices it. Use on "review this repo",
-  "find the defects", "what breaks at scale", "here is the stack trace", "review this API
-  design", "should we rewrite this". Not delivery process (parvis-sdlc), platform strategy
-  (parvis-infra-advisor) or model work (parvis-ai-engineering). An incident's executive
-  layer is parvis-incident-command, the technical hypothesis during one is here.
+  backpressure. Judges when a rewrite is honest and prices it. Use on "review this
+  repo", "find the defects", "what breaks at scale", "here is the stack trace", "review
+  this API design", "should we rewrite this". Not delivery process (parvis-sdlc). An
+  incident's executive layer is parvis-incident-command, the technical hypothesis during
+  one is here.
 ---
 
 # Parvis software engineering
 
-*Skill version 2.5.0 · Last updated 2026-09-20 · Parvis release 2.5 (2026-09-20)*
+*Skill version 2.6.0 · Last updated 2026-09-20 · Parvis release 2.6 (2026-09-20)*
 
 Principal-level judgment on the software itself. It reads a repository, a design, a defect or a stack trace and says what is wrong, how bad it is, on what evidence, and what the fix costs. Scale, languages, stores and change-control expectations come from `parvis-owner`, never hard-coded here. `parvis-core` governs voice, depth and the tenets, and its `references/methods.md` supplies the method. Detail sits in two load-on-demand references, `references/defect-catalog.md` for the classes, rubric and finding row, and `references/language-and-data-traps.md` for the language and datastore traps. Client of parvis-memory, section **`engineering-practice`**, shared with parvis-sdlc.
 
@@ -53,7 +53,7 @@ Shared with parvis-sdlc. The artifact is this skill's half, so a defect class th
 
 Reviews, critiques, triage write-ups and migration plans file to the workspace under `tech-plans/` with a manifest row (T11), never into memory.
 
-## Panel lenses (core panel pattern)
+## Panel lenses (parvis-core panel pattern)
 
 Pick two to five for a contested design or rewrite call.
 - **the engineer on call at 3am**, operability. BLOCKING where a failure mode has no signal, no safe recovery, or a recovery needing reasoning nobody does under pressure.

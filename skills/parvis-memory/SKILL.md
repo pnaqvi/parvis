@@ -19,7 +19,7 @@ description: >
 
 # Parvis memory and workspace
 
-*Skill version 2.5.0 · Last updated 2026-09-20 · Parvis release 2.5 (2026-09-20)*
+*Skill version 2.6.0 · Last updated 2026-09-20 · Parvis release 2.6 (2026-09-20)*
 
 The single owner of the user's cross-session persistence. Every other skill reads and writes *through the rules here*, two homes, one structure, one hygiene discipline, many topic sections. The `parvis-core` depth mandate applies to memory work too, so integrity checks, recall and maintenance are done thoroughly and never skipped to save tokens. Client skills (parvis-infra-advisor, parvis-exec-writer, future ones) know their section, and this skill knows everything else.
 
@@ -57,6 +57,7 @@ Each home is looked for in this order. First the path in the managed block, then
 ├── strategy/            strategy docs, roadmaps, charters (comms/ and research/ beneath it)
 ├── tech-plans/          architecture briefs, designs, reference architectures
 ├── project-plans/       program and project plans, the standing risk register (planning/, meeting-preps/)
+├── risk/                exam and audit preps, evidence indexes, risk briefs
 ├── cadence/             the operating rhythm, one folder per period
 │   ├── monthly/YYYY-MM/     plan.md · status.md · mbr.md (+ .pptx/.docx renderings) · metrics-snapshot.md
 │   └── quarterly/YYYY-QN/   plan.md · status.md · qbr.md (+ renderings)
@@ -110,7 +111,7 @@ Write routes by environment. Append directly when the memory home is reachable. 
 
 Trigger: "file this", "store this plan", "save this to my workspace", "add this doc", or any artifact another skill produces that should outlive the session it was written in (briefs, preps, plans, reviews, research, source material).
 
-1. **Route to a folder by type.** `reference/` for supplied and researched source material, `strategy/` for strategy documents, roadmaps and charters (with `comms/` and `research/` beneath it), `tech-plans/` for architecture briefs and designs, `project-plans/` for program and project plans, the risk register, planning working files and meeting preps, `cadence/` for period artifacts. Standalone documents are named `YYYY-MM-DD-<kebab-slug>.<ext>`. Cadence artifacts use their standard names inside their period folder. Files landing in `reference/` additionally get an `INDEX.md` row.
+1. **Route to a folder by type.** `reference/` for supplied and researched source material, `strategy/` for strategy documents, roadmaps and charters (with `comms/` and `research/` beneath it), `tech-plans/` for architecture briefs and designs, `project-plans/` for program and project plans, the risk register, planning working files and meeting preps, `risk/` for exam and audit preps, evidence indexes, acceptance memos and board risk briefs, `cadence/` for period artifacts. Standalone documents are named `YYYY-MM-DD-<kebab-slug>.<ext>`. Cadence artifacts use their standard names inside their period folder. Files landing in `reference/` additionally get an `INDEX.md` row.
 2. **Register the row.** Date, path, type, one-line description, status (draft, final or superseded), source. A document not in the manifest is lost to future sessions, so the row is part of filing rather than an optional extra (T11).
 3. **Version, never overwrite.** A final document is never overwritten. File the new version and mark the old row superseded with a pointer to its successor. Git history is the safety net either way.
 
@@ -176,4 +177,4 @@ When nothing fires, say exactly that in one line. On a freshly seeded system the
 
 ## Serving client skills
 
-When parvis-infra-advisor or parvis-exec-writer runs, it names its section (`infra-advisor`, `exec-writing`) and, where it produces documents, its workspace folder. Apply all rules here on its behalf, covering routing, filing, git, archives and fallbacks, so clients carry zero persistence mechanics. If this skill is somehow unavailable to a client, clients fall back to reading and writing their section's files and their workspace folder directly with git commits. The structure is designed to survive that.
+When a client skill runs, it names its section and, where it produces documents, its workspace folder. The memory home's `MANIFEST.md` is the live roster. Apply all rules here on its behalf, covering routing, filing, git, archives and fallbacks, so clients carry zero persistence mechanics. If this skill is somehow unavailable to a client, clients fall back to reading and writing their section's files and their workspace folder directly with git commits. The structure is designed to survive that.

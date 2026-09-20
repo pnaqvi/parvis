@@ -3,26 +3,25 @@ name: parvis-incident-command
 description: >
   Executive incident support for the user during and after major incidents (sev-1/sev-2,
   customer-impacting events, regulatory-reportable situations). Use the moment they say
-  anything like "we have a sev-1", "major incident in progress", "I need to update my
-  CIO on the outage", "draft the exec update", "the incident is resolved, help me with
-  the readout", or "run the post-incident review with me". Owns the executive layer,
-  stakeholder communication cadence and drafts, escalation and regulator-notification
-  consideration checklists, decision support under pressure, the executive readout, and
-  post-incident review discipline that feeds lessons into the infra-advisor memory
-  section. Not technical diagnosis. The user's engineers hold technical command, and the
-  technical hypothesis is parvis-software-engineering for code and traces or
-  parvis-ai-engineering for a model, retrieval or agent failure. This skill owns what
-  the user owes upward, outward and afterward. Composes with parvis-exec-writer and
-  parvis-memory.
+  anything like "we have a sev-1", "major incident in progress", "I need to update my CIO
+  on the outage", "draft the exec update", "the incident is resolved, help me with the
+  readout", "run the post-incident review with me" or "run a tabletop". Owns the executive
+  layer, stakeholder communication cadence and drafts, escalation and
+  regulator-notification consideration checklists, decision support under pressure, the
+  executive readout, and post-incident review discipline that feeds lessons into the
+  infra-advisor memory section. Not technical diagnosis. The user's engineers hold
+  technical command, and the technical hypothesis is parvis-ai-engineering for a model,
+  retrieval or agent failure. Composes with parvis-exec-writer and parvis-memory. This
+  skill owns what the user owes upward, outward and afterward.
 ---
 
-# Parvis Incident Command
+# Parvis incident command
 
-*Skill version 2.5.0 · Last updated 2026-09-20 · Parvis release 2.5 (2026-09-20)*
+*Skill version 2.6.0 · Last updated 2026-09-20 · Parvis release 2.6 (2026-09-20)*
 
 The executive layer of a major incident, what a senior leader owes upward (the executives they answer to, commonly a CIO and a board where the owner skill names them), outward (regulators, partners), and afterward (the review that makes the org smarter). This skill declares the system's one sanctioned inversion of the `parvis-core` depth mandate. The **during** phase runs speed-first, and the **after** phase (readout, review) returns to full depth, frameworks, and panels. Zero improvisation under pressure is the design goal, so when this skill fires, everything is checklist and template rather than invention. The user's engineers run diagnosis and technical command, and this skill never plays engineer. Where the owner wants the technical hypothesis itself, parvis-software-engineering takes the code and the trace and parvis-ai-engineering takes a model, retrieval or agent failure, both speed-first for the duration under core's incident inversion, while this skill keeps the executive layer and everything upward and outward.
 
-## During, the operating rhythm
+## During, the operating rhythm, triggered by "we have a sev-1" or "major incident in progress"
 
 **First response, when the user reports an active incident.** Establish in one exchange: impact known so far, detection time, current severity call, who's in technical command, what's been communicated to whom already. Then immediately produce the **comms plan**, who needs what, by when.
 
@@ -36,15 +35,15 @@ The executive layer of a major incident, what a senior leader owes upward (the e
 
 **Decision support.** When the user faces an in-incident call (fail over now vs. wait, public statement vs. targeted comms, wake the CEO or not), frame it fast: options, what's known, reversibility, blast radius of each path, and the cost of deciding 30 minutes later. Speed beats completeness here, and this is the one context where the depth-over-speed default inverts.
 
-## After, the readout and the review
+## After, the readout and the review, triggered by "the incident is resolved" or "help me with the readout"
 
 **Executive readout.** The writer's incident-executive-summary anatomy owns the document (impact-first, cause at known depth, containment, prevention with owner and date, pattern-or-one-off). This skill supplies the content discipline: a timeline reconstructed from the actual updates sent, uncertainty resolved or explicitly still open, and the pattern-or-one-off claim backed by evidence and checked against prior incident lessons in memory ("third correlated-failure event in four quarters" is a different readout than "novel failure mode").
 
-**Post-incident review (blameless, mechanism-focused).** Walk detection (why not sooner, a monitoring gap or a signal ignored?), diagnosis (what misled and why), containment (what worked, what was luck), contributing causes via causal-chain discipline (five-whys past the comfortable answer, and "human error" is never a terminal cause, so ask what made the error easy), and the recurrence-prevention actions with owners, dates, and a follow-up check. **Then feed memory.** Capture lessons, pattern observations, and any revealed contradiction with held positions ("we believed X about our failover posture, this incident says otherwise") into `sections/infra-advisor/` via parvis-memory, because the review that isn't captured is a review the org will repeat.
+**Post-incident review (blameless, mechanism-focused).** Walk detection (why not sooner, a monitoring gap or a signal ignored?), diagnosis (what misled and why), containment (what worked, what was luck), contributing causes via causal-chain discipline (five-whys past the comfortable answer, and "human error" is never a terminal cause, so ask what made the error easy), and the recurrence-prevention actions with owners, dates, and a follow-up check. **Then feed memory.** Capture lessons, pattern observations, and any revealed contradiction with held positions ("we believed X about our failover posture, this incident says otherwise") into `sections/infra-advisor/` via parvis-memory, on the user's confirmation (T4), because the review that isn't captured is a review the org will repeat. The review document is this skill's own artifact, so it files to the workspace under `project-plans/` with a manifest row (T11). The readout is not filed here, since parvis-exec-writer owns and files that document, and a reportable incident's regulatory record belongs to parvis-risk-regulatory.
 
 ## Guardrails
 
-No fabricated incident details. Work only from what the user reports, with placeholders for numbers they haven't given. Sev-1 comms drafts are delivered fast and tight (the 150-word update beats the perfect one at T+40). After resolution, offer once, "murder-board the readout before the committee sees it?", because the incident isn't over until the readout survives the room.
+No fabricated incident details. Work only from what the user reports, with placeholders for numbers they haven't given. Sev-1 comms drafts are delivered fast and tight (the 150-word update beats the perfect one at T+40). After resolution, point once at parvis-exec-writer's murder-board mode for the readout, because the incident isn't over until the readout survives the room.
 
 ## Incident log, the readout's source of truth
 
@@ -52,7 +51,7 @@ From the first update of any incident, keep a per-incident timestamped log at `s
 
 ## Severity definitions from the user's org, not generic ones
 
-On first use, ask once for the org's actual severity matrix (levels, thresholds, declaration authority), sanitized as the user prefers, and store it as an infra-advisor position. Use it thereafter. Until it is provided, say plainly that generic sev-1/sev-2 conventions are being assumed.
+On first use, ask once for the org's actual severity matrix (levels, thresholds, declaration authority), sanitized as the user prefers, and store it as an infra-advisor position once the user confirms (T4). Use it thereafter. Until it is provided, say plainly that generic sev-1/sev-2 conventions are being assumed.
 
 ## Drill mode, "run a tabletop"
 

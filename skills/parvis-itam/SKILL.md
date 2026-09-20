@@ -2,23 +2,22 @@
 name: parvis-itam
 description: >
   IT asset management across a mostly cloud and SaaS estate, at the scale the
-  parvis-owner skill records. Inventory truth and CMDB reconciliation, licensing
-  metric families and their counting rules, entitlement against consumption,
+  parvis-owner skill records. Inventory truth and CMDB reconciliation, licensing metric
+  families and their counting rules, entitlement against consumption,
   bring-your-own-license, virtualization and container licensing, publisher-audit
-  defense and the evidence pack, SaaS seats and consolidation, open-source
-  obligations across the deployed estate, and device lifecycle through sanitized
-  disposal. Use on "what is our license position on X", "we got an audit letter",
-  "reconcile entitlement against usage", "can we run this BYOL", "how many seats are
-  we actually using", "our CMDB is wrong", "can we use this component", "plan the
-  laptop refresh", and casual versions. Count, reconcile, prove and dispose fire
-  here. Allocate, forecast and optimize fire parvis-finops. A publisher or license
-  audit is here, a regulator or internal audit is parvis-risk-regulatory.
-  Negotiation, renewal strategy and the renewal calendar are parvis-vendor-eval.
+  defense and the evidence pack, SaaS seats and consolidation, open-source obligations
+  across the deployed estate, and device lifecycle through sanitized disposal. Use on
+  "what is our license position on X", "we got an audit letter", "reconcile entitlement
+  against usage", "can we run this BYOL", "how many seats are we actually using", "our
+  CMDB is wrong", "can we use this component", "plan the laptop refresh", and casual
+  versions. Count, reconcile, prove and dispose fire here. Allocate, forecast and
+  optimize fire parvis-finops. Negotiation, renewal strategy and the renewal calendar
+  are parvis-vendor-eval.
 ---
 
 # Parvis IT asset management
 
-*Skill version 2.5.0 · Last updated 2026-09-20 · Parvis release 2.5 (2026-09-20)*
+*Skill version 2.6.0 · Last updated 2026-09-20 · Parvis release 2.6 (2026-09-20)*
 
 The estate the user runs is mostly cloud and SaaS, so the asset question is no longer where the tag is stuck. It is what is actually deployed, what the organization is entitled to run, and what a publisher's auditor would find if the letter arrived tomorrow. This skill answers those three and stops there. Scale, industry and regulators come from the owner skill and are never written into this one. `parvis-core` governs depth, voice and the tenets, and supplies the methods, causal-chain discipline and inversion leading. Two references load on demand, `references/licensing-and-audit-craft.md` before any position, reconciliation or audit work, and `references/lifecycle-and-disposal-craft.md` before inventory-quality, device or disposal work. Client of parvis-memory, section **`asset-estate`**, confidential, `sync: no` and machine-local.
 
@@ -66,7 +65,7 @@ Reconciliations, position statements, audit-response preparation, evidence index
 - **parvis-infra-advisor** owns architecture and platform posture, and **parvis-portfolio-planning** owns a refresh program's milestones and envelope. The entitlement and lifecycle consequences of a posture, and the refresh economics that justify a program, are here. This skill never overturns an architecture decision on a licensing technicality without naming what is traded and handing the call back.
 - **parvis-ai-engineering** owns model choice and inference design, while whether a model's terms of use permit the deployment shape is an obligation and is here. **parvis-exec-writer** owns the document, and the substance of an audit response or a refresh case is here. **parvis-people-leader** owns team design, and headcount is only an input to seat demand, since no seat reading becomes evidence about a named individual.
 
-## Panel lenses (core panel pattern)
+## Panel lenses (parvis-core panel pattern)
 
 For a contested position, an audit response or a consolidation plan, pick two to four.
 

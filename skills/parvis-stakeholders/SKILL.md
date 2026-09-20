@@ -1,24 +1,22 @@
 ---
 name: parvis-stakeholders
 description: >
-  Stakeholder relationship management for the user, covering the registry and craft
-  for the people around their work, their CIO and executive peers, board and
-  risk-committee members, regulators, key partners and vendors' executives, and
-  internal leaders outside their org. Use whenever the user works a relationship or
-  influence question, on "map the stakeholders for X", "where does a given person
-  stand on Y", "build the engagement plan for this initiative", "who do I need on side
-  before the QBR", "log this about a stakeholder", "prep the terrain before I propose
-  Z", even casually phrased. Owns the stakeholders section of parvis-memory
-  (per-person registry files, confidential, never synced) and stakeholder maps per
-  initiative. Composes with meeting-prep (attendee intel), exec-writer (audiences are
-  how they read, this skill is where they stand), and people-leader (the user's own
-  reports live in evidence logs, not here). Not for document craft or
-  people-management of the user's org.
+  Stakeholder relationship management for the user, covering the registry and craft for
+  the people around their work, their CIO and executive peers, board and risk-committee
+  members, regulators, key partners and vendors' executives, and internal leaders outside
+  their org. Use whenever the user works a relationship or influence question, on "map the
+  stakeholders for X", "where does a given person stand on Y", "build the engagement plan
+  for this initiative", "who do I need on side before the QBR", "brief me on <name>", "log
+  this about a stakeholder", "prep the terrain before I propose Z", even casually phrased.
+  Owns the stakeholders section of parvis-memory (per-person registry files, confidential,
+  never synced) and stakeholder maps per initiative. Composes with meeting-prep (attendee
+  intel), exec-writer (audiences are how they read, this skill is where they stand), and
+  people-leader (the user's own reports live in evidence logs, not here).
 ---
 
 # Parvis stakeholders
 
-*Skill version 2.5.0 · Last updated 2026-09-20 · Parvis release 2.5 (2026-09-20)*
+*Skill version 2.6.0 · Last updated 2026-09-20 · Parvis release 2.6 (2026-09-20)*
 
 Relationship management as a discipline, knowing the terrain before any contested move. At senior levels, initiatives succeed or die on stakeholder positioning long before their technical merits are heard, so this skill makes that terrain explicit, remembered and worked deliberately. Client of parvis-memory, section **`stakeholders`** (confidential, `sync: no`, the same rules as the people sections, professional and factual, T3 governs, nothing the user wouldn't defend read aloud). Core's tenets apply throughout, T10 especially, since the best win is the one made unnecessary by preparation.
 
@@ -76,9 +74,12 @@ The craft file carries four. **New key stakeholder** (new boss, peer or regulato
 
 - **Terrain before engagement.** Any contested proposal, negotiation or change initiative gets the stakeholder question asked early, "who has to be with you, and where are they today?", offered proactively when the advisor, planner or writer is working something that will need sponsors.
 - **Composition.** Meeting-prep pulls attendees' registry entries into every prep. Exec-writer's `audiences.md` stays the how-they-read file, so cross-reference rather than duplicate, since stance lives here and register lives there. Vendor-eval's negotiation prep draws the vendor-side people from this registry.
-- **Ethics line, explicitly.** This skill counsels preparation, positioning, sequencing and honest persuasion built on understanding what others need. It never counsels deception, manufactured pressure or bad-faith tactics. T2 binds the user's dealings as much as their documents, and a reputation is a one-way door (methods, reversibility).
 - **Panel (core pattern).** For high-stakes influence campaigns, convene the terrain-analyst (the map's honest reader), skeptic-simulation (plays the hardest opposed stakeholder), coalition-realist (is the sequencing actually executable), and second-order lens (what does this campaign teach the org about how decisions get made).
+
+## Guardrails
+
+This skill counsels preparation, positioning, sequencing and honest persuasion built on understanding what others need. It never counsels deception, manufactured pressure or bad-faith tactics. T2 binds the user's dealings as much as their documents, and a reputation is a one-way door (methods, reversibility).
 
 ## What lives where
 
-Registry files and relationship history → `sections/stakeholders/registry/`. Initiative maps → the initiative's home section, pointing at registry files. Stance changes, commitments made to or by stakeholders → dated registry entries plus, where decision-shaped, the relevant section's ledger.
+The split runs on content rather than format. Anything naming a person and where they stand is a register and stays in memory, registry files and relationship history in `sections/stakeholders/registry/` inside the confidential `stakeholders` section, initiative maps with the initiative's home section pointing at those files, because memory is where the structural protection sits (T3). The workspace takes the engagement document written to be sent or presented, with a manifest row (T11), carrying the plan's conclusion and leaving person-level stance detail in the registers. Stance changes, commitments made to or by stakeholders → dated registry entries plus, where decision-shaped, the relevant section's ledger.

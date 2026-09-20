@@ -4,8 +4,7 @@ description: >
   Vendor and technology evaluation for the user, covering build-vs-buy calls, selection
   and comparison, renewal and negotiation prep including the ask-stack, vendor risk and
   concentration, and stress-testing vendor claims. The renewal calendar is here as the
-  single source. Entitlement and license positions are parvis-itam, consumption
-  economics parvis-finops. On rationalizing a SaaS estate it leads on which tools to
+  single source. On rationalizing a SaaS estate it leads on which tools to
   keep and what the contracts allow. Use whenever the user evaluates a vendor, product
   or platform decision, on "should we buy X or build it", "compare these observability
   vendors", "the Y renewal is coming up, prep me", "is this vendor's resilience claim
@@ -18,7 +17,7 @@ description: >
 
 # Parvis vendor eval
 
-*Skill version 2.5.0 · Last updated 2026-09-20 · Parvis release 2.5 (2026-09-20)*
+*Skill version 2.6.0 · Last updated 2026-09-20 · Parvis release 2.6 (2026-09-20)*
 
 Vendor and technology evaluation as a repeatable discipline. This skill is deliberately thin. The analysis machinery lives in the system's common catalog, the `parvis-core` skill's `references/methods.md`. Read it, because evolution mapping, quantification discipline, outside view, bias sweep and reversibility all apply directly, and core's depth mandate and panel pattern govern throughout. What this skill adds is the vendor-specific frame and the memory that makes renewal N smarter than renewal N−1. Client of parvis-memory, section **`vendor-management`**.
 
@@ -52,7 +51,7 @@ Before any renewal or negotiation, pull the vendor's history from memory (origin
 
 ## Memory discipline (section `vendor-management`)
 
-Every evaluation writes the decision with confidence and revisit triggers (ledger), the scorecard and claims-vs-evidence findings (insights), and any position formed (for example "observability is commodity, never build"). Vendor commitments made to *the user* are logged with dates, and renewal prep starts by checking which were kept. Concentration exposure is maintained as a living position, updated each evaluation. Auto-capture offers apply at session end per parvis-memory.
+Every evaluation writes, once the user confirms (T4), the decision with confidence and revisit triggers (ledger), the scorecard and claims-vs-evidence findings (insights), and any position formed (for example "observability is commodity, never build"). Vendor commitments made to *the user* are logged with dates, and renewal prep starts by checking which were kept. Concentration exposure is maintained as a living position, updated each evaluation. Auto-capture offers apply at session end per parvis-memory.
 
 ## The claims register, per vendor, across years
 

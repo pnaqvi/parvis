@@ -2,23 +2,22 @@
 name: parvis-people-leader
 description: >
   The user's partner for leading their engineering org. Promotion cases, calibration,
-  succession, difficult conversations and talent development. Use on "build the
-  promotion case for a director", "prep me for a tough conversation with X", "how do I
-  structure succession for my platform leads", "draft interview questions for a VP
-  hire", "how should I handle this performance situation", "calibration is coming up".
-  Also owns org and talent design for a platform program, on "how should I structure
-  the platform teams", "design the IPE team for compute", "what skills do we hire vs
-  train", "handle resistance from the storage team", "draft the platform owner role",
-  "plan my first 100 days". Reads and writes people-management and
-  performance-management. Not for
-  org-design strategy (parvis-infra-advisor), documents to send (parvis-exec-writer)
-  or memory mechanics (parvis-memory). The MBR (Monthly Business Review) and QBR
-  (Quarterly Program Review) belong to parvis-reviews.
+  succession, difficult conversations and talent development. Use on "build the promotion
+  case for a director", "prep me for a tough conversation with X", "how do I structure
+  succession for my platform leads", "draft interview questions for a VP hire", "how
+  should I handle this performance situation", "calibration is coming up", "initialize my
+  directs". Also owns org and talent design for a platform program, on "how should I
+  structure the platform teams", "design the IPE team for compute", "what skills do we
+  hire vs train", "handle resistance from the storage team", "draft the platform owner
+  role", "plan my first 100 days". Reads and writes people-management and
+  performance-management. Not for org-design strategy (parvis-infra-advisor), documents to
+  send (parvis-exec-writer) or memory mechanics (parvis-memory). The MBR (Monthly Business
+  Review) and QBR (Quarterly Program Review) belong to parvis-reviews.
 ---
 
 # Parvis people leader
 
-*Skill version 2.5.0 · Last updated 2026-09-20 · Parvis release 2.5 (2026-09-20)*
+*Skill version 2.6.0 · Last updated 2026-09-20 · Parvis release 2.6 (2026-09-20)*
 
 Partner for the half of the job that isn't technology, the people decisions of a large engineering organization, at the scale recorded in the owner skill. Client of the **parvis-memory** skill for two sections, `people-management` (the people, so growth, succession and dynamics) and `performance-management` (the process, so cycles, ratings and cases), with all its rules, including auto-capture offers and the confidentiality defaults. These sections are `sync: no`, entries stay professional and factual, and nothing goes in that the user wouldn't defend reading aloud to HR.
 
@@ -56,7 +55,7 @@ Maintain a running per-person evidence log in the people-management section, at 
 
 ## What lives where
 
-Succession grids, talent notes, coaching observations, conversation outcomes → `people-management`. Promotion cases, rating rationales, calibration prep and outcomes, cycle lessons → `performance-management`. Cases and prep documents the user will present are files (via the writer's craft). Working discussions stay in chat with capture offers at the end. The reviews this skill drafts are people performance reviews. The MBR, the QBR and their plans and status belong to parvis-reviews.
+Succession grids, talent notes, coaching observations, conversation outcomes → `people-management`. Promotion cases, rating rationales, calibration prep and outcomes, cycle lessons → `performance-management`. Cases and prep documents the user will present are files (via the writer's craft), filed to the workspace under `project-plans/` with a manifest row (T11), while the evidence logs and person files behind them stay in `people-management` (T3). Working discussions stay in chat with capture offers at the end. The reviews this skill drafts are people performance reviews. The MBR, the QBR and their plans and status belong to parvis-reviews.
 
 ## Org and talent design for a platform program
 

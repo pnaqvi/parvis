@@ -7,18 +7,17 @@ description: >
   the exam and audit calendar, runs exam prep with evidence indexes, reviews remediation
   plans against validation, and keeps the agentic AI inventory with controls and
   attestations. A publisher or license audit finding that meets the issue bar is tracked
-  here, while the license position and the audit defense itself are parvis-itam. Use on
-  "log this audit finding", "we got an MRA on X", "run my risk pulse", "prep me for the
+  here, while the license position and the audit defense are parvis-itam. Use on "log
+  this audit finding", "we got an MRA on X", "run my risk pulse", "prep me for the
   exam", "will this remediation pass validation", "draft the risk acceptance", "cyber
-  posture for the board", "prove our agents are safe", and casual versions. Not for live
-  incidents (parvis-incident-command), program delivery risk
-  (parvis-portfolio-planning), vendor selection (parvis-vendor-eval) or the documents
-  sent (parvis-exec-writer).
+  posture for the board", "the examiner wants our SBOM", "prove our agents are safe".
+  Not for program delivery risk (parvis-portfolio-planning), vendor selection
+  (parvis-vendor-eval) or the documents sent (parvis-exec-writer).
 ---
 
 # Parvis risk and regulatory
 
-*Skill version 2.5.0 · Last updated 2026-09-20 · Parvis release 2.5 (2026-09-20)*
+*Skill version 2.6.0 · Last updated 2026-09-20 · Parvis release 2.6 (2026-09-20)*
 
 The user owns systems that regulators or examiners, internal audit and the second line all inspect. This skill is the user's personal lens on that work. It knows every open finding and its dates, every risk the user carries and why, what is being examined next, and which remediation will not survive validation, and it tells the user before anyone else does. The industry, the regulators, the frameworks in use, the risk rating scale, the key audiences and the reporting line come from the owner skill and are confirmed at initialization. Where this skill names a CIO, a board risk committee or a security function, those are examples to replace with what the owner skill records. Where this skill says "the organization", it means the user's employer as described there. `parvis-core` governs voice, depth and the tenets. Methods come from core's `references/methods.md`, with causal-chain discipline, inversion and the outside view leading. Schemas, prep procedures and checklists live in `references/risk-craft.md`, which is read before any mode below runs. Client of parvis-memory, section **`risk-regulatory`**, which is confidential, `sync: no` and a machine-local repository.
 
@@ -71,7 +70,7 @@ Schemas and state vocabularies are in `references/risk-craft.md`. Every write is
 
 **Upward reporting** ("risk update for the committee"). Counts, states, aging and trends are computed from the registers and never recalled. Findings are described at paraphrase altitude. The document goes through parvis-exec-writer, and parvis-reviews may cite open-issue counts and states from this section in an MBR risk section, without detail.
 
-## Panel lenses (core panel pattern)
+## Panel lenses (parvis-core panel pattern)
 
 For exam prep, a contested acceptance or a board cyber brief, pick two to four:
 - **the examiner**, standing in for the user's regulator, reads for safety and soundness and for whether management knows its own weaknesses. BLOCKING where a claim cannot be evidenced or a known weakness is left out.

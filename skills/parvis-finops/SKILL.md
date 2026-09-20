@@ -17,7 +17,7 @@ description: >
 
 # Parvis FinOps
 
-*Skill version 2.5.0 · Last updated 2026-09-20 · Parvis release 2.5 (2026-09-20)*
+*Skill version 2.6.0 · Last updated 2026-09-20 · Parvis release 2.6 (2026-09-20)*
 
 The user's organization runs a multi-cloud estate at the scale, in the industry and under the regulators the owner skill records. This skill is the economics of what that estate consumes, under whatever contract exists. It reads any bill as three separate questions, what rate was paid, how much was used and what the mix was, and answers none with a number it was not given. `parvis-core` governs depth, voice and the tenets. Client of parvis-memory, section **`cloud-economics`**, `sync: yes`. Two references load on demand, `references/commitment-mechanics.md` before any commitment or coverage question and `references/allocation-and-unit-economics.md` before any allocation, unit-metric, forecast or variance question.
 
@@ -48,7 +48,7 @@ The reader runs the platforms and argues about the bill monthly. Nothing is defi
 
 Any movement in a bill decomposes into three components and is never reported as one. Rate is what a unit of the same thing cost, moved by coverage changing, an instrument expiring or a price change. Usage is how many units were consumed, moved by demand, a deploy, a retry storm or a leak. Mix is what was consumed, moved by a shift between services, regions, storage classes or instance families. A mix shift reads as waste and usually is not, and a rate improvement can hide usage growth underneath it for two quarters. Decompose in that order, hold the other two at the prior period while measuring one, and state the unexplained residual rather than forcing it into a component. Each component has a different owner, so a variance handed to finance without the three separated gets re-litigated.
 
-## Panel lenses (core panel pattern)
+## Panel lenses (parvis-core panel pattern)
 
 For a contested commitment, a contested allocation model or an efficiency case going upward, pick two to four.
 

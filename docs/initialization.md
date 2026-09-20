@@ -1,6 +1,6 @@
 # Initialization, from installed to operational
 
-*Document 3 of 6 · release 2.5, September 2026 · The single home of the initialization sequence. `parvis-memory` runs it and reads this file at the start of every initialization session, and no skill carries a second copy of the steps. The canonical copy ships with the core skill at `skills/parvis-core/references/initialization.md`, and an identical copy lives in `docs/`.*
+*Document 3 of 6 · release 2.6, September 2026 · The single home of the initialization sequence. `parvis-memory` runs it and reads this file at the start of every initialization session, and no skill carries a second copy of the steps. The canonical copy ships with the core skill at `skills/parvis-core/references/initialization.md`, and an identical copy lives in `docs/`.*
 
 Installation puts files in place. Initialization loads what the system needs to know about the user, their org, their programs, their current posture, their positions, their people and their voice. Without it the advisors have no positions to cite, the rhythms have no projects to read, the writer drafts in a generic voice and preps have no stakeholders to pull.
 

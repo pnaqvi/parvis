@@ -2,7 +2,7 @@
 
 **A personal executive operating system for Claude that anyone can adopt.** Twenty-two composable skills, two git-backed data homes (a sectioned memory and a document workspace), a shared frameworks catalog, and thirteen binding tenets. Everything about you lives in one file, the `parvis-owner` skill. Fill it in and the whole system knows your role, your org, your scale, your industry and how you like to be written to.
 
-Release **2.5** · License **Apache-2.0**
+Release **2.6** · License **Apache-2.0**
 
 ## What it does
 
@@ -26,6 +26,7 @@ memory/          Seed memory home, MANIFEST.md plus 17 sections (templates only)
 workspace-seed/  Seed workspace home, MANIFEST.md, strategy/ tech-plans/ project-plans/
                  cadence/ risk/ inbox/ reference/ archive/
 docs/            The six help documents
+tools/           package-skills.sh, check-release.sh and install-sandbox-tests.sh
 install.sh       Install, update, and uninstall (see below)
 VERSION          System release (X.Y). Each skill carries X.Y.Z in its header
 ```
@@ -54,9 +55,9 @@ bash install.sh --uninstall --purge   # also remove both data homes, typed confi
 PARVIS_BASE=/new/base bash install.sh --relocate   # move both homes to a new base
 ```
 
-**Where the homes live.** By default the two data homes are `~/ai_working_Directory/parvis-memory` and `~/ai_working_Directory/parvis-workspace`. To put them anywhere else, set `PARVIS_BASE` on the first install, for example `PARVIS_BASE=/path/to/base bash install.sh`, which gives `<base>/parvis-memory` and `<base>/parvis-workspace`. Write the base as a POSIX path. On Windows under Git Bash that means `/c/Users/<you>/...` rather than `C:/Users/<you>/...`, which the installer refuses. The choice is remembered, so later runs need no `PARVIS_BASE`, and the managed block tells every skill where the homes are. `--relocate` moves existing homes later, after checking that they are clean git repositories and that the move is a rename on one volume. The install guide has the details.
+**Where the homes live.** By default the two data homes are `~/ai_working_Directory/parvis-memory` and `~/ai_working_Directory/parvis-workspace`. Set `PARVIS_BASE` on the first install to put them anywhere else, for example `PARVIS_BASE=/path/to/base bash install.sh`. Write the base as a POSIX path, so `/c/Users/<you>/...` under Git Bash rather than `C:/Users/<you>/...`, which the installer refuses. The choice is remembered, the managed block tells every skill where the homes are, and `--relocate` moves them later. [docs/install-guide.md](docs/install-guide.md) has the checks behind each of these.
 
-The installer copies the skills into `~/.claude/skills/`, keeps an owner skill you have already filled in, writes a short managed block into `~/.claude/CLAUDE.md`, and seeds both homes **only if absent**, so existing data is never touched. What it retires, how the confidential memory sections become nested local-only repositories, what the install receipt is for, and why legacy infra-platform homes are reported and left in place rather than migrated are all in [docs/install-guide.md](docs/install-guide.md).
+The installer copies the skills into `~/.claude/skills/`, keeps an owner skill you have already filled in, writes a short managed block into `~/.claude/CLAUDE.md`, and seeds both homes **only if absent**, so existing data is never touched. What it retires, how the confidential memory sections become nested local-only repositories, what the receipt is for, and why legacy infra-platform homes are left in place rather than migrated are all in the install guide.
 
 The script cannot reach `~/.claude/skills/synced/`. Skills delivered by claude.ai account sync are retired on the claude.ai side, and the script says so when it finds that directory.
 

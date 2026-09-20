@@ -1,6 +1,6 @@
 # Why Parvis exists
 
-*Document 1 of 6 · release 2.5, September 2026 · Lives in parvis-core so help mode answers from it.*
+*Document 1 of 6 · release 2.6, September 2026 · Lives in parvis-core so help mode answers from it.*
 
 ## The problem it solves
 
@@ -8,11 +8,11 @@ Senior leaders run organizations with high stakes and deep context. A large team
 
 Parvis is the fix, built as three commitments. Everything specific about you (your role, your org, your scale, your industry, your voice) lives in one file, the `parvis-owner` skill, so the same system serves anyone who fills it in.
 
-**1. It knows you and compounds.** One identity source (the `parvis-owner` skill) and two homes under git. Memory at `<base>/parvis-memory/` holds what you think and have decided, in topic sections plus one section per org group, with positions carrying what-would-change-my-mind fields, decisions tracked to outcomes and calibrated, per-person evidence logs, per-vendor claims registers, meeting threads, and the commitments ledger. The workspace at `<base>/parvis-workspace/`, beside it under the base you chose at install, holds what the org drafts, sends and files, strategy, tech plans, project plans, the risk register, and each period's plan, status and review. The two stay separate on purpose. A fact that must survive and be cited belongs in memory, and a document belongs in the workspace. A quick take in March informs a board memo in September, and a commitment made in a quarterly review is checked against what actually happened the next quarter. Over years the system learns where your confidence runs hot or cold, a track record rather than a chat history.
+**1. It knows you and compounds.** One identity source, the `parvis-owner` skill, and two homes under git, described in `system-guide.md` section 1. Memory holds what you think and have decided, with positions carrying what-would-change-my-mind fields and decisions tracked to outcomes and calibrated. The workspace holds what the org drafts, sends and files. The two stay separate on purpose. A fact that must survive and be cited belongs in memory, and a document belongs in the workspace. A quick take in March informs a board memo in September, and a commitment made in a quarterly review is checked against what actually happened the next quarter. Over years the system learns where your confidence runs hot or cold, a track record rather than a chat history.
 
 **2. It challenges rather than flatters.** Everyone who reports to you has reasons to polish your framing. This system has none, by construction. Arrive with a lean and the first move is a steelman against it. Ask the wrong question and it says so, with the question it would ask instead. Bring goals dressed as strategy and they get named before anything is polished. Multi-perspective panels must surface genuine disagreement or state why none exists, and a unanimous panel is treated as a smell.
 
-**3. It reasons deeply and honestly, on the record.** Thirteen binding tenets govern every skill. The two load-bearing ones are T1, quality and deep thought over token cost and speed, always, with one declared inversion for live incidents, and T2, the zero-hallucination protocol, meaning provenance tags on material claims, no invented numbers ever, recall as quotation, and "I don't know" as a first-class answer. The workspace is the system of record (T11), commitments are ledgered and never remembered (T12), and shareable prose is scrubbed before final (T13). A shared frameworks catalog (first principles, outside view, second-order effects, strategy kernel, bias sweeps, theory of constraints, evolution mapping, the adoption chasm and more) is applied by selection, not recitation, and named when used.
+**3. It reasons deeply and honestly, on the record.** Thirteen binding tenets govern every skill, and `parvis-core` carries their text. The two load-bearing ones are T1, quality and deep thought over token cost and speed, always, with one declared inversion for live incidents, and T2, the zero-hallucination protocol, meaning provenance tags on material claims, no invented numbers ever, recall as quotation, and "I don't know" as a first-class answer. Behind them T11, T12 and T13 carry the record, the ledger and the prose scrub, and a shared frameworks catalog is applied by selection, not recitation, and named when used.
 
 ## Who it fits
 
@@ -20,7 +20,7 @@ The method, the tenets, memory, the writer, the cadence, people leadership, stak
 
 ## What it is, concretely
 
-Twenty-two skills with one job each, listed with the phrases that reach them in `skills-reference.md`. They compose by reference, persona from one place, method from one place, memory and documents through one owner, so nothing is maintained twice.
+One skill per job, each listed with the phrases that reach it in `skills-reference.md`. They compose by reference, persona from one place, method from one place, memory and documents through one owner, so nothing is maintained twice.
 
 ## What it deliberately is not
 

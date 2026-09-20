@@ -89,8 +89,8 @@ SYSTEM_VERSION="$( { tr -d ' \t\r\n' < "$BUNDLE_DIR/VERSION"; } 2>/dev/null || t
 
 # The roster. Verification checks exactly these twenty-two names. Release 2.1 added parvis, the
 # /parvis session command, 2.2 added parvis-risk-regulatory, 2.3 made the identity skill the
-# owner skill parvis-owner, shipped as a template that each person fills in with their own
-# background, 2.4 added parvis-ai-engineering, parvis-sdlc and parvis-software-engineering, and
+# owner skill parvis-owner, shipped filled in with the maintainer's background for each
+# person to replace, 2.4 added parvis-ai-engineering, parvis-sdlc and parvis-software-engineering, and
 # 2.5 added parvis-finops and parvis-itam.
 ROSTER=(be-human parvis-owner parvis-ai-engineering parvis-core parvis-exec-writer
         parvis-finops parvis-incident-command parvis-infra-advisor parvis-itam
@@ -106,8 +106,10 @@ RETIRED_SKILLS=(infra-platform-advisor infra-platform-comms infra-platform-core
                 infra-platform-portfolio-planning infra-platform-research infra-platform-reviews
                 infra-platform-vendor-eval)
 
-# The owner skill holds the one person's identity and ships as a template. Its first body line is
-# this marker, and an installed copy without it has been filled in, so it is never overwritten.
+# The owner skill holds the one person's identity. The bundle ships it filled in, and an older
+# bundle shipped it as a template whose first body line is this marker. An installed copy counts as
+# the user's own once it carries no marker and is no longer the bundle's copy byte for byte, and
+# such a copy is never overwritten.
 OWNER_SKILL="parvis-owner"
 OWNER_MARKER="<!-- parvis:owner-template -->"
 # An earlier install shipped the identity skill as user, marked with the older template marker. A
@@ -187,12 +189,35 @@ is_template_skill() {
   grep -qF -e "$OWNER_MARKER" -e "$OLD_OWNER_MARKER" "$1" 2>/dev/null
 }
 
-# looks_like_profile NAME succeeds when the installed skill NAME holds a filled-in identity profile,
-# meaning its SKILL.md lacks the template marker and reads like a profile of a person.
+# The bundle's own copy of the owner skill, the yardstick for an installed copy nobody has edited.
+BUNDLE_OWNER_F="$BUNDLE_DIR/skills/$OWNER_SKILL/SKILL.md"
+
+# is_bundle_owner_copy FILE succeeds when FILE is the bundle's owner skill byte for byte, so it is
+# the shipped profile and not the user's own. A release can ship that file as a blank template or
+# filled in, and this test covers both. It is false whenever the bundle file cannot be read, so an
+# unreadable bundle never makes a filled-in profile look untouched. The second comparison strips CR
+# so a CRLF checkout still recognises its own copy.
+is_bundle_owner_copy() {
+  [ -f "$1" ] && [ -r "$1" ] && [ -f "$BUNDLE_OWNER_F" ] && [ -r "$BUNDLE_OWNER_F" ] || return 1
+  cmp -s "$1" "$BUNDLE_OWNER_F" && return 0
+  cmp -s <(tr -d '\r' < "$1") <(tr -d '\r' < "$BUNDLE_OWNER_F")
+}
+
+# is_unfilled_owner FILE succeeds when FILE is an owner skill nobody has made their own, either
+# because it still carries a template marker or because it is the copy the bundle ships. Every
+# lifecycle decision about the owner skill asks this rather than the marker alone, so adoption,
+# restore, keep and the summary all work whichever way a release ships the file.
+is_unfilled_owner() {
+  is_template_skill "$1" || is_bundle_owner_copy "$1"
+}
+
+# looks_like_profile NAME succeeds when the installed skill NAME holds an identity profile the user
+# has made their own, meaning its SKILL.md is neither a template nor the bundle's own copy and
+# reads like a profile of a person. The shipped copy is nobody's data, so it is never backed up.
 looks_like_profile() {
   local f="$SKILLS_DST/$1/SKILL.md"
   [ -f "$f" ] || return 1
-  is_template_skill "$f" && return 1
+  is_unfilled_owner "$f" && return 1
   LC_ALL=C grep -qiE 'profile version|background about the user' "$f"
 }
 
@@ -706,9 +731,15 @@ if receipt_valid; then
       echo "REFUSED. PARVIS_BASE=$BASE_FROM_ENV disagrees with the install receipt, which records" >&2
       echo "  memory at $REC_MEM" >&2
       echo "  workspace at $REC_WS" >&2
-      echo "To keep the recorded homes, run again without PARVIS_BASE." >&2
-      echo "To move them to the new base, run again with --relocate added." >&2
-      echo "To start fresh at the new base, remove the old homes yourself first." >&2
+      if [ "$MODE" = "install" ]; then
+        echo "To keep the recorded homes, run again without PARVIS_BASE." >&2
+        echo "To move them to the new base, run again with --relocate added." >&2
+        echo "To start fresh at the new base, remove the old homes yourself first." >&2
+      else
+        # --relocate is refused together with --uninstall, and starting fresh at another base means
+        # nothing here, so the one advice worth giving is the run that acts on the recorded homes.
+        echo "An uninstall acts on the recorded homes, so run it again without PARVIS_BASE." >&2
+      fi
       echo "Nothing was changed." >&2
       exit 1
     else
@@ -1051,6 +1082,25 @@ for n in ${BUNDLE_SKILLS[@]+"${BUNDLE_SKILLS[@]}"} "${RETIRED_SKILLS[@]}"; do
     pre_error "$SKILLS_DST/$n is, or contains, the bundle or its own source. Installing would delete the source."
   fi
 done
+# The data homes are created under a base that may not exist yet, and a base that cannot be written
+# would fail the run halfway, after the skills and the managed block are already in place. The
+# deepest existing ancestor is tested here instead, the same one the relocation checks use. A
+# directory Git Bash reports as unwritable can still take a write, so the bit is only a hint and a
+# real probe settles it, and the run is refused only when the probe fails too.
+for b in "$(dirname "$MEM_DST")" "$(dirname "$WS_DST")"; do
+  anc="$(existing_ancestor "$b")"
+  if [ ! -d "$anc" ]; then
+    pre_error "The base $b cannot be created, because $anc exists and is not a directory."
+  elif [ ! -w "$anc" ]; then
+    probe="$anc/.parvis-write-probe.$$"
+    if mkdir "$probe" 2>/dev/null; then
+      rmdir "$probe" 2>/dev/null || true
+    else
+      pre_error "The base $b cannot be created, because $anc cannot be written. Choose another base with PARVIS_BASE."
+    fi
+  fi
+done
+
 if [ "$(claude_md_status malformed)" != "0" ]; then
   pre_error "$CLAUDE_MD has a managed-block start line with no end line of its own. Fix it by hand."
 fi
@@ -1368,9 +1418,9 @@ for name in ${BUNDLE_SKILLS[@]+"${BUNDLE_SKILLS[@]}"}; do
     install_fail=1
     continue
   fi
-  # The owner skill is copied only while the installed one is missing or still the untouched
-  # template. A filled-in copy holds the user's own background and is kept as it is.
-  if [ "$name" = "$OWNER_SKILL" ] && [ -f "$dst/SKILL.md" ] && ! is_template_skill "$dst/SKILL.md"; then
+  # The owner skill is copied only while the installed one is missing or still the copy the bundle
+  # ships. A copy the user has made their own holds their background and is kept as it is.
+  if [ "$name" = "$OWNER_SKILL" ] && [ -f "$dst/SKILL.md" ] && ! is_unfilled_owner "$dst/SKILL.md"; then
     CLAIMED+=("$name")
     KEPT_OWNER=1
     echo "      Kept the personalized owner skill at $(display_path "$dst"), not overwritten."
@@ -1409,8 +1459,8 @@ if [ "$install_fail" -eq 1 ]; then
 fi
 
 # Adopt a filled-in identity skill from an earlier install, before retirement removes it. It runs
-# only while the owner skill is still the template, and only for an old skill without a template
-# marker that the previous receipt claims or that reads like a profile. The copy takes the owner
+# only while the owner skill is still the copy the bundle ships, and only for an old skill without
+# a template marker that the previous receipt claims or that reads like a profile. The copy takes the owner
 # skill's name, and retirement below then backs the old skill up and removes it. A second run finds
 # the owner skill filled in, or the old skill gone, and does nothing.
 ADOPTED=0
@@ -1440,7 +1490,7 @@ write_owner_from() {
 if valid_skill_name "$OLD_OWNER_SKILL" && ! is_synced_path "$SKILLS_DST/$OLD_OWNER_SKILL" && \
    [ ! -L "$SKILLS_DST/$OLD_OWNER_SKILL" ] && [ -f "$OLD_F" ] && ! is_template_skill "$OLD_F" && \
    { in_list "$OLD_OWNER_SKILL" ${PREV_ROSTER[@]+"${PREV_ROSTER[@]}"} || looks_like_profile "$OLD_OWNER_SKILL"; } && \
-   { [ ! -f "$OWN_F" ] || is_template_skill "$OWN_F"; }; then
+   { [ ! -f "$OWN_F" ] || is_unfilled_owner "$OWN_F"; }; then
   if write_owner_from "$OLD_F"; then
     ADOPTED=1
     echo "      Adopted your filled-in profile into $OWNER_SKILL, from $(display_path "$OLD_F")."
@@ -1495,22 +1545,22 @@ CLAIMED=(${KEEP[@]+"${KEEP[@]}"})
 save_receipt
 
 # Offer back a profile an earlier uninstall saved. Uninstall copies a filled-in identity profile to
-# ~/.claude/parvis-retired-profile-backup*.md, and nothing ever read it again, so a reinstall on a
-# machine whose bundle ships the template left the owner skill blank. This runs only while the
-# installed owner skill is still the untouched template, so a filled-in one is never overwritten,
-# and it says nothing at all in that case. The newest backup is the one offered.
+# ~/.claude/parvis-retired-profile-backup*.md, and nothing ever read it again, so a reinstall left
+# the owner skill holding the shipped profile instead of the user's own. This runs only while the
+# installed owner skill is still the copy the bundle ships, so a copy the user has made their own
+# is never overwritten, and it says nothing at all in that case. The newest backup is the one offered.
 RESTORED=0
 RESTORE_SRC=""
-if [ -f "$OWN_F" ] && is_template_skill "$OWN_F" && [ "$ADOPTED" -eq 0 ]; then
+if [ -f "$OWN_F" ] && is_unfilled_owner "$OWN_F" && [ "$ADOPTED" -eq 0 ]; then
   RESTORE_SRC="$(newest_profile_backup)"
-  [ -n "$RESTORE_SRC" ] && [ -f "$RESTORE_SRC" ] && ! is_template_skill "$RESTORE_SRC" || RESTORE_SRC=""
+  [ -n "$RESTORE_SRC" ] && [ -f "$RESTORE_SRC" ] && ! is_unfilled_owner "$RESTORE_SRC" || RESTORE_SRC=""
 fi
 if [ -n "$RESTORE_SRC" ]; then
   stamp="$(profile_backup_stamp "$RESTORE_SRC")"
-  echo "      The owner skill is still the unfilled template, and a profile backup from $stamp is here"
+  echo "      The owner skill is still the copy the bundle ships, and a profile backup from $stamp is here"
   echo "        $(display_path "$RESTORE_SRC")"
   if [ -t 0 ]; then
-    printf '      Restore it into %s? Type yes to restore, anything else keeps the template: ' "$OWNER_SKILL"
+    printf '      Restore it into %s? Type yes to restore, anything else keeps the shipped copy: ' "$OWNER_SKILL"
     answer=""
     read -r answer || true
     if [ "$answer" = "yes" ]; then
@@ -1518,11 +1568,11 @@ if [ -n "$RESTORE_SRC" ]; then
         RESTORED=1
         echo "      Restored your profile into $OWNER_SKILL from the backup of $stamp."
       else
-        echo "      ERROR. Could not restore that backup, so $OWNER_SKILL is still the template."
+        echo "      ERROR. Could not restore that backup, so $OWNER_SKILL is still the shipped copy."
         fail=1
       fi
     else
-      echo "      Kept the template. The backup is left where it is."
+      echo "      Kept the shipped copy. The backup is left where it is."
     fi
   else
     # No terminal, so nothing is asked and nothing hangs. The one command is printed instead.
@@ -1570,16 +1620,27 @@ fi
 
 # ---- 2. Memory (never overwrite) ------------------------------------------
 echo "[2/5] Memory home: $MEM_DST"
+# stop_seeding REASON ends the run when a data home cannot be created. Skills and the managed block
+# are already written by this point, so the wording never claims that nothing was changed, and a
+# home left half copied is removed by hand before the re-run.
+stop_seeding() {
+  echo "      ERROR. $1"
+  echo
+  echo "Install STOPPED. The data homes could not be seeded, so initialization cannot start. Skills"
+  echo "and the managed block in $CLAUDE_MD are already in place, so this run did change things."
+  echo "Remove a half-seeded home by hand, fix the error above, then re-run (safe to re-run)."
+  exit 1
+}
 # A home missing at the chosen base is created there and seeded, and the run names the full path
 for b in "$(dirname "$MEM_DST")" "$(dirname "$WS_DST")"; do
   [ -d "$b" ] && continue
-  mkdir -p "$b"
+  mkdir -p "$b" || stop_seeding "Could not create the base directory $b."
   echo "      Created the base directory $b."
 done
 if [ -d "$MEM_DST" ]; then
   echo "      Exists, leaving untouched (updates to memory are the system's job, not the installer's)."
 else
-  cp -R "$BUNDLE_DIR/memory" "$MEM_DST"
+  cp -R "$BUNDLE_DIR/memory" "$MEM_DST" || stop_seeding "Could not seed the memory home at $MEM_DST."
   nsec="$(find "$BUNDLE_DIR/memory/sections" -mindepth 1 -maxdepth 1 -type d | wc -l | tr -d ' ')"
   echo "      Created $MEM_DST, seeded from the bundle ($nsec sections plus manifest)."
 fi
@@ -1604,7 +1665,12 @@ if [ -d "$MEM_DST/sections" ] && [ -f "$MEM_DST/MANIFEST.md" ]; then
   for s in ${ADDED_SECTIONS[@]+"${ADDED_SECTIONS[@]}"}; do
     tr -d '\r' < "$MEM_DST/MANIFEST.md" | grep -q "^| $s |" && continue
     row="$(tr -d '\r' < "$BUNDLE_DIR/memory/MANIFEST.md" | grep "^| $s |" | head -n 1 || true)"
-    [ -n "$row" ] || continue
+    if [ -z "$row" ]; then
+      echo "      ERROR. The bundle manifest has no row for the new section $s, so the memory router"
+      echo "      would never find it. Add the row to memory/MANIFEST.md in the bundle, then re-run."
+      fail=1
+      continue
+    fi
     tmp="$MEM_DST/MANIFEST.md.parvis-tmp"
     if awk -v row="$row" '
         { lines[NR] = $0; t = $0; sub(/\r$/, "", t); if (t ~ /^\| /) last = NR }
@@ -1636,22 +1702,65 @@ echo "[3/5] Workspace home: $WS_DST"
 if [ -d "$WS_DST" ]; then
   echo "      Exists, leaving its files untouched (working documents are yours, not the installer's)."
 else
-  cp -R "$BUNDLE_DIR/workspace-seed" "$WS_DST"
+  cp -R "$BUNDLE_DIR/workspace-seed" "$WS_DST" || stop_seeding "Could not seed the workspace home at $WS_DST."
   echo "      Created $WS_DST, seeded from the bundle."
 fi
 
 # A release can add a workspace folder or a seed file, the way it can add a memory section, and
 # until now that addition never reached an existing home. Each seed path the home lacks is created
 # or copied, additive only. Nothing already there is rewritten, whatever it now holds.
+# ws_folders_entry FILE REL prints the entry the Folders line of FILE gives the folder REL, and
+# nothing when that line does not name it. The line is a list separated by the middle dot, each
+# entry a folder path with an optional parenthetical after it, so only the entry's own path is
+# compared. A substring test reads tech-plans/ as a match for plans/ and leaves the new folder
+# unregistered, which is why the comparison is whole-field. Every entry ends in a slash, so a file
+# name inside a parenthetical is never mistaken for one.
+ws_folders_entry() {
+  tr -d '\r' < "$1" | sed -n 's/^Folders: //p' | head -n 1 \
+    | LC_ALL=C awk -v r="$2/" -F ' · ' '
+        { for (i = 1; i <= NF; i++) { n = $i; sub(/ .*$/, "", n); if (n == r) { print $i; exit } } }'
+}
+
+# ws_manifest_row FILE REL prints the row FILE's table gives the document REL, and nothing when it
+# has none. The path is the second column, compared whole, so one document never stands for another.
+ws_manifest_row() {
+  tr -d '\r' < "$1" | LC_ALL=C awk -v rel="$2" -F '|' '
+    /^\| / { p = $3; gsub(/^[ \t]+|[ \t]+$/, "", p); if (p == rel) { print; exit } }'
+}
+
+# ws_manifest_row_add REL adds the seed's own row for the file REL after the last row of the home
+# manifest's table, which is where a filed document belongs and where the Folders line cannot carry
+# it. Returns 0 when the row was written, 2 when the table already has a row for REL or the seed
+# manifest has none, as .gitkeep and .gitattributes do not, and 1 when the manifest could not be
+# rewritten. The lookup is by path, so a re-run adds nothing.
+ws_manifest_row_add() {
+  local rel="$1" man="$WS_DST/MANIFEST.md" row tmp
+  [ -f "$man" ] || return 1
+  [ -n "$(ws_manifest_row "$man" "$rel")" ] && return 2
+  row="$(ws_manifest_row "$BUNDLE_DIR/workspace-seed/MANIFEST.md" "$rel" || true)"
+  [ -n "$row" ] || return 2
+  tmp="$man.parvis-tmp"
+  if awk -v row="$row" '
+      { lines[NR] = $0; t = $0; sub(/\r$/, "", t); if (t ~ /^\| /) last = NR }
+      END { if (!last) exit 1
+            for (i = 1; i <= NR; i++) {
+              print lines[i]
+              if (i == last) { cr = (lines[i] ~ /\r$/) ? "\r" : ""; print row cr } } }
+    ' "$man" > "$tmp" && mv -f "$tmp" "$man"; then
+    return 0
+  fi
+  rm -f "$tmp"
+  return 1
+}
+
 # ws_manifest_add REL names REL in the Folders line of the home's manifest, in the seed's own
 # wording when the seed describes it. Returns 0 when the line was rewritten, 2 when it already
 # names REL and nothing was touched, and 1 when the manifest could not be rewritten.
 ws_manifest_add() {
   local rel="$1" man="$WS_DST/MANIFEST.md" frag tmp
   [ -f "$man" ] || return 1
-  tr -d '\r' < "$man" | sed -n 's/^Folders: //p' | head -n 1 | grep -qF "$rel/" && return 2
-  frag="$(tr -d '\r' < "$BUNDLE_DIR/workspace-seed/MANIFEST.md" | sed -n 's/^Folders: //p' | head -n 1 \
-    | LC_ALL=C awk -v r="$rel/" -F ' · ' '{ for (i = 1; i <= NF; i++) if (index($i, r) == 1) { print $i; exit } }')"
+  [ -n "$(ws_folders_entry "$man" "$rel")" ] && return 2
+  frag="$(ws_folders_entry "$BUNDLE_DIR/workspace-seed/MANIFEST.md" "$rel" || true)"
   [ -n "$frag" ] || frag="$rel/"
   tmp="$man.parvis-tmp"
   if LC_ALL=C awk -v BINMODE=3 -v frag="$frag" '
@@ -1688,14 +1797,22 @@ if [ -d "$WS_DST" ]; then
     fi
   done < <(cd "$BUNDLE_DIR/workspace-seed" && find . -mindepth 1 | sed 's|^\./||' | LC_ALL=C sort)
 fi
+# A folder is named in the Folders line and a file takes a table row. Registering folders alone
+# left every file the installer added invisible to future sessions, which MANIFEST.md line 2 calls
+# lost, so each added path is registered in the form its kind belongs in.
 for rel in ${ADDED_WS[@]+"${ADDED_WS[@]}"}; do
-  [ -d "$WS_DST/$rel" ] || continue
   rc=0
-  ws_manifest_add "$rel" || rc=$?
+  if [ -d "$WS_DST/$rel" ]; then
+    where="in the Folders line of"
+    ws_manifest_add "$rel" || rc=$?
+  else
+    where="as a table row in"
+    ws_manifest_row_add "$rel" || rc=$?
+  fi
   case "$rc" in
     0) WS_MAN_CHANGED=1; echo "      Registered $rel in the workspace manifest." ;;
     2) ;;
-    *) echo "      ERROR. Could not name $rel in the Folders line of $WS_DST/MANIFEST.md. Add it by hand."
+    *) echo "      ERROR. Could not name $rel $where $WS_DST/MANIFEST.md. Add it by hand."
        fail=1 ;;
   esac
 done
@@ -1861,11 +1978,11 @@ if [ "$ADOPTED" -eq 1 ]; then
 elif [ "$RESTORED" -eq 1 ]; then
   echo "  Owner skill  filled in, restored from $(display_path "$RESTORE_SRC")"
 elif [ -n "$RESTORE_SRC" ]; then
-  echo "  Owner skill  still the unfilled template, and a saved profile backup is waiting, see above"
-elif [ -f "$OWN_F" ] && ! is_template_skill "$OWN_F"; then
+  echo "  Owner skill  still the shipped copy, and a saved profile backup is waiting, see above"
+elif [ -f "$OWN_F" ] && ! is_unfilled_owner "$OWN_F"; then
   echo "  Owner skill  filled in, personalized copy kept"
 else
-  echo "  Owner skill  still the unfilled template, fill it in during initialization step 3"
+  echo "  Owner skill  still the shipped copy, make it your own during initialization step 3"
 fi
 if [ "$ADOPTED" -eq 1 ] && ! in_list "$OLD_OWNER_SKILL" ${PREV_ROSTER[@]+"${PREV_ROSTER[@]}"} &&    { [ -L "$SKILLS_DST/$OLD_OWNER_SKILL" ] || [ -d "$SKILLS_DST/$OLD_OWNER_SKILL" ]; }; then
   echo "  NOTE. No receipt claims $(display_path "$SKILLS_DST/$OLD_OWNER_SKILL"), so it was left in place."
